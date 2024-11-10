@@ -6,8 +6,8 @@
 const viewData = {
     id: "LeaveRequest-filter",
     label: "LeaveRequest Filter",
-    link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveRequests/LeaveRequest/dialog-filter/index.html",
-    perspectiveName: "LeaveRequests",
+    link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveRequest/LeaveRequest/dialog-filter/index.html",
+    perspectiveName: "LeaveRequest",
 };
 
 if (typeof exports !== 'undefined') {

@@ -1,6 +1,6 @@
 angular.module('page', ["ideUI", "ideView"])
 	.config(["messageHubProvider", function (messageHubProvider) {
-		messageHubProvider.eventIdPrefix = 'codbex-vacations.LeaveRequests.LeaveRequest';
+		messageHubProvider.eventIdPrefix = 'codbex-vacations.LeaveRequest.LeaveRequest';
 	}])
 	.controller('PageController', ['$scope', 'messageHub', 'ViewParameters', function ($scope, messageHub, ViewParameters) {
 

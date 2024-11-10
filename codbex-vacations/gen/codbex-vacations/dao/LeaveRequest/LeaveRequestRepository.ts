@@ -262,7 +262,7 @@ export class LeaveRequestRepository {
     }
 
     private async triggerEvent(data: LeaveRequestEntityEvent | LeaveRequestUpdateEntityEvent) {
-        const triggerExtensions = await extensions.loadExtensionModules("codbex-vacations-LeaveRequests-LeaveRequest", ["trigger"]);
+        const triggerExtensions = await extensions.loadExtensionModules("codbex-vacations-LeaveRequest-LeaveRequest", ["trigger"]);
         triggerExtensions.forEach(triggerExtension => {
             try {
                 triggerExtension.trigger(data);
@@ -270,6 +270,6 @@ export class LeaveRequestRepository {
                 console.error(error);
             }            
         });
-        producer.topic("codbex-vacations-LeaveRequests-LeaveRequest").send(JSON.stringify(data));
+        producer.topic("codbex-vacations-LeaveRequest-LeaveRequest").send(JSON.stringify(data));
     }
 }

@@ -12,8 +12,8 @@ exports.getTile = function () {
         type: "PRIMARY",
         report: "false",
         icon: "/services/web/resources/unicons/file.svg",
-        location: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveRequests/index.html",
+        location: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveRequest/index.html",
         order: "100",
-        groupOrder: "77",
+        groupOrder: "17",
     };
 };

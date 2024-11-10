@@ -4,11 +4,11 @@
  * Do not modify the content as it may be re-generated again.
  */
 const perspectiveData = {
-	id: 'LeaveRequests',
-	name: 'LeaveRequests',
-	link: '/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveRequests/index.html',
-	order: 77,
-	icon: '/services/web/resources/unicons/envelope-send.svg',
+	id: 'LeaveRequest',
+	name: 'LeaveRequest',
+	link: '/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveRequest/index.html',
+	order: 17,
+	icon: '/services/web/resources/unicons/envelope-question.svg',
 };
 
 if (typeof exports !== 'undefined') {

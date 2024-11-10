@@ -9,11 +9,11 @@ externalDocs:
 servers:
   - url: /services/ts
 tags:
-  - name: LeaveRequests
+  - name: LeaveRequest
   - name: entities
   - name: entities
 paths:
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequest/LeaveRequestService.ts:
     get:
       summary: List LeaveRequest
       parameters:
@@ -34,7 +34,7 @@ paths:
             type: integer
             allowEmptyValue: true
       tags:
-        - LeaveRequests
+        - LeaveRequest
       responses:
         200:
           description: Successful Request
@@ -65,7 +65,7 @@ paths:
     post:
       summary: Create LeaveRequest
       tags:
-        - LeaveRequests
+        - LeaveRequest
       requestBody:
         content:
           application/json:
@@ -97,7 +97,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/{id}:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequest/LeaveRequestService.ts/{id}:
     get:
       summary: Get LeaveRequest by Id
       parameters:
@@ -108,7 +108,7 @@ paths:
           schema:
             type: string
       tags:
-        - LeaveRequests
+        - LeaveRequest
       responses:
         200:
           description: Successful Request
@@ -146,7 +146,7 @@ paths:
           schema:
             type: string
       tags:
-        - LeaveRequests
+        - LeaveRequest
       requestBody:
         content:
           application/json:
@@ -194,7 +194,7 @@ paths:
           schema:
             type: string
       tags:
-        - LeaveRequests
+        - LeaveRequest
       responses:
         204:
           description: Successful Request
@@ -216,11 +216,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/count:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequest/LeaveRequestService.ts/count:
     get:
       summary: Count the number of LeaveRequest
       tags:
-        - LeaveRequests
+        - LeaveRequest
       responses:
         200:
           description: Successful Request
@@ -244,7 +244,7 @@ paths:
     post:
       summary: Count the number of LeaveRequest by LeaveRequestFilterOptions
       tags:
-        - LeaveRequests
+        - LeaveRequest
       requestBody:
         content:
           application/json:
@@ -318,11 +318,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/search:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequest/LeaveRequestService.ts/search:
     post:
       summary: Search LeaveRequest by LeaveRequestFilterOptions
       tags:
-        - LeaveRequests
+        - LeaveRequest
       requestBody:
         content:
           application/json:

@@ -1,9 +1,9 @@
 angular.module('page', ["ideUI", "ideView", "entityApi"])
 	.config(["messageHubProvider", function (messageHubProvider) {
-		messageHubProvider.eventIdPrefix = 'codbex-vacations.LeaveRequests.LeaveRequest';
+		messageHubProvider.eventIdPrefix = 'codbex-vacations.LeaveRequest.LeaveRequest';
 	}])
 	.config(["entityApiProvider", function (entityApiProvider) {
-		entityApiProvider.baseUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts";
+		entityApiProvider.baseUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveRequest/LeaveRequestService.ts";
 	}])
 	.controller('PageController', ['$scope', '$http', 'messageHub', 'entityApi', 'Extensions', function ($scope, $http, messageHub, entityApi, Extensions) {
 
@@ -15,7 +15,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 
 		//-----------------Custom Actions-------------------//
 		Extensions.get('dialogWindow', 'codbex-vacations-custom-action').then(function (response) {
-			$scope.pageActions = response.filter(e => e.perspective === "LeaveRequests" && e.view === "LeaveRequest" && (e.type === "page" || e.type === undefined));
+			$scope.pageActions = response.filter(e => e.perspective === "LeaveRequest" && e.view === "LeaveRequest" && (e.type === "page" || e.type === undefined));
 		});
 
 		$scope.triggerPageAction = function (action) {

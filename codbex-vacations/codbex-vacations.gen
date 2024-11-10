@@ -4,15 +4,15 @@
   "brandUrl": "https://www.codbex.com/",
   "title": "Vacations Management Module",
   "description": "Managing vacations data",
-  "fileName": "codbex-vacations",
-  "genFolderName": "codbex-vacations",
-  "dataSource": "DefaultDB",
   "projectName": "codbex-vacations",
   "workspaceName": "workspace",
   "filePath": "codbex-vacations.model",
   "templateId": "template-application-angular/template/template.js",
+  "fileName": "codbex-vacations",
+  "genFolderName": "codbex-vacations",
+  "dataSource": "DefaultDB",
   "perspectives": {
-    "LeaveRequests": {
+    "LeaveRequest": {
       "views": [
         "LeaveRequest",
         "LeaveRequest-details",
@@ -35,10 +35,10 @@
         "LeaveRequest-details",
         "LeaveRequest-details"
       ],
-      "name": "LeaveRequests",
-      "label": "LeaveRequests",
-      "order": "77",
-      "icon": "/services/web/resources/unicons/envelope-send.svg",
+      "name": "LeaveRequest",
+      "label": "LeaveRequest",
+      "order": "17",
+      "icon": "/services/web/resources/unicons/envelope-question.svg",
       "role": ""
     },
     "Employees": {
@@ -278,10 +278,10 @@
       "menuLabel": "LeaveRequest",
       "name": "LeaveRequest",
       "navigationPath": "/Home",
-      "perspectiveIcon": "/services/web/resources/unicons/envelope-send.svg",
-      "perspectiveLabel": "LeaveRequests",
-      "perspectiveName": "LeaveRequests",
-      "perspectiveOrder": "77",
+      "perspectiveIcon": "/services/web/resources/unicons/envelope-question.svg",
+      "perspectiveLabel": "LeaveRequest",
+      "perspectiveName": "LeaveRequest",
+      "perspectiveOrder": "17",
       "perspectiveRole": "",
       "title": "LeaveRequest",
       "tooltip": "LeaveRequest",
