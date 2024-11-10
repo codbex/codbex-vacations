@@ -1205,6 +1205,7 @@ components:
         - Employee
         - StartDate
         - EndDate
+        - Days
         - Type
         - Status
       properties:
@@ -1220,6 +1221,9 @@ components:
           readOnly: true
         StartDate:
         EndDate:
+        Days:
+          type: integer
+          format: int32
         Type:
           type: integer
           format: int32
@@ -1263,6 +1267,14 @@ components:
                   oneOf:
                 EndDate:
                   oneOf:
+                Days:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
                 Type:
                   oneOf:
                     - type: integer
@@ -1310,6 +1322,14 @@ components:
                   oneOf:
                 EndDate:
                   oneOf:
+                Days:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
                 Type:
                   oneOf:
                     - type: integer
@@ -1334,6 +1354,7 @@ components:
                 JobPosition:
                 StartDate:
                 EndDate:
+                Days:
                 Type:
                 Status:
             greaterThan:
@@ -1350,6 +1371,9 @@ components:
                   format: int32
                 StartDate:
                 EndDate:
+                Days:
+                  type: integer
+                  format: int32
                 Type:
                   type: integer
                   format: int32
@@ -1370,6 +1394,9 @@ components:
                   format: int32
                 StartDate:
                 EndDate:
+                Days:
+                  type: integer
+                  format: int32
                 Type:
                   type: integer
                   format: int32
@@ -1390,6 +1417,9 @@ components:
                   format: int32
                 StartDate:
                 EndDate:
+                Days:
+                  type: integer
+                  format: int32
                 Type:
                   type: integer
                   format: int32
@@ -1410,6 +1440,9 @@ components:
                   format: int32
                 StartDate:
                 EndDate:
+                Days:
+                  type: integer
+                  format: int32
                 Type:
                   type: integer
                   format: int32
@@ -1418,12 +1451,12 @@ components:
                   format: int32
         $select:
           type: array
-          example: ["Id", "Employee", "JobPosition", "StartDate", "EndDate", "Type", "Status"]
+          example: ["Id", "Employee", "JobPosition", "StartDate", "EndDate", "Days", "Type", "Status"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Employee,JobPosition,StartDate,EndDate,Type,Status"
+            example: "Id,Employee,JobPosition,StartDate,EndDate,Days,Type,Status"
         $order:
           type: string
           enum: ["asc", "desc"]

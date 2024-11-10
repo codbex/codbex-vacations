@@ -35,6 +35,11 @@
                     {
                         "type": "INTEGER",
                         "nullable": true,
+                        "name": "LEAVEREQUEST_DAYS"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
                         "name": "LEAVEREQUEST_TYPE"
                     },
                     {

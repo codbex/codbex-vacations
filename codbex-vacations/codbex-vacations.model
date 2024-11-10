@@ -83,6 +83,20 @@
                         "widgetType": "DATE"
                     },
                     {
+                        "calculatedPropertyExpressionCreate": "",
+                        "dataName": "LEAVEREQUEST_DAYS",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "description": "",
+                        "isRequiredProperty": "true",
+                        "name": "Days",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "NUMBER"
+                    },
+                    {
                         "dataName": "LEAVEREQUEST_TYPE",
                         "dataNullable": "true",
                         "dataType": "INTEGER",

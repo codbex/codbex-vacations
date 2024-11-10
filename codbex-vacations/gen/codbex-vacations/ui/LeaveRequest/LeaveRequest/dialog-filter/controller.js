@@ -73,6 +73,9 @@ angular.module('page', ["ideUI", "ideView"])
 			if (entity.EndDateTo) {
 				filter.$filter.lessThanOrEqual.EndDate = entity.EndDateTo;
 			}
+			if (entity.Days !== undefined) {
+				filter.$filter.equals.Days = entity.Days;
+			}
 			if (entity.Type !== undefined) {
 				filter.$filter.equals.Type = entity.Type;
 			}

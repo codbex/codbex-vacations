@@ -128,6 +128,9 @@ class LeaveRequestService {
         if (entity.EndDate === null || entity.EndDate === undefined) {
             throw new ValidationError(`The 'EndDate' property is required, provide a valid value`);
         }
+        if (entity.Days === null || entity.Days === undefined) {
+            throw new ValidationError(`The 'Days' property is required, provide a valid value`);
+        }
         if (entity.Type === null || entity.Type === undefined) {
             throw new ValidationError(`The 'Type' property is required, provide a valid value`);
         }

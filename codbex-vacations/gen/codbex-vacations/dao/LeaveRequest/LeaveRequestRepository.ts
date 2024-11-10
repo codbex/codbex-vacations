@@ -10,6 +10,7 @@ export interface LeaveRequestEntity {
     JobPosition?: number;
     StartDate?: Date;
     EndDate?: Date;
+    Days?: number;
     Type?: number;
     Status?: number;
 }
@@ -18,6 +19,7 @@ export interface LeaveRequestCreateEntity {
     readonly Employee?: number;
     readonly StartDate?: Date;
     readonly EndDate?: Date;
+    readonly Days?: number;
     readonly Type?: number;
     readonly Status?: number;
 }
@@ -34,6 +36,7 @@ export interface LeaveRequestEntityOptions {
             JobPosition?: number | number[];
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
+            Days?: number | number[];
             Type?: number | number[];
             Status?: number | number[];
         };
@@ -43,6 +46,7 @@ export interface LeaveRequestEntityOptions {
             JobPosition?: number | number[];
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
+            Days?: number | number[];
             Type?: number | number[];
             Status?: number | number[];
         };
@@ -52,6 +56,7 @@ export interface LeaveRequestEntityOptions {
             JobPosition?: number;
             StartDate?: Date;
             EndDate?: Date;
+            Days?: number;
             Type?: number;
             Status?: number;
         };
@@ -61,6 +66,7 @@ export interface LeaveRequestEntityOptions {
             JobPosition?: number;
             StartDate?: Date;
             EndDate?: Date;
+            Days?: number;
             Type?: number;
             Status?: number;
         };
@@ -70,6 +76,7 @@ export interface LeaveRequestEntityOptions {
             JobPosition?: number;
             StartDate?: Date;
             EndDate?: Date;
+            Days?: number;
             Type?: number;
             Status?: number;
         };
@@ -79,6 +86,7 @@ export interface LeaveRequestEntityOptions {
             JobPosition?: number;
             StartDate?: Date;
             EndDate?: Date;
+            Days?: number;
             Type?: number;
             Status?: number;
         };
@@ -88,6 +96,7 @@ export interface LeaveRequestEntityOptions {
             JobPosition?: number;
             StartDate?: Date;
             EndDate?: Date;
+            Days?: number;
             Type?: number;
             Status?: number;
         };
@@ -145,6 +154,11 @@ export class LeaveRequestRepository {
                 name: "EndDate",
                 column: "LEAVEREQUEST_ENDDATE",
                 type: "DATE",
+            },
+            {
+                name: "Days",
+                column: "LEAVEREQUEST_DAYS",
+                type: "INTEGER",
             },
             {
                 name: "Type",
