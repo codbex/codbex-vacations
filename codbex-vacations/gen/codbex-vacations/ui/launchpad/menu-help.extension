@@ -1,0 +1,5 @@
+{
+    "module": "codbex-vacations/gen/codbex-vacations/ui/launchpad/menu-help.js",
+    "extensionPoint": "codbex-vacations-menu",
+    "description": "codbex-vacations - Application Menu"
+}

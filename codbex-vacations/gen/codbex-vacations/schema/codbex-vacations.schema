@@ -1,0 +1,124 @@
+{
+    "schema": {
+        "structures": [
+            {
+                "name": "CODBEX_LEAVEREQUEST",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "LEAVEREQUEST_ID"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEREQUEST_EMPLOYEE"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEREQUEST_JOBPOSITION"
+                    },
+                    {
+                        "type": "DATE",
+                        "nullable": true,
+                        "name": "LEAVEREQUEST_STARTDATE"
+                    },
+                    {
+                        "type": "DATE",
+                        "nullable": true,
+                        "name": "LEAVEREQUEST_ENDDATE"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEREQUEST_TYPE"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEREQUEST_STATUS"
+                    }
+                ]
+            },
+            {
+                "name": "CODBEX_LEAVETYPE",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "LEAVETYPE_ID"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 100,
+                        "nullable": true,
+                        "name": "LEAVETYPE_NAME"
+                    }
+                ]
+            },
+            {
+                "name": "CODBEX_LEAVESTATUS",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "LEAVESTATUS_ID"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "LEAVESTATUS_NAME"
+                    }
+                ]
+            },
+            {
+                "name": "LeaveRequest_Employee",
+                "type": "foreignKey",
+                "table": "CODBEX_LEAVEREQUEST",
+                "constraintName": "LeaveRequest_Employee",
+                "columns": "LEAVEREQUEST_EMPLOYEE",
+                "referencedTable": "CODBEX_EMPLOYEE",
+                "referencedColumns": "EMPLOYEE_ID"
+            },
+            {
+                "name": "LeaveRequest_JobPosition",
+                "type": "foreignKey",
+                "table": "CODBEX_LEAVEREQUEST",
+                "constraintName": "LeaveRequest_JobPosition",
+                "columns": "LEAVEREQUEST_JOBPOSITION",
+                "referencedTable": "CODBEX_JOBPOSITION",
+                "referencedColumns": "JOBPOSITION_ID"
+            },
+            {
+                "name": "LeaveRequest_LeaveType",
+                "type": "foreignKey",
+                "table": "CODBEX_LEAVEREQUEST",
+                "constraintName": "LeaveRequest_LeaveType",
+                "columns": "LEAVEREQUEST_TYPE",
+                "referencedTable": "CODBEX_LEAVETYPE",
+                "referencedColumns": "LEAVETYPE_ID"
+            },
+            {
+                "name": "LeaveRequest_LeaveStatus",
+                "type": "foreignKey",
+                "table": "CODBEX_LEAVEREQUEST",
+                "constraintName": "LeaveRequest_LeaveStatus",
+                "columns": "LEAVEREQUEST_STATUS",
+                "referencedTable": "CODBEX_LEAVESTATUS",
+                "referencedColumns": "LEAVESTATUS_ID"
+            }
+        ]
+    },
+    "datasource": "DefaultDB"
+}
