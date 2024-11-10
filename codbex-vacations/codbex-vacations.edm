@@ -1,6 +1,6 @@
 <model>
  <entities>
-  <entity name="LeaveRequest" dataName="LEAVEREQUEST" dataCount="SELECT COUNT(*) AS COUNT FROM &quot;${tablePrefix}LEAVEREQUEST&quot;" dataQuery="" type="PRIMARY" title="LeaveRequest" caption="Manage entity LeaveRequest" description="Manage entity LeaveRequest" tooltip="LeaveRequest" icon="/services/web/resources/unicons/file.svg" menuKey="leaverequest" menuLabel="LeaveRequest" menuIndex="100" layoutType="MANAGE_MASTER" navigationPath="/Home" perspectiveName="LeaveRequest" perspectiveLabel="LeaveRequest" perspectiveIcon="/services/web/resources/unicons/envelope-question.svg" perspectiveOrder="17" perspectiveRole="" generateReport="false">
+  <entity name="LeaveRequest" dataName="LEAVEREQUEST" dataCount="SELECT COUNT(*) AS COUNT FROM &quot;${tablePrefix}LEAVEREQUEST&quot;" dataQuery="" type="PRIMARY" title="LeaveRequest" caption="Manage entity LeaveRequest" description="Manage entity LeaveRequest" tooltip="LeaveRequest" icon="/services/web/resources/unicons/file.svg" menuKey="leaverequest" menuLabel="LeaveRequest" menuIndex="100" layoutType="MANAGE_MASTER" navigationPath="/Home" perspectiveName="LeaveRequest" perspectiveLabel="Entities" perspectiveIcon="/services/web/resources/unicons/copy.svg" perspectiveOrder="100" perspectiveRole="" generateReport="false">
     <property name="Id" description="" tooltip="" dataName="LEAVEREQUEST_ID" dataType="INTEGER" dataNullable="true" dataPrimaryKey="true" dataAutoIncrement="true" widgetType="TEXTBOX" widgetSize="" widgetLength="20" widgetIsMajor="true"></property>
     <property name="Employee" description="" tooltip="" dataName="LEAVEREQUEST_EMPLOYEE" dataType="INTEGER" dataNullable="true" isRequiredProperty="true" widgetType="DROPDOWN" widgetSize="" widgetLength="20" widgetIsMajor="true" widgetDropDownKey="Id" widgetDropDownValue="Name"></property>
     <property name="JobPosition" description="" tooltip="" dataName="LEAVEREQUEST_JOBPOSITION" dataType="INTEGER" dataNullable="true" isCalculatedProperty="true" widgetType="DROPDOWN" widgetSize="" widgetLength="20" widgetIsMajor="true" widgetDropDownKey="Id" widgetDropDownValue="Name" widgetDependsOnEntity=""></property>
@@ -50,7 +50,6 @@
   </relation>
  </entities>
  <perspectives>
-  <perspective><name>LeaveRequest</name><label>LeaveRequest</label><icon>/services/web/resources/unicons/envelope-question.svg</icon><order>17</order><role></role></perspective>
  </perspectives>
  <navigations>
  </navigations>

@@ -134,10 +134,10 @@
                 "menuLabel": "LeaveRequest",
                 "name": "LeaveRequest",
                 "navigationPath": "/Home",
-                "perspectiveIcon": "/services/web/resources/unicons/envelope-question.svg",
-                "perspectiveLabel": "LeaveRequest",
+                "perspectiveIcon": "/services/web/resources/unicons/copy.svg",
+                "perspectiveLabel": "Entities",
                 "perspectiveName": "LeaveRequest",
-                "perspectiveOrder": "17",
+                "perspectiveOrder": "100",
                 "perspectiveRole": "",
                 "title": "LeaveRequest",
                 "tooltip": "LeaveRequest",
@@ -601,15 +601,7 @@
                 "type": "DEPENDENT"
             }
         ],
-        "perspectives": [
-            {
-                "name": "LeaveRequest",
-                "label": "LeaveRequest",
-                "icon": "/services/web/resources/unicons/envelope-question.svg",
-                "order": "17",
-                "role": {}
-            }
-        ],
+        "perspectives": [],
         "navigations": []
     }
 }

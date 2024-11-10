@@ -5,10 +5,10 @@
  */
 const perspectiveData = {
 	id: 'LeaveRequest',
-	name: 'LeaveRequest',
+	name: 'Entities',
 	link: '/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveRequest/index.html',
-	order: 17,
-	icon: '/services/web/resources/unicons/envelope-question.svg',
+	order: 100,
+	icon: '/services/web/resources/unicons/copy.svg',
 };
 
 if (typeof exports !== 'undefined') {
