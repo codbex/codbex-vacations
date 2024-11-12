@@ -39,11 +39,14 @@ angular.module('page', ["ideUI", "ideView"])
 			if (entity.Id !== undefined) {
 				filter.$filter.equals.Id = entity.Id;
 			}
-			if (entity.LeaveRequest !== undefined) {
-				filter.$filter.equals.LeaveRequest = entity.LeaveRequest;
+			if (entity.Number) {
+				filter.$filter.contains.Number = entity.Number;
 			}
 			if (entity.Document) {
 				filter.$filter.contains.Document = entity.Document;
+			}
+			if (entity.LeaveRequest !== undefined) {
+				filter.$filter.equals.LeaveRequest = entity.LeaveRequest;
 			}
 			messageHub.postMessage("entitySearch", {
 				entity: entity,

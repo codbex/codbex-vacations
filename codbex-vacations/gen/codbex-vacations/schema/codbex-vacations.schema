@@ -99,15 +99,21 @@
                         "name": "LEAVEREQUESTDOCUMENT_ID"
                     },
                     {
-                        "type": "INTEGER",
+                        "type": "VARCHAR",
+                        "length": 20,
                         "nullable": true,
-                        "name": "LEAVEREQUESTDOCUMENT_LEAVEREQUEST"
+                        "name": "LEAVEREQUESTDOCUMENT_NUMBER"
                     },
                     {
                         "type": "VARCHAR",
                         "length": 1000,
                         "nullable": true,
                         "name": "LEAVEREQUESTDOCUMENT_DOCUMENT"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEREQUESTDOCUMENT_LEAVEREQUEST"
                     }
                 ]
             },

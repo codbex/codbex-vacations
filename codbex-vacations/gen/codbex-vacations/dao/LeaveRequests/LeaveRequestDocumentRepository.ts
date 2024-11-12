@@ -5,13 +5,14 @@ import { dao as daoApi } from "sdk/db";
 
 export interface LeaveRequestDocumentEntity {
     readonly Id: number;
-    LeaveRequest?: number;
+    Number?: string;
     Document?: string;
+    LeaveRequest?: number;
 }
 
 export interface LeaveRequestDocumentCreateEntity {
-    readonly LeaveRequest?: number;
     readonly Document?: string;
+    readonly LeaveRequest?: number;
 }
 
 export interface LeaveRequestDocumentUpdateEntity extends LeaveRequestDocumentCreateEntity {
@@ -22,38 +23,45 @@ export interface LeaveRequestDocumentEntityOptions {
     $filter?: {
         equals?: {
             Id?: number | number[];
-            LeaveRequest?: number | number[];
+            Number?: string | string[];
             Document?: string | string[];
+            LeaveRequest?: number | number[];
         };
         notEquals?: {
             Id?: number | number[];
-            LeaveRequest?: number | number[];
+            Number?: string | string[];
             Document?: string | string[];
+            LeaveRequest?: number | number[];
         };
         contains?: {
             Id?: number;
-            LeaveRequest?: number;
+            Number?: string;
             Document?: string;
+            LeaveRequest?: number;
         };
         greaterThan?: {
             Id?: number;
-            LeaveRequest?: number;
+            Number?: string;
             Document?: string;
+            LeaveRequest?: number;
         };
         greaterThanOrEqual?: {
             Id?: number;
-            LeaveRequest?: number;
+            Number?: string;
             Document?: string;
+            LeaveRequest?: number;
         };
         lessThan?: {
             Id?: number;
-            LeaveRequest?: number;
+            Number?: string;
             Document?: string;
+            LeaveRequest?: number;
         };
         lessThanOrEqual?: {
             Id?: number;
-            LeaveRequest?: number;
+            Number?: string;
             Document?: string;
+            LeaveRequest?: number;
         };
     },
     $select?: (keyof LeaveRequestDocumentEntity)[],
@@ -91,14 +99,19 @@ export class LeaveRequestDocumentRepository {
                 autoIncrement: true,
             },
             {
-                name: "LeaveRequest",
-                column: "LEAVEREQUESTDOCUMENT_LEAVEREQUEST",
-                type: "INTEGER",
+                name: "Number",
+                column: "LEAVEREQUESTDOCUMENT_NUMBER",
+                type: "VARCHAR",
             },
             {
                 name: "Document",
                 column: "LEAVEREQUESTDOCUMENT_DOCUMENT",
                 type: "VARCHAR",
+            },
+            {
+                name: "LeaveRequest",
+                column: "LEAVEREQUESTDOCUMENT_LEAVEREQUEST",
+                type: "INTEGER",
             }
         ]
     };
@@ -119,6 +132,8 @@ export class LeaveRequestDocumentRepository {
     }
 
     public create(entity: LeaveRequestDocumentCreateEntity): number {
+        // @ts-ignore
+        (entity as LeaveRequestDocumentEntity).Number = new NumberGeneratorService().generate(31);
         const id = this.dao.insert(entity);
         this.triggerEvent({
             operation: "create",

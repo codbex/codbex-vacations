@@ -130,6 +130,9 @@ class LeaveRequestDocumentService {
     }
 
     private validateEntity(entity: any): void {
+        if (entity.Number?.length > 20) {
+            throw new ValidationError(`The 'Number' exceeds the maximum length of [20] characters`);
+        }
         if (entity.Document === null || entity.Document === undefined) {
             throw new ValidationError(`The 'Document' property is required, provide a valid value`);
         }

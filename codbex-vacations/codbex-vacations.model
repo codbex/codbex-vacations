@@ -631,6 +631,35 @@
                         "widgetType": "TEXTBOX"
                     },
                     {
+                        "calculatedPropertyExpressionCreate": "new NumberGeneratorService().generate(31)",
+                        "dataLength": "20",
+                        "dataName": "LEAVEREQUESTDOCUMENT_NUMBER",
+                        "dataNullable": "true",
+                        "dataType": "VARCHAR",
+                        "description": "",
+                        "isCalculatedProperty": "true",
+                        "name": "Number",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataLength": "1000",
+                        "dataName": "LEAVEREQUESTDOCUMENT_DOCUMENT",
+                        "dataNullable": "true",
+                        "dataType": "VARCHAR",
+                        "description": "",
+                        "isRequiredProperty": "true",
+                        "name": "Document",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "1000",
+                        "widgetSize": "",
+                        "widgetType": "URL"
+                    },
+                    {
                         "dataName": "LEAVEREQUESTDOCUMENT_LEAVEREQUEST",
                         "dataNullable": "true",
                         "dataType": "INTEGER",
@@ -647,20 +676,6 @@
                         "relationshipEntityName": "LeaveRequest",
                         "relationshipEntityPerspectiveName": "LeaveRequests",
                         "relationshipEntityPerspectiveLabel": "Entities"
-                    },
-                    {
-                        "dataLength": "1000",
-                        "dataName": "LEAVEREQUESTDOCUMENT_DOCUMENT",
-                        "dataNullable": "true",
-                        "dataType": "VARCHAR",
-                        "description": "",
-                        "isRequiredProperty": "true",
-                        "name": "Document",
-                        "tooltip": "",
-                        "widgetIsMajor": "true",
-                        "widgetLength": "20",
-                        "widgetSize": "",
-                        "widgetType": "URL"
                     }
                 ],
                 "caption": "Manage entity LeaveRequestDocument",

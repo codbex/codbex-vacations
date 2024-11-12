@@ -1443,6 +1443,7 @@ paths:
                     notEquals:
                       Id: 33
                     contains:
+                      Number: "abcd"
                       Document: "abcd"
                     greaterThan:
                       Id: 0
@@ -1465,6 +1466,7 @@ paths:
                 value:
                   $filter:
                     contains:
+                      Number: "abcd"
                       Document: "abcd"
               countWithGreaterThan:
                 summary: Count with Greater Than
@@ -1529,6 +1531,7 @@ paths:
                     notEquals:
                       Id: 33
                     contains:
+                      Number: "abcd"
                       Document: "abcd"
                     greaterThan:
                       Id: 0
@@ -1551,6 +1554,7 @@ paths:
                 value:
                   $filter:
                     contains:
+                      Number: "abcd"
                       Document: "abcd"
               searchWithGreaterThan:
                 summary: Search with Greater Than
@@ -2132,13 +2136,18 @@ components:
         Id:
           type: integer
           format: int32
-        LeaveRequest:
-          type: integer
-          format: int32
+        Number:
+          type: string
+          minLength: 0
+          maxLength: 20
+          readOnly: true
         Document:
           type: string
           minLength: 0
           maxLength: 1000
+        LeaveRequest:
+          type: integer
+          format: int32
     LeaveRequestDocumentFilterOptions:
       type: object
       properties:
@@ -2156,14 +2165,17 @@ components:
                       items:
                         type: integer
                         format: int32
-                LeaveRequest:
+                Number:
                   oneOf:
-                    - type: integer
-                      format: int32
+                    - type: string
+                      minLength: 0
+                      maxLength: 20
                     - type: array
                       items:
-                        type: integer
-                        format: int32
+                        type: string
+                        format: double
+                        minLength: 0
+                        maxLength: 20
                 Document:
                   oneOf:
                     - type: string
@@ -2175,6 +2187,14 @@ components:
                         format: double
                         minLength: 0
                         maxLength: 1000
+                LeaveRequest:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
             notEquals:
               type: object
               properties:
@@ -2186,14 +2206,17 @@ components:
                       items:
                         type: integer
                         format: int32
-                LeaveRequest:
+                Number:
                   oneOf:
-                    - type: integer
-                      format: int32
+                    - type: string
+                      minLength: 0
+                      maxLength: 20
                     - type: array
                       items:
-                        type: integer
-                        format: int32
+                        type: string
+                        format: double
+                        minLength: 0
+                        maxLength: 20
                 Document:
                   oneOf:
                     - type: string
@@ -2205,75 +2228,103 @@ components:
                         format: double
                         minLength: 0
                         maxLength: 1000
+                LeaveRequest:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
             contains:
               type: object
               properties:
                 Id:
-                LeaveRequest:
+                Number:
+                  type: string
+                  minLength: 0
+                  maxLength: 20
                 Document:
                   type: string
                   minLength: 0
                   maxLength: 1000
+                LeaveRequest:
             greaterThan:
               type: object
               properties:
                 Id:
                   type: integer
                   format: int32
-                LeaveRequest:
-                  type: integer
-                  format: int32
+                Number:
+                  type: string
+                  minLength: 0
+                  maxLength: 20
                 Document:
                   type: string
                   minLength: 0
                   maxLength: 1000
+                LeaveRequest:
+                  type: integer
+                  format: int32
             greaterThanOrEqual:
               type: object
               properties:
                 Id:
                   type: integer
                   format: int32
-                LeaveRequest:
-                  type: integer
-                  format: int32
+                Number:
+                  type: string
+                  minLength: 0
+                  maxLength: 20
                 Document:
                   type: string
                   minLength: 0
                   maxLength: 1000
+                LeaveRequest:
+                  type: integer
+                  format: int32
             lessThan:
               type: object
               properties:
                 Id:
                   type: integer
                   format: int32
-                LeaveRequest:
-                  type: integer
-                  format: int32
+                Number:
+                  type: string
+                  minLength: 0
+                  maxLength: 20
                 Document:
                   type: string
                   minLength: 0
                   maxLength: 1000
+                LeaveRequest:
+                  type: integer
+                  format: int32
             lessThanOrEqual:
               type: object
               properties:
                 Id:
                   type: integer
                   format: int32
-                LeaveRequest:
-                  type: integer
-                  format: int32
+                Number:
+                  type: string
+                  minLength: 0
+                  maxLength: 20
                 Document:
                   type: string
                   minLength: 0
                   maxLength: 1000
+                LeaveRequest:
+                  type: integer
+                  format: int32
         $select:
           type: array
-          example: ["Id", "LeaveRequest", "Document"]
+          example: ["Id", "Number", "Document", "LeaveRequest"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,LeaveRequest,Document"
+            example: "Id,Number,Document,LeaveRequest"
         $order:
           type: string
           enum: ["asc", "desc"]
