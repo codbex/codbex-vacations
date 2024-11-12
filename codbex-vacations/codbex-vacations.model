@@ -148,10 +148,10 @@
                 "menuLabel": "LeaveRequest",
                 "name": "LeaveRequest",
                 "navigationPath": "/Home",
-                "perspectiveIcon": "/services/web/resources/unicons/copy.svg",
-                "perspectiveLabel": "Entities",
-                "perspectiveName": "LeaveRequest",
-                "perspectiveOrder": "100",
+                "perspectiveIcon": "/services/web/resources/unicons/file-question.svg",
+                "perspectiveLabel": "LeaveRequests",
+                "perspectiveName": "LeaveRequests",
+                "perspectiveOrder": "13",
                 "perspectiveRole": "",
                 "title": "LeaveRequest",
                 "tooltip": "LeaveRequest",
@@ -613,9 +613,88 @@
                 "title": "LeaveStatus",
                 "tooltip": "LeaveStatus",
                 "type": "DEPENDENT"
+            },
+            {
+                "properties": [
+                    {
+                        "dataAutoIncrement": "true",
+                        "dataName": "LEAVEREQUESTDOCUMENT_ID",
+                        "dataNullable": "true",
+                        "dataPrimaryKey": "true",
+                        "dataType": "INTEGER",
+                        "description": "",
+                        "name": "Id",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX"
+                    },
+                    {
+                        "dataName": "LEAVEREQUESTDOCUMENT_LEAVEREQUEST",
+                        "dataNullable": "true",
+                        "dataType": "INTEGER",
+                        "description": "",
+                        "name": "LeaveRequest",
+                        "relationshipCardinality": "1_n",
+                        "relationshipName": "LeaveRequestDocument_LeaveRequest",
+                        "relationshipType": "COMPOSITION",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "TEXTBOX",
+                        "relationshipEntityName": "LeaveRequest",
+                        "relationshipEntityPerspectiveName": "LeaveRequests",
+                        "relationshipEntityPerspectiveLabel": "Entities"
+                    },
+                    {
+                        "dataLength": "1000",
+                        "dataName": "LEAVEREQUESTDOCUMENT_DOCUMENT",
+                        "dataNullable": "true",
+                        "dataType": "VARCHAR",
+                        "description": "",
+                        "isRequiredProperty": "true",
+                        "name": "Document",
+                        "tooltip": "",
+                        "widgetIsMajor": "true",
+                        "widgetLength": "20",
+                        "widgetSize": "",
+                        "widgetType": "URL"
+                    }
+                ],
+                "caption": "Manage entity LeaveRequestDocument",
+                "dataCount": "SELECT COUNT(*) AS COUNT FROM \"${tablePrefix}LEAVEREQUESTDOCUMENT\"",
+                "dataName": "LEAVEREQUESTDOCUMENT",
+                "dataQuery": "",
+                "description": "Manage entity LeaveRequestDocument",
+                "generateReport": "false",
+                "icon": "/services/web/resources/unicons/file.svg",
+                "layoutType": "MANAGE_DETAILS",
+                "menuIndex": "100",
+                "menuKey": "leaverequestdocument",
+                "menuLabel": "LeaveRequestDocument",
+                "name": "LeaveRequestDocument",
+                "navigationPath": "/Home",
+                "perspectiveIcon": "/services/web/resources/unicons/file-question.svg",
+                "perspectiveLabel": "LeaveRequests",
+                "perspectiveName": "LeaveRequests",
+                "perspectiveOrder": "13",
+                "perspectiveRole": "",
+                "title": "LeaveRequestDocument",
+                "tooltip": "LeaveRequestDocument",
+                "type": "DEPENDENT"
             }
         ],
-        "perspectives": [],
+        "perspectives": [
+            {
+                "name": "LeaveRequests",
+                "label": "LeaveRequests",
+                "icon": "/services/web/resources/unicons/file-question.svg",
+                "order": "13",
+                "role": {}
+            }
+        ],
         "navigations": []
     }
 }

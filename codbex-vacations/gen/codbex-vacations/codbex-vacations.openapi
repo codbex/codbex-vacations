@@ -9,11 +9,12 @@ externalDocs:
 servers:
   - url: /services/ts
 tags:
-  - name: LeaveRequest
+  - name: LeaveRequests
   - name: entities
   - name: entities
+  - name: LeaveRequests
 paths:
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequest/LeaveRequestService.ts:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts:
     get:
       summary: List LeaveRequest
       parameters:
@@ -34,7 +35,7 @@ paths:
             type: integer
             allowEmptyValue: true
       tags:
-        - LeaveRequest
+        - LeaveRequests
       responses:
         200:
           description: Successful Request
@@ -65,7 +66,7 @@ paths:
     post:
       summary: Create LeaveRequest
       tags:
-        - LeaveRequest
+        - LeaveRequests
       requestBody:
         content:
           application/json:
@@ -97,7 +98,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequest/LeaveRequestService.ts/{id}:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/{id}:
     get:
       summary: Get LeaveRequest by Id
       parameters:
@@ -108,7 +109,7 @@ paths:
           schema:
             type: string
       tags:
-        - LeaveRequest
+        - LeaveRequests
       responses:
         200:
           description: Successful Request
@@ -146,7 +147,7 @@ paths:
           schema:
             type: string
       tags:
-        - LeaveRequest
+        - LeaveRequests
       requestBody:
         content:
           application/json:
@@ -194,7 +195,7 @@ paths:
           schema:
             type: string
       tags:
-        - LeaveRequest
+        - LeaveRequests
       responses:
         204:
           description: Successful Request
@@ -216,11 +217,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequest/LeaveRequestService.ts/count:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/count:
     get:
       summary: Count the number of LeaveRequest
       tags:
-        - LeaveRequest
+        - LeaveRequests
       responses:
         200:
           description: Successful Request
@@ -244,7 +245,7 @@ paths:
     post:
       summary: Count the number of LeaveRequest by LeaveRequestFilterOptions
       tags:
-        - LeaveRequest
+        - LeaveRequests
       requestBody:
         content:
           application/json:
@@ -318,11 +319,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequest/LeaveRequestService.ts/search:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/search:
     post:
       summary: Search LeaveRequest by LeaveRequestFilterOptions
       tags:
-        - LeaveRequest
+        - LeaveRequests
       requestBody:
         content:
           application/json:
@@ -1197,6 +1198,406 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestDocumentService.ts:
+    get:
+      summary: List LeaveRequestDocument
+      parameters:
+        - in: query
+          name: $limit
+          description: The number of records to be returned _(both `$limit` and `$offset` should be provided)_.
+          required: false
+          allowReserved: true
+          schema:
+            type: integer
+            allowEmptyValue: true
+        - in: query
+          name: $offset
+          description: The number of records to skip _(both `$limit` and `$offset` should be provided)_.
+          required: false
+          allowReserved: true
+          schema:
+            type: integer
+            allowEmptyValue: true
+      tags:
+        - LeaveRequests
+      responses:
+        200:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/LeaveRequestDocument'
+        400:
+          description: Bad Request Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create LeaveRequestDocument
+      tags:
+        - LeaveRequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaveRequestDocument'
+        required: true
+      responses:
+        201:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequestDocument'
+        400:
+          description: Bad Request Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestDocumentService.ts/{id}:
+    get:
+      summary: Get LeaveRequestDocument by Id
+      parameters:
+        - in: path
+          name: id
+          description: The Id of the entity.
+          required: true
+          schema:
+            type: string
+      tags:
+        - LeaveRequests
+      responses:
+        200:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/LeaveRequestDocument'
+        404:
+          description: Entity Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: Update LeaveRequestDocument by Id
+      parameters:
+        - in: path
+          name: id
+          description: The Id of the entity.
+          required: true
+          schema:
+            type: string
+      tags:
+        - LeaveRequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaveRequestDocument'
+        required: true
+      responses:
+        200:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequestDocument'
+        400:
+          description: Bad Request Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Entity Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete LeaveRequestDocument by Id
+      parameters:
+        - in: path
+          name: id
+          description: The Id of the entity.
+          required: true
+          schema:
+            type: string
+      tags:
+        - LeaveRequests
+      responses:
+        204:
+          description: Successful Request
+        404:
+          description: Entity Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestDocumentService.ts/count:
+    get:
+      summary: Count the number of LeaveRequestDocument
+      tags:
+        - LeaveRequests
+      responses:
+        200:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                type: integer
+                example: 100
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Count the number of LeaveRequestDocument by LeaveRequestDocumentFilterOptions
+      tags:
+        - LeaveRequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaveRequestDocumentFilterOptions'
+            examples:
+              countWithMultipleCriteria:
+                summary: Count with multiple criteria
+                value:
+                  $filter:
+                    notEquals:
+                      Id: 33
+                    contains:
+                      Document: "abcd"
+                    greaterThan:
+                      Id: 0
+                    lessThanOrEqual:
+                      Id: 100
+              countWithEquals:
+                summary: Count with Equals
+                value:
+                  $filter:
+                    equals:
+                      Id: 0
+              countWithNotEquals:
+                summary: Count with Not Equals
+                value:
+                  $filter:
+                    notEquals:
+                      Id: 0
+              countWithContains:
+                summary: Count with Contains
+                value:
+                  $filter:
+                    contains:
+                      Document: "abcd"
+              countWithGreaterThan:
+                summary: Count with Greater Than
+                value:
+                  $filter:
+                    greaterThan:
+                      Id: 0
+              countWithGreaterThanOrEqual:
+                summary: Count with Greater Than Or Equal
+                value:
+                  $filter:
+                    greaterThanOrEqual:
+                      Id: 0
+              countWithLessThan:
+                summary: Count with Less Than
+                value:
+                  $filter:
+                    lessThan:
+                      Id: 0
+              countWithLessThanOrEqual:
+                summary: Count with Less Than Or Equal
+                value:
+                  $filter:
+                    lessThanOrEqual:
+                      Id: 0
+        required: true
+      responses:
+        200:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                type: integer
+                example: 100
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestDocumentService.ts/search:
+    post:
+      summary: Search LeaveRequestDocument by LeaveRequestDocumentFilterOptions
+      tags:
+        - LeaveRequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaveRequestDocumentFilterOptions'
+            examples:
+              searchWithMultipleCriteria:
+                summary: Search with multiple criteria
+                value:
+                  $filter:
+                    notEquals:
+                      Id: 33
+                    contains:
+                      Document: "abcd"
+                    greaterThan:
+                      Id: 0
+                    lessThanOrEqual:
+                      Id: 100
+              searchWithEquals:
+                summary: Search with Equals
+                value:
+                  $filter:
+                    equals:
+                      Id: 0
+              searchWithNotEquals:
+                summary: Search with Not Equals
+                value:
+                  $filter:
+                    notEquals:
+                      Id: 0
+              searchWithContains:
+                summary: Search with Contains
+                value:
+                  $filter:
+                    contains:
+                      Document: "abcd"
+              searchWithGreaterThan:
+                summary: Search with Greater Than
+                value:
+                  $filter:
+                    greaterThan:
+                      Id: 0
+              searchWithGreaterThanOrEqual:
+                summary: Search with Greater Than Or Equal
+                value:
+                  $filter:
+                    greaterThanOrEqual:
+                      Id: 0
+              searchWithLessThan:
+                summary: Search with Less Than
+                value:
+                  $filter:
+                    lessThan:
+                      Id: 0
+              searchWithLessThanOrEqual:
+                summary: Search with Less Than Or Equal
+                value:
+                  $filter:
+                    lessThanOrEqual:
+                      Id: 0
+        required: true
+      responses:
+        200:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/LeaveRequestDocument'
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     LeaveRequest:
@@ -1713,6 +2114,166 @@ components:
         $sort:
           - type: string
             example: "Id,Name"
+        $order:
+          type: string
+          enum: ["asc", "desc"]
+          example: "asc"
+        $offset:
+          type: integer
+          example: 0
+        $limit:
+          type: integer
+          example: 10
+    LeaveRequestDocument:
+      type: object
+      required:
+        - Document
+      properties:
+        Id:
+          type: integer
+          format: int32
+        LeaveRequest:
+          type: integer
+          format: int32
+        Document:
+          type: string
+          minLength: 0
+          maxLength: 1000
+    LeaveRequestDocumentFilterOptions:
+      type: object
+      properties:
+        $filter:
+          type: object
+          properties:
+            equals:
+              type: object
+              properties:
+                Id:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                LeaveRequest:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Document:
+                  oneOf:
+                    - type: string
+                      minLength: 0
+                      maxLength: 1000
+                    - type: array
+                      items:
+                        type: string
+                        format: double
+                        minLength: 0
+                        maxLength: 1000
+            notEquals:
+              type: object
+              properties:
+                Id:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                LeaveRequest:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Document:
+                  oneOf:
+                    - type: string
+                      minLength: 0
+                      maxLength: 1000
+                    - type: array
+                      items:
+                        type: string
+                        format: double
+                        minLength: 0
+                        maxLength: 1000
+            contains:
+              type: object
+              properties:
+                Id:
+                LeaveRequest:
+                Document:
+                  type: string
+                  minLength: 0
+                  maxLength: 1000
+            greaterThan:
+              type: object
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                LeaveRequest:
+                  type: integer
+                  format: int32
+                Document:
+                  type: string
+                  minLength: 0
+                  maxLength: 1000
+            greaterThanOrEqual:
+              type: object
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                LeaveRequest:
+                  type: integer
+                  format: int32
+                Document:
+                  type: string
+                  minLength: 0
+                  maxLength: 1000
+            lessThan:
+              type: object
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                LeaveRequest:
+                  type: integer
+                  format: int32
+                Document:
+                  type: string
+                  minLength: 0
+                  maxLength: 1000
+            lessThanOrEqual:
+              type: object
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                LeaveRequest:
+                  type: integer
+                  format: int32
+                Document:
+                  type: string
+                  minLength: 0
+                  maxLength: 1000
+        $select:
+          type: array
+          example: ["Id", "LeaveRequest", "Document"]
+          items:
+            type: string
+        $sort:
+          - type: string
+            example: "Id,LeaveRequest,Document"
         $order:
           type: string
           enum: ["asc", "desc"]

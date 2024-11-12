@@ -88,6 +88,30 @@
                 ]
             },
             {
+                "name": "CODBEX_LEAVEREQUESTDOCUMENT",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "LEAVEREQUESTDOCUMENT_ID"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEREQUESTDOCUMENT_LEAVEREQUEST"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 1000,
+                        "nullable": true,
+                        "name": "LEAVEREQUESTDOCUMENT_DOCUMENT"
+                    }
+                ]
+            },
+            {
                 "name": "LeaveRequest_Employee",
                 "type": "foreignKey",
                 "table": "CODBEX_LEAVEREQUEST",
@@ -122,6 +146,15 @@
                 "columns": "LEAVEREQUEST_STATUS",
                 "referencedTable": "CODBEX_LEAVESTATUS",
                 "referencedColumns": "LEAVESTATUS_ID"
+            },
+            {
+                "name": "LeaveRequestDocument_LeaveRequest",
+                "type": "foreignKey",
+                "table": "CODBEX_LEAVEREQUESTDOCUMENT",
+                "constraintName": "LeaveRequestDocument_LeaveRequest",
+                "columns": "LEAVEREQUESTDOCUMENT_LEAVEREQUEST",
+                "referencedTable": "CODBEX_LEAVEREQUEST",
+                "referencedColumns": "LEAVEREQUEST_ID"
             }
         ]
     },
