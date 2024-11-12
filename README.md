@@ -2,4 +2,4 @@
 Vacations Management Application
 
 ### Model
-<img width="603" alt="Screenshot 2024-11-12 at 19 18 33" src="https://github.com/user-attachments/assets/ad633d14-dc48-4ec1-8a3e-9501b0bdeac9">
+<img width="602" alt="Screenshot 2024-11-12 at 19 20 17" src="https://github.com/user-attachments/assets/09f511ed-7aeb-4daf-a8b5-4888da9294b0">
