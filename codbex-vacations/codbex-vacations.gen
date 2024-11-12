@@ -1372,6 +1372,7 @@
       "description": "Manage entity LeaveRequestDocument",
       "generateReport": "false",
       "icon": "/services/web/resources/unicons/file.svg",
+      "importsCode": "import { NumberGeneratorService } from \"/codbex-number-generator/service/generator\";",
       "layoutType": "MANAGE_DETAILS",
       "menuIndex": "100",
       "menuKey": "leaverequestdocument",
