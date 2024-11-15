@@ -210,6 +210,9 @@ export class LeaveRequestRepository {
     public create(entity: LeaveRequestCreateEntity): number {
         EntityUtils.setLocalDate(entity, "StartDate");
         EntityUtils.setLocalDate(entity, "EndDate");
+        if (entity.LeaveBalance === undefined || entity.LeaveBalance === null) {
+            (entity as LeaveRequestEntity).LeaveBalance = 0;
+        }
         const id = this.dao.insert(entity);
         this.triggerEvent({
             operation: "create",

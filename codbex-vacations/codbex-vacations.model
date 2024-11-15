@@ -97,6 +97,7 @@
                         "widgetType": "NUMBER"
                     },
                     {
+                        "dataDefaultValue": "0",
                         "dataName": "LEAVEREQUEST_LEAVEBALANCE",
                         "dataNullable": "true",
                         "dataType": "INTEGER",

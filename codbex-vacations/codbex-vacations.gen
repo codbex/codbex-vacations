@@ -232,6 +232,7 @@
           "inputRule": ""
         },
         {
+          "dataDefaultValue": "0",
           "dataName": "LEAVEREQUEST_LEAVEBALANCE",
           "dataNullable": true,
           "dataType": "INTEGER",
@@ -485,6 +486,7 @@
             "inputRule": ""
           },
           {
+            "dataDefaultValue": "0",
             "dataName": "LEAVEREQUEST_LEAVEBALANCE",
             "dataNullable": true,
             "dataType": "INTEGER",
