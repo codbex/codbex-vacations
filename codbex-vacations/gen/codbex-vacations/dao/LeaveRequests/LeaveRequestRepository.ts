@@ -11,6 +11,7 @@ export interface LeaveRequestEntity {
     StartDate?: Date;
     EndDate?: Date;
     Days?: number;
+    LeaveBalance?: number;
     Type?: number;
     Status?: number;
 }
@@ -37,6 +38,7 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
             Days?: number | number[];
+            LeaveBalance?: number | number[];
             Type?: number | number[];
             Status?: number | number[];
         };
@@ -47,6 +49,7 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
             Days?: number | number[];
+            LeaveBalance?: number | number[];
             Type?: number | number[];
             Status?: number | number[];
         };
@@ -57,6 +60,7 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
+            LeaveBalance?: number;
             Type?: number;
             Status?: number;
         };
@@ -67,6 +71,7 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
+            LeaveBalance?: number;
             Type?: number;
             Status?: number;
         };
@@ -77,6 +82,7 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
+            LeaveBalance?: number;
             Type?: number;
             Status?: number;
         };
@@ -87,6 +93,7 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
+            LeaveBalance?: number;
             Type?: number;
             Status?: number;
         };
@@ -97,6 +104,7 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
+            LeaveBalance?: number;
             Type?: number;
             Status?: number;
         };
@@ -158,6 +166,11 @@ export class LeaveRequestRepository {
             {
                 name: "Days",
                 column: "LEAVEREQUEST_DAYS",
+                type: "INTEGER",
+            },
+            {
+                name: "LeaveBalance",
+                column: "LEAVEREQUEST_LEAVEBALANCE",
                 type: "INTEGER",
             },
             {

@@ -76,6 +76,9 @@ angular.module('page', ["ideUI", "ideView"])
 			if (entity.Days !== undefined) {
 				filter.$filter.equals.Days = entity.Days;
 			}
+			if (entity.LeaveBalance !== undefined) {
+				filter.$filter.equals.LeaveBalance = entity.LeaveBalance;
+			}
 			if (entity.Type !== undefined) {
 				filter.$filter.equals.Type = entity.Type;
 			}

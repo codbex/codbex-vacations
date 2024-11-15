@@ -1629,6 +1629,10 @@ components:
         Days:
           type: integer
           format: int32
+        LeaveBalance:
+          type: integer
+          format: int32
+          readOnly: true
         Type:
           type: integer
           format: int32
@@ -1673,6 +1677,14 @@ components:
                 EndDate:
                   oneOf:
                 Days:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                LeaveBalance:
                   oneOf:
                     - type: integer
                       format: int32
@@ -1735,6 +1747,14 @@ components:
                       items:
                         type: integer
                         format: int32
+                LeaveBalance:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
                 Type:
                   oneOf:
                     - type: integer
@@ -1760,6 +1780,7 @@ components:
                 StartDate:
                 EndDate:
                 Days:
+                LeaveBalance:
                 Type:
                 Status:
             greaterThan:
@@ -1777,6 +1798,9 @@ components:
                 StartDate:
                 EndDate:
                 Days:
+                  type: integer
+                  format: int32
+                LeaveBalance:
                   type: integer
                   format: int32
                 Type:
@@ -1802,6 +1826,9 @@ components:
                 Days:
                   type: integer
                   format: int32
+                LeaveBalance:
+                  type: integer
+                  format: int32
                 Type:
                   type: integer
                   format: int32
@@ -1823,6 +1850,9 @@ components:
                 StartDate:
                 EndDate:
                 Days:
+                  type: integer
+                  format: int32
+                LeaveBalance:
                   type: integer
                   format: int32
                 Type:
@@ -1848,6 +1878,9 @@ components:
                 Days:
                   type: integer
                   format: int32
+                LeaveBalance:
+                  type: integer
+                  format: int32
                 Type:
                   type: integer
                   format: int32
@@ -1856,12 +1889,12 @@ components:
                   format: int32
         $select:
           type: array
-          example: ["Id", "Employee", "JobPosition", "StartDate", "EndDate", "Days", "Type", "Status"]
+          example: ["Id", "Employee", "JobPosition", "StartDate", "EndDate", "Days", "LeaveBalance", "Type", "Status"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Employee,JobPosition,StartDate,EndDate,Days,Type,Status"
+            example: "Id,Employee,JobPosition,StartDate,EndDate,Days,LeaveBalance,Type,Status"
         $order:
           type: string
           enum: ["asc", "desc"]
