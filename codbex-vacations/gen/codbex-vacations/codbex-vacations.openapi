@@ -1608,6 +1608,7 @@ components:
       type: object
       required:
         - Employee
+        - EmployeeContract
         - StartDate
         - EndDate
         - Days
@@ -1620,10 +1621,9 @@ components:
         Employee:
           type: integer
           format: int32
-        JobPosition:
+        EmployeeContract:
           type: integer
           format: int32
-          readOnly: true
         StartDate:
         EndDate:
         Days:
@@ -1664,7 +1664,7 @@ components:
                       items:
                         type: integer
                         format: int32
-                JobPosition:
+                EmployeeContract:
                   oneOf:
                     - type: integer
                       format: int32
@@ -1727,7 +1727,7 @@ components:
                       items:
                         type: integer
                         format: int32
-                JobPosition:
+                EmployeeContract:
                   oneOf:
                     - type: integer
                       format: int32
@@ -1776,7 +1776,7 @@ components:
               properties:
                 Id:
                 Employee:
-                JobPosition:
+                EmployeeContract:
                 StartDate:
                 EndDate:
                 Days:
@@ -1792,7 +1792,7 @@ components:
                 Employee:
                   type: integer
                   format: int32
-                JobPosition:
+                EmployeeContract:
                   type: integer
                   format: int32
                 StartDate:
@@ -1818,7 +1818,7 @@ components:
                 Employee:
                   type: integer
                   format: int32
-                JobPosition:
+                EmployeeContract:
                   type: integer
                   format: int32
                 StartDate:
@@ -1844,7 +1844,7 @@ components:
                 Employee:
                   type: integer
                   format: int32
-                JobPosition:
+                EmployeeContract:
                   type: integer
                   format: int32
                 StartDate:
@@ -1870,7 +1870,7 @@ components:
                 Employee:
                   type: integer
                   format: int32
-                JobPosition:
+                EmployeeContract:
                   type: integer
                   format: int32
                 StartDate:
@@ -1889,12 +1889,12 @@ components:
                   format: int32
         $select:
           type: array
-          example: ["Id", "Employee", "JobPosition", "StartDate", "EndDate", "Days", "LeaveBalance", "Type", "Status"]
+          example: ["Id", "Employee", "EmployeeContract", "StartDate", "EndDate", "Days", "LeaveBalance", "Type", "Status"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Employee,JobPosition,StartDate,EndDate,Days,LeaveBalance,Type,Status"
+            example: "Id,Employee,EmployeeContract,StartDate,EndDate,Days,LeaveBalance,Type,Status"
         $order:
           type: string
           enum: ["asc", "desc"]

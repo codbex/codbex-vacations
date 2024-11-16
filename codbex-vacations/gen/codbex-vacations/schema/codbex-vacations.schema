@@ -20,7 +20,7 @@
                     {
                         "type": "INTEGER",
                         "nullable": true,
-                        "name": "LEAVEREQUEST_JOBPOSITION"
+                        "name": "LEAVEREQUEST_EMPLOYEECONTRACT"
                     },
                     {
                         "type": "DATE",
@@ -133,13 +133,13 @@
                 "referencedColumns": "EMPLOYEE_ID"
             },
             {
-                "name": "LeaveRequest_JobPosition",
+                "name": "LeaveRequest_EmployeeContract",
                 "type": "foreignKey",
                 "table": "CODBEX_LEAVEREQUEST",
-                "constraintName": "LeaveRequest_JobPosition",
-                "columns": "LEAVEREQUEST_JOBPOSITION",
-                "referencedTable": "CODBEX_JOBPOSITION",
-                "referencedColumns": "JOBPOSITION_ID"
+                "constraintName": "LeaveRequest_EmployeeContract",
+                "columns": "LEAVEREQUEST_EMPLOYEECONTRACT",
+                "referencedTable": "CODBEX_EMPLOYEECONTRACT",
+                "referencedColumns": "EMPLOYEECONTRACT_ID"
             },
             {
                 "name": "LeaveRequest_LeaveType",

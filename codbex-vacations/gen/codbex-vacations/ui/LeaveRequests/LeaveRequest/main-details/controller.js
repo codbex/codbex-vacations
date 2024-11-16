@@ -41,7 +41,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			$scope.$apply(function () {
 				$scope.entity = {};
 				$scope.optionsEmployee = [];
-				$scope.optionsJobPosition = [];
+				$scope.optionsEmployeeContract = [];
 				$scope.optionsType = [];
 				$scope.optionsStatus = [];
 				$scope.action = 'select';
@@ -58,7 +58,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				}
 				$scope.entity = msg.data.entity;
 				$scope.optionsEmployee = msg.data.optionsEmployee;
-				$scope.optionsJobPosition = msg.data.optionsJobPosition;
+				$scope.optionsEmployeeContract = msg.data.optionsEmployeeContract;
 				$scope.optionsType = msg.data.optionsType;
 				$scope.optionsStatus = msg.data.optionsStatus;
 				$scope.action = 'select';
@@ -69,7 +69,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			$scope.$apply(function () {
 				$scope.entity = {};
 				$scope.optionsEmployee = msg.data.optionsEmployee;
-				$scope.optionsJobPosition = msg.data.optionsJobPosition;
+				$scope.optionsEmployeeContract = msg.data.optionsEmployeeContract;
 				$scope.optionsType = msg.data.optionsType;
 				$scope.optionsStatus = msg.data.optionsStatus;
 				$scope.action = 'create';
@@ -86,7 +86,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				}
 				$scope.entity = msg.data.entity;
 				$scope.optionsEmployee = msg.data.optionsEmployee;
-				$scope.optionsJobPosition = msg.data.optionsJobPosition;
+				$scope.optionsEmployeeContract = msg.data.optionsEmployeeContract;
 				$scope.optionsType = msg.data.optionsType;
 				$scope.optionsStatus = msg.data.optionsStatus;
 				$scope.action = 'update';
@@ -94,10 +94,18 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		});
 
 		$scope.serviceEmployee = "/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts";
-		$scope.serviceJobPosition = "/services/ts/codbex-jobs/gen/codbex-jobs/api/Teams/JobPositionService.ts";
+		$scope.serviceEmployeeContract = "/services/ts/codbex-contracts/gen/codbex-contracts/api/EmployeeContracts/EmployeeContractService.ts";
 		$scope.serviceType = "/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveTypeService.ts";
 		$scope.serviceStatus = "/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveStatusService.ts";
 
+
+		$scope.$watch('entity.EmployeeContract', function (newValue, oldValue) {
+			if (newValue !== undefined && newValue !== null) {
+				entityApi.$http.get($scope.serviceEmployeeContract + '/' + newValue).then(function (response) {
+					let valueFrom = response.data.LeaveBalance;
+					$scope.entity.LeaveBalance = valueFrom;
+				});
+		});
 		//-----------------Events-------------------//
 
 		$scope.create = function () {
