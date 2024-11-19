@@ -41,7 +41,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			$scope.$apply(function () {
 				$scope.entity = {};
 				$scope.optionsEmployee = [];
-				$scope.optionsEmployeeContract = [];
 				$scope.optionsType = [];
 				$scope.optionsStatus = [];
 				$scope.action = 'select';
@@ -58,7 +57,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				}
 				$scope.entity = msg.data.entity;
 				$scope.optionsEmployee = msg.data.optionsEmployee;
-				$scope.optionsEmployeeContract = msg.data.optionsEmployeeContract;
 				$scope.optionsType = msg.data.optionsType;
 				$scope.optionsStatus = msg.data.optionsStatus;
 				$scope.action = 'select';
@@ -69,7 +67,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			$scope.$apply(function () {
 				$scope.entity = {};
 				$scope.optionsEmployee = msg.data.optionsEmployee;
-				$scope.optionsEmployeeContract = msg.data.optionsEmployeeContract;
 				$scope.optionsType = msg.data.optionsType;
 				$scope.optionsStatus = msg.data.optionsStatus;
 				$scope.action = 'create';
@@ -86,7 +83,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				}
 				$scope.entity = msg.data.entity;
 				$scope.optionsEmployee = msg.data.optionsEmployee;
-				$scope.optionsEmployeeContract = msg.data.optionsEmployeeContract;
 				$scope.optionsType = msg.data.optionsType;
 				$scope.optionsStatus = msg.data.optionsStatus;
 				$scope.action = 'update';
@@ -94,7 +90,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		});
 
 		$scope.serviceEmployee = "/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts";
-		$scope.serviceEmployeeContract = "/services/ts/codbex-contracts/gen/codbex-contracts/api/EmployeeContracts/EmployeeContractService.ts";
 		$scope.serviceType = "/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveTypeService.ts";
 		$scope.serviceStatus = "/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveStatusService.ts";
 

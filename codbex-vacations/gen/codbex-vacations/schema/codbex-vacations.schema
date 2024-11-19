@@ -18,11 +18,6 @@
                         "name": "LEAVEREQUEST_EMPLOYEE"
                     },
                     {
-                        "type": "INTEGER",
-                        "nullable": true,
-                        "name": "LEAVEREQUEST_EMPLOYEECONTRACT"
-                    },
-                    {
                         "type": "DATE",
                         "nullable": true,
                         "name": "LEAVEREQUEST_STARTDATE"
@@ -131,15 +126,6 @@
                 "columns": "LEAVEREQUEST_EMPLOYEE",
                 "referencedTable": "CODBEX_EMPLOYEE",
                 "referencedColumns": "EMPLOYEE_ID"
-            },
-            {
-                "name": "LeaveRequest_EmployeeContract",
-                "type": "foreignKey",
-                "table": "CODBEX_LEAVEREQUEST",
-                "constraintName": "LeaveRequest_EmployeeContract",
-                "columns": "LEAVEREQUEST_EMPLOYEECONTRACT",
-                "referencedTable": "CODBEX_EMPLOYEECONTRACT",
-                "referencedColumns": "EMPLOYEECONTRACT_ID"
             },
             {
                 "name": "LeaveRequest_LeaveType",

@@ -27,7 +27,6 @@ angular.module('page', ["ideUI", "ideView"])
 			$scope.selectedMainEntityKey = params.selectedMainEntityKey;
 			$scope.selectedMainEntityId = params.selectedMainEntityId;
 			$scope.optionsEmployee = params.optionsEmployee;
-			$scope.optionsEmployeeContract = params.optionsEmployeeContract;
 			$scope.optionsType = params.optionsType;
 			$scope.optionsStatus = params.optionsStatus;
 		}
@@ -57,9 +56,6 @@ angular.module('page', ["ideUI", "ideView"])
 			}
 			if (entity.Employee !== undefined) {
 				filter.$filter.equals.Employee = entity.Employee;
-			}
-			if (entity.EmployeeContract !== undefined) {
-				filter.$filter.equals.EmployeeContract = entity.EmployeeContract;
 			}
 			if (entity.StartDateFrom) {
 				filter.$filter.greaterThanOrEqual.StartDate = entity.StartDateFrom;

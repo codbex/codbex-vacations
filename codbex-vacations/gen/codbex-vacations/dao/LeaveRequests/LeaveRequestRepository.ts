@@ -7,7 +7,6 @@ import { EntityUtils } from "../utils/EntityUtils";
 export interface LeaveRequestEntity {
     readonly Id: number;
     Employee?: number;
-    EmployeeContract?: number;
     StartDate?: Date;
     EndDate?: Date;
     Days?: number;
@@ -18,7 +17,6 @@ export interface LeaveRequestEntity {
 
 export interface LeaveRequestCreateEntity {
     readonly Employee?: number;
-    readonly EmployeeContract?: number;
     readonly StartDate?: Date;
     readonly EndDate?: Date;
     readonly Days?: number;
@@ -35,7 +33,6 @@ export interface LeaveRequestEntityOptions {
         equals?: {
             Id?: number | number[];
             Employee?: number | number[];
-            EmployeeContract?: number | number[];
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
             Days?: number | number[];
@@ -46,7 +43,6 @@ export interface LeaveRequestEntityOptions {
         notEquals?: {
             Id?: number | number[];
             Employee?: number | number[];
-            EmployeeContract?: number | number[];
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
             Days?: number | number[];
@@ -57,7 +53,6 @@ export interface LeaveRequestEntityOptions {
         contains?: {
             Id?: number;
             Employee?: number;
-            EmployeeContract?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
@@ -68,7 +63,6 @@ export interface LeaveRequestEntityOptions {
         greaterThan?: {
             Id?: number;
             Employee?: number;
-            EmployeeContract?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
@@ -79,7 +73,6 @@ export interface LeaveRequestEntityOptions {
         greaterThanOrEqual?: {
             Id?: number;
             Employee?: number;
-            EmployeeContract?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
@@ -90,7 +83,6 @@ export interface LeaveRequestEntityOptions {
         lessThan?: {
             Id?: number;
             Employee?: number;
-            EmployeeContract?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
@@ -101,7 +93,6 @@ export interface LeaveRequestEntityOptions {
         lessThanOrEqual?: {
             Id?: number;
             Employee?: number;
-            EmployeeContract?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
@@ -147,11 +138,6 @@ export class LeaveRequestRepository {
             {
                 name: "Employee",
                 column: "LEAVEREQUEST_EMPLOYEE",
-                type: "INTEGER",
-            },
-            {
-                name: "EmployeeContract",
-                column: "LEAVEREQUEST_EMPLOYEECONTRACT",
                 type: "INTEGER",
             },
             {

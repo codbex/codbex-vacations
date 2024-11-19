@@ -123,7 +123,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				entity: entity,
 				selectedMainEntityId: entity.Id,
 				optionsEmployee: $scope.optionsEmployee,
-				optionsEmployeeContract: $scope.optionsEmployeeContract,
 				optionsType: $scope.optionsType,
 				optionsStatus: $scope.optionsStatus,
 			});
@@ -136,7 +135,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.postMessage("createEntity", {
 				entity: {},
 				optionsEmployee: $scope.optionsEmployee,
-				optionsEmployeeContract: $scope.optionsEmployeeContract,
 				optionsType: $scope.optionsType,
 				optionsStatus: $scope.optionsStatus,
 			});
@@ -147,7 +145,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.postMessage("updateEntity", {
 				entity: $scope.selectedEntity,
 				optionsEmployee: $scope.optionsEmployee,
-				optionsEmployeeContract: $scope.optionsEmployeeContract,
 				optionsType: $scope.optionsType,
 				optionsStatus: $scope.optionsStatus,
 			});
@@ -187,7 +184,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			messageHub.showDialogWindow("LeaveRequest-filter", {
 				entity: $scope.filterEntity,
 				optionsEmployee: $scope.optionsEmployee,
-				optionsEmployeeContract: $scope.optionsEmployeeContract,
 				optionsType: $scope.optionsType,
 				optionsStatus: $scope.optionsStatus,
 			});
@@ -195,7 +191,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 
 		//----------------Dropdowns-----------------//
 		$scope.optionsEmployee = [];
-		$scope.optionsEmployeeContract = [];
 		$scope.optionsType = [];
 		$scope.optionsStatus = [];
 
@@ -205,15 +200,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				return {
 					value: e.Id,
 					text: e.Name
-				}
-			});
-		});
-
-		$http.get("/services/ts/codbex-contracts/gen/codbex-contracts/api/EmployeeContracts/EmployeeContractService.ts").then(function (response) {
-			$scope.optionsEmployeeContract = response.data.map(e => {
-				return {
-					value: e.Id,
-					text: e.Number
 				}
 			});
 		});
@@ -240,14 +226,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			for (let i = 0; i < $scope.optionsEmployee.length; i++) {
 				if ($scope.optionsEmployee[i].value === optionKey) {
 					return $scope.optionsEmployee[i].text;
-				}
-			}
-			return null;
-		};
-		$scope.optionsEmployeeContractValue = function (optionKey) {
-			for (let i = 0; i < $scope.optionsEmployeeContract.length; i++) {
-				if ($scope.optionsEmployeeContract[i].value === optionKey) {
-					return $scope.optionsEmployeeContract[i].text;
 				}
 			}
 			return null;

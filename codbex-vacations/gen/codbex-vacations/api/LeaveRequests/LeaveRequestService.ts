@@ -119,12 +119,6 @@ class LeaveRequestService {
     }
 
     private validateEntity(entity: any): void {
-        if (entity.Employee === null || entity.Employee === undefined) {
-            throw new ValidationError(`The 'Employee' property is required, provide a valid value`);
-        }
-        if (entity.EmployeeContract === null || entity.EmployeeContract === undefined) {
-            throw new ValidationError(`The 'EmployeeContract' property is required, provide a valid value`);
-        }
         if (entity.StartDate === null || entity.StartDate === undefined) {
             throw new ValidationError(`The 'StartDate' property is required, provide a valid value`);
         }
