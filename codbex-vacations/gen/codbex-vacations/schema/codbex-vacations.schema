@@ -34,12 +34,6 @@
                     },
                     {
                         "type": "INTEGER",
-                        "defaultValue": "0",
-                        "nullable": true,
-                        "name": "LEAVEREQUEST_LEAVEBALANCE"
-                    },
-                    {
-                        "type": "INTEGER",
                         "nullable": true,
                         "name": "LEAVEREQUEST_TYPE"
                     },

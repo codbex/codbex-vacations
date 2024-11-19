@@ -93,14 +93,6 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		$scope.serviceType = "/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveTypeService.ts";
 		$scope.serviceStatus = "/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveStatusService.ts";
 
-
-		$scope.$watch('entity.EmployeeContract', function (newValue, oldValue) {
-			if (newValue !== undefined && newValue !== null) {
-				entityApi.$http.get($scope.serviceEmployeeContract + '/' + newValue).then(function (response) {
-					let valueFrom = response.data.LeaveBalance;
-					$scope.entity.LeaveBalance = valueFrom;
-				});
-		});
 		//-----------------Events-------------------//
 
 		$scope.create = function () {

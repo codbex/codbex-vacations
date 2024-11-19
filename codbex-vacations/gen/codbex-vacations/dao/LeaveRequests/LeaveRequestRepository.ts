@@ -10,7 +10,6 @@ export interface LeaveRequestEntity {
     StartDate?: Date;
     EndDate?: Date;
     Days?: number;
-    LeaveBalance?: number;
     Type?: number;
     Status?: number;
 }
@@ -36,7 +35,6 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
             Days?: number | number[];
-            LeaveBalance?: number | number[];
             Type?: number | number[];
             Status?: number | number[];
         };
@@ -46,7 +44,6 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
             Days?: number | number[];
-            LeaveBalance?: number | number[];
             Type?: number | number[];
             Status?: number | number[];
         };
@@ -56,7 +53,6 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
-            LeaveBalance?: number;
             Type?: number;
             Status?: number;
         };
@@ -66,7 +62,6 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
-            LeaveBalance?: number;
             Type?: number;
             Status?: number;
         };
@@ -76,7 +71,6 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
-            LeaveBalance?: number;
             Type?: number;
             Status?: number;
         };
@@ -86,7 +80,6 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
-            LeaveBalance?: number;
             Type?: number;
             Status?: number;
         };
@@ -96,7 +89,6 @@ export interface LeaveRequestEntityOptions {
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
-            LeaveBalance?: number;
             Type?: number;
             Status?: number;
         };
@@ -156,11 +148,6 @@ export class LeaveRequestRepository {
                 type: "INTEGER",
             },
             {
-                name: "LeaveBalance",
-                column: "LEAVEREQUEST_LEAVEBALANCE",
-                type: "INTEGER",
-            },
-            {
                 name: "Type",
                 column: "LEAVEREQUEST_TYPE",
                 type: "INTEGER",
@@ -197,9 +184,6 @@ export class LeaveRequestRepository {
     public create(entity: LeaveRequestCreateEntity): number {
         EntityUtils.setLocalDate(entity, "StartDate");
         EntityUtils.setLocalDate(entity, "EndDate");
-        if (entity.LeaveBalance === undefined || entity.LeaveBalance === null) {
-            (entity as LeaveRequestEntity).LeaveBalance = 0;
-        }
         const id = this.dao.insert(entity);
         this.triggerEvent({
             operation: "create",

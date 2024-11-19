@@ -76,23 +76,6 @@
                         "widgetType": "NUMBER"
                     },
                     {
-                        "dataDefaultValue": "0",
-                        "dataName": "LEAVEREQUEST_LEAVEBALANCE",
-                        "dataNullable": "true",
-                        "dataType": "INTEGER",
-                        "description": "",
-                        "isCalculatedProperty": "true",
-                        "name": "LeaveBalance",
-                        "tooltip": "",
-                        "widgetDependsOnEntity": "EmployeeContract",
-                        "widgetDependsOnProperty": "EmployeeContract",
-                        "widgetDependsOnValueFrom": "LeaveBalance",
-                        "widgetIsMajor": "true",
-                        "widgetLength": "20",
-                        "widgetSize": "",
-                        "widgetType": "NUMBER"
-                    },
-                    {
                         "dataName": "LEAVEREQUEST_TYPE",
                         "dataNullable": "true",
                         "dataType": "INTEGER",
