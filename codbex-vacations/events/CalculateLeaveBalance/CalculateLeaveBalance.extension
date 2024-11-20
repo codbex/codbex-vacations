@@ -1,0 +1,5 @@
+{
+    "extensionPoint": "codbex-vacations-LeaveRequests-LeaveRequest",
+    "description": "Vacations extension",
+    "module": "codbex-vacations/events/CalculateLeaveBalance/CalculateLeaveBalanceHandler.ts"
+}

@@ -1,0 +1,26 @@
+{
+  "files": [
+    {
+      "table": "CODBEX_LEAVETYPE",
+      "schema": "PUBLIC",
+      "file": "/codbex-vacations/data/leave-types.csv",
+      "header": true,
+      "useHeaderNames": true,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": ""
+    },
+    {
+      "table": "CODBEX_LEAVESTATUS",
+      "schema": "PUBLIC",
+      "file": "/codbex-vacations/data/leave-statuses.csv",
+      "header": true,
+      "useHeaderNames": true,
+      "delimField": ",",
+      "delimEnclosing": "\"",
+      "distinguishEmptyFromNull": true,
+      "version": ""
+    }
+  ]
+}
