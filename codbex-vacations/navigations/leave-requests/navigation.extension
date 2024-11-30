@@ -1,5 +1,5 @@
 {
     "extensionPoint": "dashboard-navigations",
-    "module": "codbex-vacations/navigations/services/leave-requests.js",
+    "module": "codbex-vacations/navigations/leave-requests/service.js",
     "description": "Employees Navigation"
 }

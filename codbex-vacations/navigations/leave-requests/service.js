@@ -1,10 +1,8 @@
 const navigationData = {
     id: 'leave-requests-navigation',
     label: "Leave Requests",
-    view: "leave-requests",
     group: "employees",
-    orderNumber: 1000,
-    lazyLoad: true,
+    order: 1000,
     link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveRequests/index.html?embedded"
 };
 
