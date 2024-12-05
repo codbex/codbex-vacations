@@ -1,5 +1,5 @@
 {
-    "name": "codbex/codbex-vacations",
+    "name": "@codbex/codbex-vacations",
     "repository": {
         "url": "https://github.com/codbex/codbex-vacations.git",
         "type": "git"
