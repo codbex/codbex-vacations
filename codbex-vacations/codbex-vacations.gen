@@ -635,7 +635,7 @@
           "inputRule": ""
         },
         {
-          "calculatedPropertyExpressionCreate": "new NumberGeneratorService().generate(31)",
+          "calculatedPropertyExpressionCreate": "new NumberGeneratorService().generate(30)",
           "dataLength": "20",
           "dataName": "LEAVEREQUESTDOCUMENT_NUMBER",
           "dataNullable": true,

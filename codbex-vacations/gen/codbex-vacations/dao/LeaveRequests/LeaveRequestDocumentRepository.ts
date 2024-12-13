@@ -135,7 +135,7 @@ export class LeaveRequestDocumentRepository {
 
     public create(entity: LeaveRequestDocumentCreateEntity): number {
         // @ts-ignore
-        (entity as LeaveRequestDocumentEntity).Number = new NumberGeneratorService().generate(31);
+        (entity as LeaveRequestDocumentEntity).Number = new NumberGeneratorService().generate(30);
         const id = this.dao.insert(entity);
         this.triggerEvent({
             operation: "create",
