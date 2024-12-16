@@ -1,20 +1,20 @@
 import { Controller, Get, Post, Put, Delete, response } from "sdk/http"
 import { Extensions } from "sdk/extensions"
-import { LeaveTypeRepository, LeaveTypeEntityOptions } from "../../dao/entities/LeaveTypeRepository";
+import { LeaveDeductionRepository, LeaveDeductionEntityOptions } from "../../dao/entities/LeaveDeductionRepository";
 import { ValidationError } from "../utils/ValidationError";
 import { HttpUtils } from "../utils/HttpUtils";
 
-const validationModules = await Extensions.loadExtensionModules("codbex-vacations-entities-LeaveType", ["validate"]);
+const validationModules = await Extensions.loadExtensionModules("codbex-vacations-entities-LeaveDeduction", ["validate"]);
 
 @Controller
-class LeaveTypeService {
+class LeaveDeductionService {
 
-    private readonly repository = new LeaveTypeRepository();
+    private readonly repository = new LeaveDeductionRepository();
 
     @Get("/")
     public getAll(_: any, ctx: any) {
         try {
-            const options: LeaveTypeEntityOptions = {
+            const options: LeaveDeductionEntityOptions = {
                 $limit: ctx.queryParameters["$limit"] ? parseInt(ctx.queryParameters["$limit"]) : undefined,
                 $offset: ctx.queryParameters["$offset"] ? parseInt(ctx.queryParameters["$offset"]) : undefined
             };
@@ -30,7 +30,7 @@ class LeaveTypeService {
         try {
             this.validateEntity(entity);
             entity.Id = this.repository.create(entity);
-            response.setHeader("Content-Location", "/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveTypeService.ts/" + entity.Id);
+            response.setHeader("Content-Location", "/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveDeductionService.ts/" + entity.Id);
             response.setStatus(response.CREATED);
             return entity;
         } catch (error: any) {
@@ -73,7 +73,7 @@ class LeaveTypeService {
             if (entity) {
                 return entity;
             } else {
-                HttpUtils.sendResponseNotFound("LeaveType not found");
+                HttpUtils.sendResponseNotFound("LeaveDeduction not found");
             }
         } catch (error: any) {
             this.handleError(error);
@@ -101,7 +101,7 @@ class LeaveTypeService {
                 this.repository.deleteById(id);
                 HttpUtils.sendResponseNoContent();
             } else {
-                HttpUtils.sendResponseNotFound("LeaveType not found");
+                HttpUtils.sendResponseNotFound("LeaveDeduction not found");
             }
         } catch (error: any) {
             this.handleError(error);
@@ -119,12 +119,6 @@ class LeaveTypeService {
     }
 
     private validateEntity(entity: any): void {
-        if (entity.Name === null || entity.Name === undefined) {
-            throw new ValidationError(`The 'Name' property is required, provide a valid value`);
-        }
-        if (entity.Name?.length > 20) {
-            throw new ValidationError(`The 'Name' exceeds the maximum length of [20] characters`);
-        }
         for (const next of validationModules) {
             next.validate(entity);
         }

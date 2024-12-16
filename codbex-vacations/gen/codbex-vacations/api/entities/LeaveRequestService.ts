@@ -1,20 +1,20 @@
 import { Controller, Get, Post, Put, Delete, response } from "sdk/http"
 import { Extensions } from "sdk/extensions"
-import { LeaveTypeRepository, LeaveTypeEntityOptions } from "../../dao/entities/LeaveTypeRepository";
+import { LeaveRequestRepository, LeaveRequestEntityOptions } from "../../dao/entities/LeaveRequestRepository";
 import { ValidationError } from "../utils/ValidationError";
 import { HttpUtils } from "../utils/HttpUtils";
 
-const validationModules = await Extensions.loadExtensionModules("codbex-vacations-entities-LeaveType", ["validate"]);
+const validationModules = await Extensions.loadExtensionModules("codbex-vacations-entities-LeaveRequest", ["validate"]);
 
 @Controller
-class LeaveTypeService {
+class LeaveRequestService {
 
-    private readonly repository = new LeaveTypeRepository();
+    private readonly repository = new LeaveRequestRepository();
 
     @Get("/")
     public getAll(_: any, ctx: any) {
         try {
-            const options: LeaveTypeEntityOptions = {
+            const options: LeaveRequestEntityOptions = {
                 $limit: ctx.queryParameters["$limit"] ? parseInt(ctx.queryParameters["$limit"]) : undefined,
                 $offset: ctx.queryParameters["$offset"] ? parseInt(ctx.queryParameters["$offset"]) : undefined
             };
@@ -30,7 +30,7 @@ class LeaveTypeService {
         try {
             this.validateEntity(entity);
             entity.Id = this.repository.create(entity);
-            response.setHeader("Content-Location", "/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveTypeService.ts/" + entity.Id);
+            response.setHeader("Content-Location", "/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveRequestService.ts/" + entity.Id);
             response.setStatus(response.CREATED);
             return entity;
         } catch (error: any) {
@@ -73,7 +73,7 @@ class LeaveTypeService {
             if (entity) {
                 return entity;
             } else {
-                HttpUtils.sendResponseNotFound("LeaveType not found");
+                HttpUtils.sendResponseNotFound("LeaveRequest not found");
             }
         } catch (error: any) {
             this.handleError(error);
@@ -101,7 +101,7 @@ class LeaveTypeService {
                 this.repository.deleteById(id);
                 HttpUtils.sendResponseNoContent();
             } else {
-                HttpUtils.sendResponseNotFound("LeaveType not found");
+                HttpUtils.sendResponseNotFound("LeaveRequest not found");
             }
         } catch (error: any) {
             this.handleError(error);
@@ -119,11 +119,20 @@ class LeaveTypeService {
     }
 
     private validateEntity(entity: any): void {
-        if (entity.Name === null || entity.Name === undefined) {
-            throw new ValidationError(`The 'Name' property is required, provide a valid value`);
+        if (entity.Number?.length > 20) {
+            throw new ValidationError(`The 'Number' exceeds the maximum length of [20] characters`);
         }
-        if (entity.Name?.length > 20) {
-            throw new ValidationError(`The 'Name' exceeds the maximum length of [20] characters`);
+        if (entity.StartDate === null || entity.StartDate === undefined) {
+            throw new ValidationError(`The 'StartDate' property is required, provide a valid value`);
+        }
+        if (entity.EndDate === null || entity.EndDate === undefined) {
+            throw new ValidationError(`The 'EndDate' property is required, provide a valid value`);
+        }
+        if (entity.Days === null || entity.Days === undefined) {
+            throw new ValidationError(`The 'Days' property is required, provide a valid value`);
+        }
+        if (entity.Reason?.length > 50) {
+            throw new ValidationError(`The 'Reason' exceeds the maximum length of [50] characters`);
         }
         for (const next of validationModules) {
             next.validate(entity);
