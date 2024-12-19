@@ -7,9 +7,9 @@ const viewData = {
     id: "LeaveRequest",
     label: "LeaveRequest",
     factory: "frame",
-    region: "center",
-    link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/entities/LeaveRequest/index.html",
-    perspectiveName: "entities",
+    region: "left",
+    link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveRequests/LeaveRequest/index.html",
+    perspectiveName: "LeaveRequests",
 };
 
 if (typeof exports !== 'undefined') {

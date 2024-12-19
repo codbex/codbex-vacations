@@ -6,12 +6,14 @@
 const viewData = {
     id: "LeaveRequest-details",
     label: "LeaveRequest",
-    link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/entities/LeaveRequest/dialog-window/index.html",
-    perspectiveName: "entities",
+    factory: "frame",
+    region: "center",
+    link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveRequests/LeaveRequest/main-details/index.html",
+    perspectiveName: "LeaveRequests",
 };
 
 if (typeof exports !== 'undefined') {
-    exports.getDialogWindow = function () {
+    exports.getView = function () {
         return viewData;
     }
 }

@@ -324,7 +324,7 @@ export class LeaveRequestRepository {
     }
 
     private async triggerEvent(data: LeaveRequestEntityEvent | LeaveRequestUpdateEntityEvent) {
-        const triggerExtensions = await extensions.loadExtensionModules("codbex-vacations-entities-LeaveRequest", ["trigger"]);
+        const triggerExtensions = await extensions.loadExtensionModules("codbex-vacations-LeaveRequests-LeaveRequest", ["trigger"]);
         triggerExtensions.forEach(triggerExtension => {
             try {
                 triggerExtension.trigger(data);
@@ -332,6 +332,6 @@ export class LeaveRequestRepository {
                 console.error(error);
             }            
         });
-        producer.topic("codbex-vacations-entities-LeaveRequest").send(JSON.stringify(data));
+        producer.topic("codbex-vacations-LeaveRequests-LeaveRequest").send(JSON.stringify(data));
     }
 }
