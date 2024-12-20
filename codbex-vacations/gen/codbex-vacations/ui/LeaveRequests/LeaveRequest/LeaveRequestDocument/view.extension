@@ -1,5 +1,0 @@
-{
-    "module": "codbex-vacations/gen/codbex-vacations/ui/LeaveRequests/LeaveRequest/LeaveRequestDocument/view.js",
-    "extensionPoint": "codbex-vacations-view",
-    "description": "codbex-vacations - Application View - Details"
-}

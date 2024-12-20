@@ -2,6 +2,113 @@
     "schema": {
         "structures": [
             {
+                "name": "CODBEX_LEAVEBALANCE",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "LEAVEBALANCE_ID"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEBALANCE_EMPLOYEE"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 4,
+                        "nullable": true,
+                        "name": "LEAVEBALANCE_YEAR"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEBALANCE_TYPE"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "defaultValue": "0",
+                        "nullable": true,
+                        "name": "LEAVEBALANCE_GRANTED"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "defaultValue": "0",
+                        "nullable": true,
+                        "name": "LEAVEBALANCE_USED"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEBALANCE_BALANCE"
+                    }
+                ]
+            },
+            {
+                "name": "CODBEX_LEAVETYPE",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "LEAVETYPE_ID"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "LEAVETYPE_NAME"
+                    }
+                ]
+            },
+            {
+                "name": "CODBEX_LEAVESTATUS",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "LEAVESTATUS_ID"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "LEAVESTATUS_NAME"
+                    }
+                ]
+            },
+            {
+                "name": "CODBEX_LEAVEDEDUCTION",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "type": "INTEGER",
+                        "primaryKey": true,
+                        "identity": true,
+                        "nullable": true,
+                        "name": "LEAVEDEDUCTION_ID"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEDEDUCTION_BALANCE"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEDEDUCTION_REQUEST"
+                    }
+                ]
+            },
+            {
                 "name": "CODBEX_LEAVEREQUEST",
                 "type": "TABLE",
                 "columns": [
@@ -11,6 +118,12 @@
                         "identity": true,
                         "nullable": true,
                         "name": "LEAVEREQUEST_ID"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 20,
+                        "nullable": true,
+                        "name": "LEAVEREQUEST_NUMBER"
                     },
                     {
                         "type": "INTEGER",
@@ -41,76 +154,60 @@
                         "type": "INTEGER",
                         "nullable": true,
                         "name": "LEAVEREQUEST_STATUS"
+                    },
+                    {
+                        "type": "VARCHAR",
+                        "length": 50,
+                        "nullable": true,
+                        "name": "LEAVEREQUEST_REASON"
+                    },
+                    {
+                        "type": "DATE",
+                        "nullable": true,
+                        "name": "LEAVEREQUEST_APPROVALDATE"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEREQUEST_MANAGER"
                     }
                 ]
             },
             {
-                "name": "CODBEX_LEAVETYPE",
-                "type": "TABLE",
-                "columns": [
-                    {
-                        "type": "INTEGER",
-                        "primaryKey": true,
-                        "identity": true,
-                        "nullable": true,
-                        "name": "LEAVETYPE_ID"
-                    },
-                    {
-                        "type": "VARCHAR",
-                        "length": 100,
-                        "nullable": true,
-                        "name": "LEAVETYPE_NAME"
-                    }
-                ]
+                "name": "LeaveBalance_Employee",
+                "type": "foreignKey",
+                "table": "CODBEX_LEAVEBALANCE",
+                "constraintName": "LeaveBalance_Employee",
+                "columns": "LEAVEBALANCE_EMPLOYEE",
+                "referencedTable": "CODBEX_EMPLOYEE",
+                "referencedColumns": "EMPLOYEE_ID"
             },
             {
-                "name": "CODBEX_LEAVESTATUS",
-                "type": "TABLE",
-                "columns": [
-                    {
-                        "type": "INTEGER",
-                        "primaryKey": true,
-                        "identity": true,
-                        "nullable": true,
-                        "name": "LEAVESTATUS_ID"
-                    },
-                    {
-                        "type": "VARCHAR",
-                        "length": 20,
-                        "nullable": true,
-                        "name": "LEAVESTATUS_NAME"
-                    }
-                ]
+                "name": "LeaveBalance_LeaveType",
+                "type": "foreignKey",
+                "table": "CODBEX_LEAVEBALANCE",
+                "constraintName": "LeaveBalance_LeaveType",
+                "columns": "LEAVEBALANCE_TYPE",
+                "referencedTable": "CODBEX_LEAVETYPE",
+                "referencedColumns": "LEAVETYPE_ID"
             },
             {
-                "name": "CODBEX_LEAVEREQUESTDOCUMENT",
-                "type": "TABLE",
-                "columns": [
-                    {
-                        "type": "INTEGER",
-                        "primaryKey": true,
-                        "identity": true,
-                        "nullable": true,
-                        "name": "LEAVEREQUESTDOCUMENT_ID"
-                    },
-                    {
-                        "type": "VARCHAR",
-                        "length": 20,
-                        "nullable": true,
-                        "name": "LEAVEREQUESTDOCUMENT_NUMBER"
-                    },
-                    {
-                        "type": "VARCHAR",
-                        "length": 1000,
-                        "nullable": true,
-                        "name": "LEAVEREQUESTDOCUMENT_DOCUMENT"
-                    },
-                    {
-                        "type": "INTEGER",
-                        "nullable": true,
-                        "name": "LEAVEREQUESTDOCUMENT_LEAVEREQUEST"
-                    }
-                ]
+                "name": "LeaveDeduction_LeaveBalance",
+                "type": "foreignKey",
+                "table": "CODBEX_LEAVEDEDUCTION",
+                "constraintName": "LeaveDeduction_LeaveBalance",
+                "columns": "LEAVEDEDUCTION_BALANCE",
+                "referencedTable": "CODBEX_LEAVEBALANCE",
+                "referencedColumns": "LEAVEBALANCE_ID"
+            },
+            {
+                "name": "LeaveDeduction_LeaveRequest",
+                "type": "foreignKey",
+                "table": "CODBEX_LEAVEDEDUCTION",
+                "constraintName": "LeaveDeduction_LeaveRequest",
+                "columns": "LEAVEDEDUCTION_REQUEST",
+                "referencedTable": "CODBEX_LEAVEREQUEST",
+                "referencedColumns": "LEAVEREQUEST_ID"
             },
             {
                 "name": "LeaveRequest_Employee",
@@ -140,13 +237,13 @@
                 "referencedColumns": "LEAVESTATUS_ID"
             },
             {
-                "name": "LeaveRequestDocument_LeaveRequest",
+                "name": "LeaveRequest_Employee",
                 "type": "foreignKey",
-                "table": "CODBEX_LEAVEREQUESTDOCUMENT",
-                "constraintName": "LeaveRequestDocument_LeaveRequest",
-                "columns": "LEAVEREQUESTDOCUMENT_LEAVEREQUEST",
-                "referencedTable": "CODBEX_LEAVEREQUEST",
-                "referencedColumns": "LEAVEREQUEST_ID"
+                "table": "CODBEX_LEAVEREQUEST",
+                "constraintName": "LeaveRequest_Employee",
+                "columns": "LEAVEREQUEST_MANAGER",
+                "referencedTable": "CODBEX_EMPLOYEE",
+                "referencedColumns": "EMPLOYEE_ID"
             }
         ]
     },

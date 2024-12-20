@@ -6,12 +6,16 @@ import { EntityUtils } from "../utils/EntityUtils";
 
 export interface LeaveRequestEntity {
     readonly Id: number;
+    Number?: string;
     Employee?: number;
     StartDate?: Date;
     EndDate?: Date;
     Days?: number;
     Type?: number;
     Status?: number;
+    Reason?: string;
+    ApprovalDate?: Date;
+    Manager?: number;
 }
 
 export interface LeaveRequestCreateEntity {
@@ -21,6 +25,9 @@ export interface LeaveRequestCreateEntity {
     readonly Days?: number;
     readonly Type?: number;
     readonly Status?: number;
+    readonly Reason?: string;
+    readonly ApprovalDate?: Date;
+    readonly Manager?: number;
 }
 
 export interface LeaveRequestUpdateEntity extends LeaveRequestCreateEntity {
@@ -31,66 +38,94 @@ export interface LeaveRequestEntityOptions {
     $filter?: {
         equals?: {
             Id?: number | number[];
+            Number?: string | string[];
             Employee?: number | number[];
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
             Days?: number | number[];
             Type?: number | number[];
             Status?: number | number[];
+            Reason?: string | string[];
+            ApprovalDate?: Date | Date[];
+            Manager?: number | number[];
         };
         notEquals?: {
             Id?: number | number[];
+            Number?: string | string[];
             Employee?: number | number[];
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
             Days?: number | number[];
             Type?: number | number[];
             Status?: number | number[];
+            Reason?: string | string[];
+            ApprovalDate?: Date | Date[];
+            Manager?: number | number[];
         };
         contains?: {
             Id?: number;
+            Number?: string;
             Employee?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
             Type?: number;
             Status?: number;
+            Reason?: string;
+            ApprovalDate?: Date;
+            Manager?: number;
         };
         greaterThan?: {
             Id?: number;
+            Number?: string;
             Employee?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
             Type?: number;
             Status?: number;
+            Reason?: string;
+            ApprovalDate?: Date;
+            Manager?: number;
         };
         greaterThanOrEqual?: {
             Id?: number;
+            Number?: string;
             Employee?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
             Type?: number;
             Status?: number;
+            Reason?: string;
+            ApprovalDate?: Date;
+            Manager?: number;
         };
         lessThan?: {
             Id?: number;
+            Number?: string;
             Employee?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
             Type?: number;
             Status?: number;
+            Reason?: string;
+            ApprovalDate?: Date;
+            Manager?: number;
         };
         lessThanOrEqual?: {
             Id?: number;
+            Number?: string;
             Employee?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
             Type?: number;
             Status?: number;
+            Reason?: string;
+            ApprovalDate?: Date;
+            Manager?: number;
         };
     },
     $select?: (keyof LeaveRequestEntity)[],
@@ -128,6 +163,11 @@ export class LeaveRequestRepository {
                 autoIncrement: true,
             },
             {
+                name: "Number",
+                column: "LEAVEREQUEST_NUMBER",
+                type: "VARCHAR",
+            },
+            {
                 name: "Employee",
                 column: "LEAVEREQUEST_EMPLOYEE",
                 type: "INTEGER",
@@ -156,6 +196,21 @@ export class LeaveRequestRepository {
                 name: "Status",
                 column: "LEAVEREQUEST_STATUS",
                 type: "INTEGER",
+            },
+            {
+                name: "Reason",
+                column: "LEAVEREQUEST_REASON",
+                type: "VARCHAR",
+            },
+            {
+                name: "ApprovalDate",
+                column: "LEAVEREQUEST_APPROVALDATE",
+                type: "DATE",
+            },
+            {
+                name: "Manager",
+                column: "LEAVEREQUEST_MANAGER",
+                type: "INTEGER",
             }
         ]
     };
@@ -170,6 +225,7 @@ export class LeaveRequestRepository {
         return this.dao.list(options).map((e: LeaveRequestEntity) => {
             EntityUtils.setDate(e, "StartDate");
             EntityUtils.setDate(e, "EndDate");
+            EntityUtils.setDate(e, "ApprovalDate");
             return e;
         });
     }
@@ -178,12 +234,16 @@ export class LeaveRequestRepository {
         const entity = this.dao.find(id);
         EntityUtils.setDate(entity, "StartDate");
         EntityUtils.setDate(entity, "EndDate");
+        EntityUtils.setDate(entity, "ApprovalDate");
         return entity ?? undefined;
     }
 
     public create(entity: LeaveRequestCreateEntity): number {
         EntityUtils.setLocalDate(entity, "StartDate");
         EntityUtils.setLocalDate(entity, "EndDate");
+        EntityUtils.setLocalDate(entity, "ApprovalDate");
+        // @ts-ignore
+        (entity as LeaveRequestEntity).Number = new NumberGeneratorService().generate(30);
         const id = this.dao.insert(entity);
         this.triggerEvent({
             operation: "create",
@@ -201,6 +261,7 @@ export class LeaveRequestRepository {
     public update(entity: LeaveRequestUpdateEntity): void {
         // EntityUtils.setLocalDate(entity, "StartDate");
         // EntityUtils.setLocalDate(entity, "EndDate");
+        // EntityUtils.setLocalDate(entity, "ApprovalDate");
         const previousEntity = this.findById(entity.Id);
         this.dao.update(entity);
         this.triggerEvent({

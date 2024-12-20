@@ -9,14 +9,15 @@ externalDocs:
 servers:
   - url: /services/ts
 tags:
-  - name: LeaveRequests
+  - name: entities
+  - name: entities
   - name: entities
   - name: entities
   - name: LeaveRequests
 paths:
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts:
+  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveBalanceService.ts:
     get:
-      summary: List LeaveRequest
+      summary: List LeaveBalance
       parameters:
         - in: query
           name: $limit
@@ -35,7 +36,7 @@ paths:
             type: integer
             allowEmptyValue: true
       tags:
-        - LeaveRequests
+        - entities
       responses:
         200:
           description: Successful Request
@@ -44,7 +45,7 @@ paths:
               schema:
                 type: array
                 items:
-                    $ref: '#/components/schemas/LeaveRequest'
+                    $ref: '#/components/schemas/LeaveBalance'
         400:
           description: Bad Request Error
           content:
@@ -64,14 +65,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     post:
-      summary: Create LeaveRequest
+      summary: Create LeaveBalance
       tags:
-        - LeaveRequests
+        - entities
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LeaveRequest'
+              $ref: '#/components/schemas/LeaveBalance'
         required: true
       responses:
         201:
@@ -79,7 +80,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LeaveRequest'
+                $ref: '#/components/schemas/LeaveBalance'
         400:
           description: Bad Request Error
           content:
@@ -98,9 +99,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/{id}:
+  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveBalanceService.ts/{id}:
     get:
-      summary: Get LeaveRequest by Id
+      summary: Get LeaveBalance by Id
       parameters:
         - in: path
           name: id
@@ -109,7 +110,7 @@ paths:
           schema:
             type: string
       tags:
-        - LeaveRequests
+        - entities
       responses:
         200:
           description: Successful Request
@@ -118,7 +119,7 @@ paths:
               schema:
                 type: array
                 items:
-                    $ref: '#/components/schemas/LeaveRequest'
+                    $ref: '#/components/schemas/LeaveBalance'
         404:
           description: Entity Not Found
           content:
@@ -138,7 +139,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     put:
-      summary: Update LeaveRequest by Id
+      summary: Update LeaveBalance by Id
       parameters:
         - in: path
           name: id
@@ -147,12 +148,12 @@ paths:
           schema:
             type: string
       tags:
-        - LeaveRequests
+        - entities
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LeaveRequest'
+              $ref: '#/components/schemas/LeaveBalance'
         required: true
       responses:
         200:
@@ -160,7 +161,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LeaveRequest'
+                $ref: '#/components/schemas/LeaveBalance'
         400:
           description: Bad Request Error
           content:
@@ -186,7 +187,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     delete:
-      summary: Delete LeaveRequest by Id
+      summary: Delete LeaveBalance by Id
       parameters:
         - in: path
           name: id
@@ -195,7 +196,7 @@ paths:
           schema:
             type: string
       tags:
-        - LeaveRequests
+        - entities
       responses:
         204:
           description: Successful Request
@@ -217,11 +218,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/count:
+  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveBalanceService.ts/count:
     get:
-      summary: Count the number of LeaveRequest
+      summary: Count the number of LeaveBalance
       tags:
-        - LeaveRequests
+        - entities
       responses:
         200:
           description: Successful Request
@@ -243,14 +244,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     post:
-      summary: Count the number of LeaveRequest by LeaveRequestFilterOptions
+      summary: Count the number of LeaveBalance by LeaveBalanceFilterOptions
       tags:
-        - LeaveRequests
+        - entities
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LeaveRequestFilterOptions'
+              $ref: '#/components/schemas/LeaveBalanceFilterOptions'
             examples:
               countWithMultipleCriteria:
                 summary: Count with multiple criteria
@@ -258,6 +259,8 @@ paths:
                   $filter:
                     notEquals:
                       Id: 33
+                    contains:
+                      Year: "abcd"
                     greaterThan:
                       Id: 0
                     lessThanOrEqual:
@@ -274,6 +277,12 @@ paths:
                   $filter:
                     notEquals:
                       Id: 0
+              countWithContains:
+                summary: Count with Contains
+                value:
+                  $filter:
+                    contains:
+                      Year: "abcd"
               countWithGreaterThan:
                 summary: Count with Greater Than
                 value:
@@ -319,16 +328,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/search:
+  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveBalanceService.ts/search:
     post:
-      summary: Search LeaveRequest by LeaveRequestFilterOptions
+      summary: Search LeaveBalance by LeaveBalanceFilterOptions
       tags:
-        - LeaveRequests
+        - entities
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LeaveRequestFilterOptions'
+              $ref: '#/components/schemas/LeaveBalanceFilterOptions'
             examples:
               searchWithMultipleCriteria:
                 summary: Search with multiple criteria
@@ -336,6 +345,8 @@ paths:
                   $filter:
                     notEquals:
                       Id: 33
+                    contains:
+                      Year: "abcd"
                     greaterThan:
                       Id: 0
                     lessThanOrEqual:
@@ -352,6 +363,12 @@ paths:
                   $filter:
                     notEquals:
                       Id: 0
+              searchWithContains:
+                summary: Search with Contains
+                value:
+                  $filter:
+                    contains:
+                      Year: "abcd"
               searchWithGreaterThan:
                 summary: Search with Greater Than
                 value:
@@ -385,7 +402,7 @@ paths:
               schema:
                 type: array
                 items:
-                    $ref: '#/components/schemas/LeaveRequest'
+                    $ref: '#/components/schemas/LeaveBalance'
         403:
           description: Forbidden Error
           content:
@@ -1198,9 +1215,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestDocumentService.ts:
+  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveDeductionService.ts:
     get:
-      summary: List LeaveRequestDocument
+      summary: List LeaveDeduction
       parameters:
         - in: query
           name: $limit
@@ -1219,7 +1236,7 @@ paths:
             type: integer
             allowEmptyValue: true
       tags:
-        - LeaveRequests
+        - entities
       responses:
         200:
           description: Successful Request
@@ -1228,7 +1245,7 @@ paths:
               schema:
                 type: array
                 items:
-                    $ref: '#/components/schemas/LeaveRequestDocument'
+                    $ref: '#/components/schemas/LeaveDeduction'
         400:
           description: Bad Request Error
           content:
@@ -1248,14 +1265,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     post:
-      summary: Create LeaveRequestDocument
+      summary: Create LeaveDeduction
       tags:
-        - LeaveRequests
+        - entities
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LeaveRequestDocument'
+              $ref: '#/components/schemas/LeaveDeduction'
         required: true
       responses:
         201:
@@ -1263,7 +1280,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LeaveRequestDocument'
+                $ref: '#/components/schemas/LeaveDeduction'
         400:
           description: Bad Request Error
           content:
@@ -1282,9 +1299,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestDocumentService.ts/{id}:
+  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveDeductionService.ts/{id}:
     get:
-      summary: Get LeaveRequestDocument by Id
+      summary: Get LeaveDeduction by Id
       parameters:
         - in: path
           name: id
@@ -1293,7 +1310,7 @@ paths:
           schema:
             type: string
       tags:
-        - LeaveRequests
+        - entities
       responses:
         200:
           description: Successful Request
@@ -1302,7 +1319,7 @@ paths:
               schema:
                 type: array
                 items:
-                    $ref: '#/components/schemas/LeaveRequestDocument'
+                    $ref: '#/components/schemas/LeaveDeduction'
         404:
           description: Entity Not Found
           content:
@@ -1322,7 +1339,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     put:
-      summary: Update LeaveRequestDocument by Id
+      summary: Update LeaveDeduction by Id
       parameters:
         - in: path
           name: id
@@ -1331,12 +1348,12 @@ paths:
           schema:
             type: string
       tags:
-        - LeaveRequests
+        - entities
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LeaveRequestDocument'
+              $ref: '#/components/schemas/LeaveDeduction'
         required: true
       responses:
         200:
@@ -1344,7 +1361,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LeaveRequestDocument'
+                $ref: '#/components/schemas/LeaveDeduction'
         400:
           description: Bad Request Error
           content:
@@ -1370,7 +1387,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     delete:
-      summary: Delete LeaveRequestDocument by Id
+      summary: Delete LeaveDeduction by Id
       parameters:
         - in: path
           name: id
@@ -1379,7 +1396,7 @@ paths:
           schema:
             type: string
       tags:
-        - LeaveRequests
+        - entities
       responses:
         204:
           description: Successful Request
@@ -1401,11 +1418,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestDocumentService.ts/count:
+  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveDeductionService.ts/count:
     get:
-      summary: Count the number of LeaveRequestDocument
+      summary: Count the number of LeaveDeduction
       tags:
-        - LeaveRequests
+        - entities
       responses:
         200:
           description: Successful Request
@@ -1427,14 +1444,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
     post:
-      summary: Count the number of LeaveRequestDocument by LeaveRequestDocumentFilterOptions
+      summary: Count the number of LeaveDeduction by LeaveDeductionFilterOptions
       tags:
-        - LeaveRequests
+        - entities
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LeaveRequestDocumentFilterOptions'
+              $ref: '#/components/schemas/LeaveDeductionFilterOptions'
             examples:
               countWithMultipleCriteria:
                 summary: Count with multiple criteria
@@ -1442,9 +1459,6 @@ paths:
                   $filter:
                     notEquals:
                       Id: 33
-                    contains:
-                      Number: "abcd"
-                      Document: "abcd"
                     greaterThan:
                       Id: 0
                     lessThanOrEqual:
@@ -1461,13 +1475,6 @@ paths:
                   $filter:
                     notEquals:
                       Id: 0
-              countWithContains:
-                summary: Count with Contains
-                value:
-                  $filter:
-                    contains:
-                      Number: "abcd"
-                      Document: "abcd"
               countWithGreaterThan:
                 summary: Count with Greater Than
                 value:
@@ -1513,16 +1520,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestDocumentService.ts/search:
+  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveDeductionService.ts/search:
     post:
-      summary: Search LeaveRequestDocument by LeaveRequestDocumentFilterOptions
+      summary: Search LeaveDeduction by LeaveDeductionFilterOptions
       tags:
-        - LeaveRequests
+        - entities
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LeaveRequestDocumentFilterOptions'
+              $ref: '#/components/schemas/LeaveDeductionFilterOptions'
             examples:
               searchWithMultipleCriteria:
                 summary: Search with multiple criteria
@@ -1530,9 +1537,6 @@ paths:
                   $filter:
                     notEquals:
                       Id: 33
-                    contains:
-                      Number: "abcd"
-                      Document: "abcd"
                     greaterThan:
                       Id: 0
                     lessThanOrEqual:
@@ -1549,13 +1553,6 @@ paths:
                   $filter:
                     notEquals:
                       Id: 0
-              searchWithContains:
-                summary: Search with Contains
-                value:
-                  $filter:
-                    contains:
-                      Number: "abcd"
-                      Document: "abcd"
               searchWithGreaterThan:
                 summary: Search with Greater Than
                 value:
@@ -1589,7 +1586,411 @@ paths:
               schema:
                 type: array
                 items:
-                    $ref: '#/components/schemas/LeaveRequestDocument'
+                    $ref: '#/components/schemas/LeaveDeduction'
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts:
+    get:
+      summary: List LeaveRequest
+      parameters:
+        - in: query
+          name: $limit
+          description: The number of records to be returned _(both `$limit` and `$offset` should be provided)_.
+          required: false
+          allowReserved: true
+          schema:
+            type: integer
+            allowEmptyValue: true
+        - in: query
+          name: $offset
+          description: The number of records to skip _(both `$limit` and `$offset` should be provided)_.
+          required: false
+          allowReserved: true
+          schema:
+            type: integer
+            allowEmptyValue: true
+      tags:
+        - LeaveRequests
+      responses:
+        200:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/LeaveRequest'
+        400:
+          description: Bad Request Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create LeaveRequest
+      tags:
+        - LeaveRequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaveRequest'
+        required: true
+      responses:
+        201:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequest'
+        400:
+          description: Bad Request Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/{id}:
+    get:
+      summary: Get LeaveRequest by Id
+      parameters:
+        - in: path
+          name: id
+          description: The Id of the entity.
+          required: true
+          schema:
+            type: string
+      tags:
+        - LeaveRequests
+      responses:
+        200:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/LeaveRequest'
+        404:
+          description: Entity Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: Update LeaveRequest by Id
+      parameters:
+        - in: path
+          name: id
+          description: The Id of the entity.
+          required: true
+          schema:
+            type: string
+      tags:
+        - LeaveRequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaveRequest'
+        required: true
+      responses:
+        200:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaveRequest'
+        400:
+          description: Bad Request Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        404:
+          description: Entity Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Delete LeaveRequest by Id
+      parameters:
+        - in: path
+          name: id
+          description: The Id of the entity.
+          required: true
+          schema:
+            type: string
+      tags:
+        - LeaveRequests
+      responses:
+        204:
+          description: Successful Request
+        404:
+          description: Entity Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/count:
+    get:
+      summary: Count the number of LeaveRequest
+      tags:
+        - LeaveRequests
+      responses:
+        200:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                type: integer
+                example: 100
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Count the number of LeaveRequest by LeaveRequestFilterOptions
+      tags:
+        - LeaveRequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaveRequestFilterOptions'
+            examples:
+              countWithMultipleCriteria:
+                summary: Count with multiple criteria
+                value:
+                  $filter:
+                    notEquals:
+                      Id: 33
+                    contains:
+                      Number: "abcd"
+                      Reason: "abcd"
+                    greaterThan:
+                      Id: 0
+                    lessThanOrEqual:
+                      Id: 100
+              countWithEquals:
+                summary: Count with Equals
+                value:
+                  $filter:
+                    equals:
+                      Id: 0
+              countWithNotEquals:
+                summary: Count with Not Equals
+                value:
+                  $filter:
+                    notEquals:
+                      Id: 0
+              countWithContains:
+                summary: Count with Contains
+                value:
+                  $filter:
+                    contains:
+                      Number: "abcd"
+                      Reason: "abcd"
+              countWithGreaterThan:
+                summary: Count with Greater Than
+                value:
+                  $filter:
+                    greaterThan:
+                      Id: 0
+              countWithGreaterThanOrEqual:
+                summary: Count with Greater Than Or Equal
+                value:
+                  $filter:
+                    greaterThanOrEqual:
+                      Id: 0
+              countWithLessThan:
+                summary: Count with Less Than
+                value:
+                  $filter:
+                    lessThan:
+                      Id: 0
+              countWithLessThanOrEqual:
+                summary: Count with Less Than Or Equal
+                value:
+                  $filter:
+                    lessThanOrEqual:
+                      Id: 0
+        required: true
+      responses:
+        200:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                type: integer
+                example: 100
+        403:
+          description: Forbidden Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/search:
+    post:
+      summary: Search LeaveRequest by LeaveRequestFilterOptions
+      tags:
+        - LeaveRequests
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeaveRequestFilterOptions'
+            examples:
+              searchWithMultipleCriteria:
+                summary: Search with multiple criteria
+                value:
+                  $filter:
+                    notEquals:
+                      Id: 33
+                    contains:
+                      Number: "abcd"
+                      Reason: "abcd"
+                    greaterThan:
+                      Id: 0
+                    lessThanOrEqual:
+                      Id: 100
+              searchWithEquals:
+                summary: Search with Equals
+                value:
+                  $filter:
+                    equals:
+                      Id: 0
+              searchWithNotEquals:
+                summary: Search with Not Equals
+                value:
+                  $filter:
+                    notEquals:
+                      Id: 0
+              searchWithContains:
+                summary: Search with Contains
+                value:
+                  $filter:
+                    contains:
+                      Number: "abcd"
+                      Reason: "abcd"
+              searchWithGreaterThan:
+                summary: Search with Greater Than
+                value:
+                  $filter:
+                    greaterThan:
+                      Id: 0
+              searchWithGreaterThanOrEqual:
+                summary: Search with Greater Than Or Equal
+                value:
+                  $filter:
+                    greaterThanOrEqual:
+                      Id: 0
+              searchWithLessThan:
+                summary: Search with Less Than
+                value:
+                  $filter:
+                    lessThan:
+                      Id: 0
+              searchWithLessThanOrEqual:
+                summary: Search with Less Than Or Equal
+                value:
+                  $filter:
+                    lessThanOrEqual:
+                      Id: 0
+        required: true
+      responses:
+        200:
+          description: Successful Request
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                    $ref: '#/components/schemas/LeaveRequest'
         403:
           description: Forbidden Error
           content:
@@ -1604,14 +2005,11 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    LeaveRequest:
+    LeaveBalance:
       type: object
       required:
-        - StartDate
-        - EndDate
-        - Days
-        - Type
-        - Status
+        - Employee
+        - Year
       properties:
         Id:
           type: integer
@@ -1619,18 +2017,24 @@ components:
         Employee:
           type: integer
           format: int32
-        StartDate:
-        EndDate:
-        Days:
-          type: integer
-          format: int32
+        Year:
+          type: string
+          minLength: 0
+          maxLength: 4
         Type:
           type: integer
           format: int32
-        Status:
+        Granted:
           type: integer
           format: int32
-    LeaveRequestFilterOptions:
+        Used:
+          type: integer
+          format: int32
+        Balance:
+          type: integer
+          format: int32
+          readOnly: true
+    LeaveBalanceFilterOptions:
       type: object
       properties:
         $filter:
@@ -1655,18 +2059,17 @@ components:
                       items:
                         type: integer
                         format: int32
-                StartDate:
+                Year:
                   oneOf:
-                EndDate:
-                  oneOf:
-                Days:
-                  oneOf:
-                    - type: integer
-                      format: int32
+                    - type: string
+                      minLength: 0
+                      maxLength: 4
                     - type: array
                       items:
-                        type: integer
-                        format: int32
+                        type: string
+                        format: double
+                        minLength: 0
+                        maxLength: 4
                 Type:
                   oneOf:
                     - type: integer
@@ -1675,7 +2078,23 @@ components:
                       items:
                         type: integer
                         format: int32
-                Status:
+                Granted:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Used:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Balance:
                   oneOf:
                     - type: integer
                       format: int32
@@ -1702,18 +2121,17 @@ components:
                       items:
                         type: integer
                         format: int32
-                StartDate:
+                Year:
                   oneOf:
-                EndDate:
-                  oneOf:
-                Days:
-                  oneOf:
-                    - type: integer
-                      format: int32
+                    - type: string
+                      minLength: 0
+                      maxLength: 4
                     - type: array
                       items:
-                        type: integer
-                        format: int32
+                        type: string
+                        format: double
+                        minLength: 0
+                        maxLength: 4
                 Type:
                   oneOf:
                     - type: integer
@@ -1722,7 +2140,23 @@ components:
                       items:
                         type: integer
                         format: int32
-                Status:
+                Granted:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Used:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Balance:
                   oneOf:
                     - type: integer
                       format: int32
@@ -1735,11 +2169,14 @@ components:
               properties:
                 Id:
                 Employee:
-                StartDate:
-                EndDate:
-                Days:
+                Year:
+                  type: string
+                  minLength: 0
+                  maxLength: 4
                 Type:
-                Status:
+                Granted:
+                Used:
+                Balance:
             greaterThan:
               type: object
               properties:
@@ -1749,15 +2186,20 @@ components:
                 Employee:
                   type: integer
                   format: int32
-                StartDate:
-                EndDate:
-                Days:
-                  type: integer
-                  format: int32
+                Year:
+                  type: string
+                  minLength: 0
+                  maxLength: 4
                 Type:
                   type: integer
                   format: int32
-                Status:
+                Granted:
+                  type: integer
+                  format: int32
+                Used:
+                  type: integer
+                  format: int32
+                Balance:
                   type: integer
                   format: int32
             greaterThanOrEqual:
@@ -1769,15 +2211,20 @@ components:
                 Employee:
                   type: integer
                   format: int32
-                StartDate:
-                EndDate:
-                Days:
-                  type: integer
-                  format: int32
+                Year:
+                  type: string
+                  minLength: 0
+                  maxLength: 4
                 Type:
                   type: integer
                   format: int32
-                Status:
+                Granted:
+                  type: integer
+                  format: int32
+                Used:
+                  type: integer
+                  format: int32
+                Balance:
                   type: integer
                   format: int32
             lessThan:
@@ -1789,15 +2236,20 @@ components:
                 Employee:
                   type: integer
                   format: int32
-                StartDate:
-                EndDate:
-                Days:
-                  type: integer
-                  format: int32
+                Year:
+                  type: string
+                  minLength: 0
+                  maxLength: 4
                 Type:
                   type: integer
                   format: int32
-                Status:
+                Granted:
+                  type: integer
+                  format: int32
+                Used:
+                  type: integer
+                  format: int32
+                Balance:
                   type: integer
                   format: int32
             lessThanOrEqual:
@@ -1809,25 +2261,30 @@ components:
                 Employee:
                   type: integer
                   format: int32
-                StartDate:
-                EndDate:
-                Days:
-                  type: integer
-                  format: int32
+                Year:
+                  type: string
+                  minLength: 0
+                  maxLength: 4
                 Type:
                   type: integer
                   format: int32
-                Status:
+                Granted:
+                  type: integer
+                  format: int32
+                Used:
+                  type: integer
+                  format: int32
+                Balance:
                   type: integer
                   format: int32
         $select:
           type: array
-          example: ["Id", "Employee", "StartDate", "EndDate", "Days", "Type", "Status"]
+          example: ["Id", "Employee", "Year", "Type", "Granted", "Used", "Balance"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Employee,StartDate,EndDate,Days,Type,Status"
+            example: "Id,Employee,Year,Type,Granted,Used,Balance"
         $order:
           type: string
           enum: ["asc", "desc"]
@@ -1849,7 +2306,7 @@ components:
         Name:
           type: string
           minLength: 0
-          maxLength: 100
+          maxLength: 20
     LeaveTypeFilterOptions:
       type: object
       properties:
@@ -1871,13 +2328,13 @@ components:
                   oneOf:
                     - type: string
                       minLength: 0
-                      maxLength: 100
+                      maxLength: 20
                     - type: array
                       items:
                         type: string
                         format: double
                         minLength: 0
-                        maxLength: 100
+                        maxLength: 20
             notEquals:
               type: object
               properties:
@@ -1893,13 +2350,13 @@ components:
                   oneOf:
                     - type: string
                       minLength: 0
-                      maxLength: 100
+                      maxLength: 20
                     - type: array
                       items:
                         type: string
                         format: double
                         minLength: 0
-                        maxLength: 100
+                        maxLength: 20
             contains:
               type: object
               properties:
@@ -1907,7 +2364,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 100
+                  maxLength: 20
             greaterThan:
               type: object
               properties:
@@ -1917,7 +2374,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 100
+                  maxLength: 20
             greaterThanOrEqual:
               type: object
               properties:
@@ -1927,7 +2384,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 100
+                  maxLength: 20
             lessThan:
               type: object
               properties:
@@ -1937,7 +2394,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 100
+                  maxLength: 20
             lessThanOrEqual:
               type: object
               properties:
@@ -1947,7 +2404,7 @@ components:
                 Name:
                   type: string
                   minLength: 0
-                  maxLength: 100
+                  maxLength: 20
         $select:
           type: array
           example: ["Id", "Name"]
@@ -2094,10 +2551,157 @@ components:
         $limit:
           type: integer
           example: 10
-    LeaveRequestDocument:
+    LeaveDeduction:
       type: object
       required:
-        - Document
+      properties:
+        Id:
+          type: integer
+          format: int32
+        Balance:
+          type: integer
+          format: int32
+        Request:
+          type: integer
+          format: int32
+    LeaveDeductionFilterOptions:
+      type: object
+      properties:
+        $filter:
+          type: object
+          properties:
+            equals:
+              type: object
+              properties:
+                Id:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Balance:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Request:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+            notEquals:
+              type: object
+              properties:
+                Id:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Balance:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Request:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+            contains:
+              type: object
+              properties:
+                Id:
+                Balance:
+                Request:
+            greaterThan:
+              type: object
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                Balance:
+                  type: integer
+                  format: int32
+                Request:
+                  type: integer
+                  format: int32
+            greaterThanOrEqual:
+              type: object
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                Balance:
+                  type: integer
+                  format: int32
+                Request:
+                  type: integer
+                  format: int32
+            lessThan:
+              type: object
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                Balance:
+                  type: integer
+                  format: int32
+                Request:
+                  type: integer
+                  format: int32
+            lessThanOrEqual:
+              type: object
+              properties:
+                Id:
+                  type: integer
+                  format: int32
+                Balance:
+                  type: integer
+                  format: int32
+                Request:
+                  type: integer
+                  format: int32
+        $select:
+          type: array
+          example: ["Id", "Balance", "Request"]
+          items:
+            type: string
+        $sort:
+          - type: string
+            example: "Id,Balance,Request"
+        $order:
+          type: string
+          enum: ["asc", "desc"]
+          example: "asc"
+        $offset:
+          type: integer
+          example: 0
+        $limit:
+          type: integer
+          example: 10
+    LeaveRequest:
+      type: object
+      required:
+        - StartDate
+        - EndDate
+        - Days
       properties:
         Id:
           type: integer
@@ -2107,14 +2711,29 @@ components:
           minLength: 0
           maxLength: 20
           readOnly: true
-        Document:
-          type: string
-          minLength: 0
-          maxLength: 1000
-        LeaveRequest:
+        Employee:
           type: integer
           format: int32
-    LeaveRequestDocumentFilterOptions:
+        StartDate:
+        EndDate:
+        Days:
+          type: integer
+          format: int32
+        Type:
+          type: integer
+          format: int32
+        Status:
+          type: integer
+          format: int32
+        Reason:
+          type: string
+          minLength: 0
+          maxLength: 50
+        ApprovalDate:
+        Manager:
+          type: integer
+          format: int32
+    LeaveRequestFilterOptions:
       type: object
       properties:
         $filter:
@@ -2142,18 +2761,56 @@ components:
                         format: double
                         minLength: 0
                         maxLength: 20
-                Document:
+                Employee:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                StartDate:
+                  oneOf:
+                EndDate:
+                  oneOf:
+                Days:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Type:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Status:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Reason:
                   oneOf:
                     - type: string
                       minLength: 0
-                      maxLength: 1000
+                      maxLength: 50
                     - type: array
                       items:
                         type: string
                         format: double
                         minLength: 0
-                        maxLength: 1000
-                LeaveRequest:
+                        maxLength: 50
+                ApprovalDate:
+                  oneOf:
+                Manager:
                   oneOf:
                     - type: integer
                       format: int32
@@ -2183,18 +2840,56 @@ components:
                         format: double
                         minLength: 0
                         maxLength: 20
-                Document:
+                Employee:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                StartDate:
+                  oneOf:
+                EndDate:
+                  oneOf:
+                Days:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Type:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Status:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Reason:
                   oneOf:
                     - type: string
                       minLength: 0
-                      maxLength: 1000
+                      maxLength: 50
                     - type: array
                       items:
                         type: string
                         format: double
                         minLength: 0
-                        maxLength: 1000
-                LeaveRequest:
+                        maxLength: 50
+                ApprovalDate:
+                  oneOf:
+                Manager:
                   oneOf:
                     - type: integer
                       format: int32
@@ -2210,11 +2905,18 @@ components:
                   type: string
                   minLength: 0
                   maxLength: 20
-                Document:
+                Employee:
+                StartDate:
+                EndDate:
+                Days:
+                Type:
+                Status:
+                Reason:
                   type: string
                   minLength: 0
-                  maxLength: 1000
-                LeaveRequest:
+                  maxLength: 50
+                ApprovalDate:
+                Manager:
             greaterThan:
               type: object
               properties:
@@ -2225,11 +2927,26 @@ components:
                   type: string
                   minLength: 0
                   maxLength: 20
-                Document:
+                Employee:
+                  type: integer
+                  format: int32
+                StartDate:
+                EndDate:
+                Days:
+                  type: integer
+                  format: int32
+                Type:
+                  type: integer
+                  format: int32
+                Status:
+                  type: integer
+                  format: int32
+                Reason:
                   type: string
                   minLength: 0
-                  maxLength: 1000
-                LeaveRequest:
+                  maxLength: 50
+                ApprovalDate:
+                Manager:
                   type: integer
                   format: int32
             greaterThanOrEqual:
@@ -2242,11 +2959,26 @@ components:
                   type: string
                   minLength: 0
                   maxLength: 20
-                Document:
+                Employee:
+                  type: integer
+                  format: int32
+                StartDate:
+                EndDate:
+                Days:
+                  type: integer
+                  format: int32
+                Type:
+                  type: integer
+                  format: int32
+                Status:
+                  type: integer
+                  format: int32
+                Reason:
                   type: string
                   minLength: 0
-                  maxLength: 1000
-                LeaveRequest:
+                  maxLength: 50
+                ApprovalDate:
+                Manager:
                   type: integer
                   format: int32
             lessThan:
@@ -2259,11 +2991,26 @@ components:
                   type: string
                   minLength: 0
                   maxLength: 20
-                Document:
+                Employee:
+                  type: integer
+                  format: int32
+                StartDate:
+                EndDate:
+                Days:
+                  type: integer
+                  format: int32
+                Type:
+                  type: integer
+                  format: int32
+                Status:
+                  type: integer
+                  format: int32
+                Reason:
                   type: string
                   minLength: 0
-                  maxLength: 1000
-                LeaveRequest:
+                  maxLength: 50
+                ApprovalDate:
+                Manager:
                   type: integer
                   format: int32
             lessThanOrEqual:
@@ -2276,21 +3023,36 @@ components:
                   type: string
                   minLength: 0
                   maxLength: 20
-                Document:
+                Employee:
+                  type: integer
+                  format: int32
+                StartDate:
+                EndDate:
+                Days:
+                  type: integer
+                  format: int32
+                Type:
+                  type: integer
+                  format: int32
+                Status:
+                  type: integer
+                  format: int32
+                Reason:
                   type: string
                   minLength: 0
-                  maxLength: 1000
-                LeaveRequest:
+                  maxLength: 50
+                ApprovalDate:
+                Manager:
                   type: integer
                   format: int32
         $select:
           type: array
-          example: ["Id", "Number", "Document", "LeaveRequest"]
+          example: ["Id", "Number", "Employee", "StartDate", "EndDate", "Days", "Type", "Status", "Reason", "ApprovalDate", "Manager"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Number,Document,LeaveRequest"
+            example: "Id,Number,Employee,StartDate,EndDate,Days,Type,Status,Reason,ApprovalDate,Manager"
         $order:
           type: string
           enum: ["asc", "desc"]

@@ -119,6 +119,9 @@ class LeaveRequestService {
     }
 
     private validateEntity(entity: any): void {
+        if (entity.Number?.length > 20) {
+            throw new ValidationError(`The 'Number' exceeds the maximum length of [20] characters`);
+        }
         if (entity.StartDate === null || entity.StartDate === undefined) {
             throw new ValidationError(`The 'StartDate' property is required, provide a valid value`);
         }
@@ -128,11 +131,8 @@ class LeaveRequestService {
         if (entity.Days === null || entity.Days === undefined) {
             throw new ValidationError(`The 'Days' property is required, provide a valid value`);
         }
-        if (entity.Type === null || entity.Type === undefined) {
-            throw new ValidationError(`The 'Type' property is required, provide a valid value`);
-        }
-        if (entity.Status === null || entity.Status === undefined) {
-            throw new ValidationError(`The 'Status' property is required, provide a valid value`);
+        if (entity.Reason?.length > 50) {
+            throw new ValidationError(`The 'Reason' exceeds the maximum length of [50] characters`);
         }
         for (const next of validationModules) {
             next.validate(entity);

@@ -108,6 +108,9 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 						if (e.EndDate) {
 							e.EndDate = new Date(e.EndDate);
 						}
+						if (e.ApprovalDate) {
+							e.ApprovalDate = new Date(e.ApprovalDate);
+						}
 					});
 
 					$scope.data = $scope.data.concat(response.data);
@@ -125,6 +128,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				optionsEmployee: $scope.optionsEmployee,
 				optionsType: $scope.optionsType,
 				optionsStatus: $scope.optionsStatus,
+				optionsManager: $scope.optionsManager,
 			});
 		};
 
@@ -137,6 +141,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				optionsEmployee: $scope.optionsEmployee,
 				optionsType: $scope.optionsType,
 				optionsStatus: $scope.optionsStatus,
+				optionsManager: $scope.optionsManager,
 			});
 		};
 
@@ -147,6 +152,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				optionsEmployee: $scope.optionsEmployee,
 				optionsType: $scope.optionsType,
 				optionsStatus: $scope.optionsStatus,
+				optionsManager: $scope.optionsManager,
 			});
 		};
 
@@ -186,6 +192,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				optionsEmployee: $scope.optionsEmployee,
 				optionsType: $scope.optionsType,
 				optionsStatus: $scope.optionsStatus,
+				optionsManager: $scope.optionsManager,
 			});
 		};
 
@@ -193,6 +200,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		$scope.optionsEmployee = [];
 		$scope.optionsType = [];
 		$scope.optionsStatus = [];
+		$scope.optionsManager = [];
 
 
 		$http.get("/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts").then(function (response) {
@@ -222,6 +230,15 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			});
 		});
 
+		$http.get("/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts").then(function (response) {
+			$scope.optionsManager = response.data.map(e => {
+				return {
+					value: e.Id,
+					text: e.Name
+				}
+			});
+		});
+
 		$scope.optionsEmployeeValue = function (optionKey) {
 			for (let i = 0; i < $scope.optionsEmployee.length; i++) {
 				if ($scope.optionsEmployee[i].value === optionKey) {
@@ -242,6 +259,14 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			for (let i = 0; i < $scope.optionsStatus.length; i++) {
 				if ($scope.optionsStatus[i].value === optionKey) {
 					return $scope.optionsStatus[i].text;
+				}
+			}
+			return null;
+		};
+		$scope.optionsManagerValue = function (optionKey) {
+			for (let i = 0; i < $scope.optionsManager.length; i++) {
+				if ($scope.optionsManager[i].value === optionKey) {
+					return $scope.optionsManager[i].text;
 				}
 			}
 			return null;

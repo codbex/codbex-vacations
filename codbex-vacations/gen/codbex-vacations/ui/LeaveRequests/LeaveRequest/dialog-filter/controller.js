@@ -23,12 +23,19 @@ angular.module('page', ["ideUI", "ideView"])
 			if (params?.entity?.EndDateTo) {
 				params.entity.EndDateTo = new Date(params.entity.EndDateTo);
 			}
+			if (params?.entity?.ApprovalDateFrom) {
+				params.entity.ApprovalDateFrom = new Date(params.entity.ApprovalDateFrom);
+			}
+			if (params?.entity?.ApprovalDateTo) {
+				params.entity.ApprovalDateTo = new Date(params.entity.ApprovalDateTo);
+			}
 			$scope.entity = params.entity ?? {};
 			$scope.selectedMainEntityKey = params.selectedMainEntityKey;
 			$scope.selectedMainEntityId = params.selectedMainEntityId;
 			$scope.optionsEmployee = params.optionsEmployee;
 			$scope.optionsType = params.optionsType;
 			$scope.optionsStatus = params.optionsStatus;
+			$scope.optionsManager = params.optionsManager;
 		}
 
 		$scope.filter = function () {
@@ -54,6 +61,9 @@ angular.module('page', ["ideUI", "ideView"])
 			if (entity.Id !== undefined) {
 				filter.$filter.equals.Id = entity.Id;
 			}
+			if (entity.Number) {
+				filter.$filter.contains.Number = entity.Number;
+			}
 			if (entity.Employee !== undefined) {
 				filter.$filter.equals.Employee = entity.Employee;
 			}
@@ -77,6 +87,18 @@ angular.module('page', ["ideUI", "ideView"])
 			}
 			if (entity.Status !== undefined) {
 				filter.$filter.equals.Status = entity.Status;
+			}
+			if (entity.Reason) {
+				filter.$filter.contains.Reason = entity.Reason;
+			}
+			if (entity.ApprovalDateFrom) {
+				filter.$filter.greaterThanOrEqual.ApprovalDate = entity.ApprovalDateFrom;
+			}
+			if (entity.ApprovalDateTo) {
+				filter.$filter.lessThanOrEqual.ApprovalDate = entity.ApprovalDateTo;
+			}
+			if (entity.Manager !== undefined) {
+				filter.$filter.equals.Manager = entity.Manager;
 			}
 			messageHub.postMessage("entitySearch", {
 				entity: entity,

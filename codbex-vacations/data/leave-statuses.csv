@@ -1,3 +1,4 @@
 LEAVESTATUS_ID,LEAVESTATUS_NAME
-1,Approved
-2,Not approved
+1,Pending
+2,Approved
+3,Rejected

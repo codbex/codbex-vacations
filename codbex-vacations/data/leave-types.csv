@@ -1,8 +1,5 @@
 LEAVETYPE_ID,LEAVETYPE_NAME
-1,Annual paid leave
-2,Sick leave
-3,Unpaid leave
-4,Maternity Leave
-5,Paternity Leave
-6,Study Leave
-7,Special Occasion Leave
+1,Sick
+2,Vacation
+3,Casual
+4,Unpaid
