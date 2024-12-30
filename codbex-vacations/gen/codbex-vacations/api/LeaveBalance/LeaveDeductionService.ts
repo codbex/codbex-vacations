@@ -130,9 +130,6 @@ class LeaveDeductionService {
     }
 
     private validateEntity(entity: any): void {
-        if (entity.Days === null || entity.Days === undefined) {
-            throw new ValidationError(`The 'Days' property is required, provide a valid value`);
-        }
         for (const next of validationModules) {
             next.validate(entity);
         }

@@ -13,7 +13,6 @@ export interface LeaveDeductionEntity {
 export interface LeaveDeductionCreateEntity {
     readonly Balance?: number;
     readonly Request?: number;
-    readonly Days?: number;
 }
 
 export interface LeaveDeductionUpdateEntity extends LeaveDeductionCreateEntity {

@@ -124,6 +124,9 @@ class LeaveRequestService {
         if (entity.Number?.length > 20) {
             throw new ValidationError(`The 'Number' exceeds the maximum length of [20] characters`);
         }
+        if (entity.Employee === null || entity.Employee === undefined) {
+            throw new ValidationError(`The 'Employee' property is required, provide a valid value`);
+        }
         if (entity.Manager === null || entity.Manager === undefined) {
             throw new ValidationError(`The 'Manager' property is required, provide a valid value`);
         }
