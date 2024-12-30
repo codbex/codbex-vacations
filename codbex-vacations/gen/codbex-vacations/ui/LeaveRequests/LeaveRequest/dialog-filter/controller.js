@@ -33,9 +33,9 @@ angular.module('page', ["ideUI", "ideView"])
 			$scope.selectedMainEntityKey = params.selectedMainEntityKey;
 			$scope.selectedMainEntityId = params.selectedMainEntityId;
 			$scope.optionsEmployee = params.optionsEmployee;
+			$scope.optionsManager = params.optionsManager;
 			$scope.optionsType = params.optionsType;
 			$scope.optionsStatus = params.optionsStatus;
-			$scope.optionsManager = params.optionsManager;
 		}
 
 		$scope.filter = function () {
@@ -67,6 +67,9 @@ angular.module('page', ["ideUI", "ideView"])
 			if (entity.Employee !== undefined) {
 				filter.$filter.equals.Employee = entity.Employee;
 			}
+			if (entity.Manager !== undefined) {
+				filter.$filter.equals.Manager = entity.Manager;
+			}
 			if (entity.StartDateFrom) {
 				filter.$filter.greaterThanOrEqual.StartDate = entity.StartDateFrom;
 			}
@@ -96,9 +99,6 @@ angular.module('page', ["ideUI", "ideView"])
 			}
 			if (entity.ApprovalDateTo) {
 				filter.$filter.lessThanOrEqual.ApprovalDate = entity.ApprovalDateTo;
-			}
-			if (entity.Manager !== undefined) {
-				filter.$filter.equals.Manager = entity.Manager;
 			}
 			messageHub.postMessage("entitySearch", {
 				entity: entity,

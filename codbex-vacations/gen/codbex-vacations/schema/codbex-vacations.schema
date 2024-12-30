@@ -18,15 +18,9 @@
                         "name": "LEAVEBALANCE_EMPLOYEE"
                     },
                     {
-                        "type": "VARCHAR",
-                        "length": 4,
-                        "nullable": true,
-                        "name": "LEAVEBALANCE_YEAR"
-                    },
-                    {
                         "type": "INTEGER",
                         "nullable": true,
-                        "name": "LEAVEBALANCE_TYPE"
+                        "name": "LEAVEBALANCE_YEAR"
                     },
                     {
                         "type": "INTEGER",
@@ -105,6 +99,11 @@
                         "type": "INTEGER",
                         "nullable": true,
                         "name": "LEAVEDEDUCTION_REQUEST"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEDEDUCTION_DAYS"
                     }
                 ]
             },
@@ -129,6 +128,11 @@
                         "type": "INTEGER",
                         "nullable": true,
                         "name": "LEAVEREQUEST_EMPLOYEE"
+                    },
+                    {
+                        "type": "INTEGER",
+                        "nullable": true,
+                        "name": "LEAVEREQUEST_MANAGER"
                     },
                     {
                         "type": "DATE",
@@ -165,11 +169,6 @@
                         "type": "DATE",
                         "nullable": true,
                         "name": "LEAVEREQUEST_APPROVALDATE"
-                    },
-                    {
-                        "type": "INTEGER",
-                        "nullable": true,
-                        "name": "LEAVEREQUEST_MANAGER"
                     }
                 ]
             },
@@ -181,15 +180,6 @@
                 "columns": "LEAVEBALANCE_EMPLOYEE",
                 "referencedTable": "CODBEX_EMPLOYEE",
                 "referencedColumns": "EMPLOYEE_ID"
-            },
-            {
-                "name": "LeaveBalance_LeaveType",
-                "type": "foreignKey",
-                "table": "CODBEX_LEAVEBALANCE",
-                "constraintName": "LeaveBalance_LeaveType",
-                "columns": "LEAVEBALANCE_TYPE",
-                "referencedTable": "CODBEX_LEAVETYPE",
-                "referencedColumns": "LEAVETYPE_ID"
             },
             {
                 "name": "LeaveDeduction_LeaveBalance",
@@ -219,6 +209,15 @@
                 "referencedColumns": "EMPLOYEE_ID"
             },
             {
+                "name": "LeaveRequest_Employee",
+                "type": "foreignKey",
+                "table": "CODBEX_LEAVEREQUEST",
+                "constraintName": "LeaveRequest_Employee",
+                "columns": "LEAVEREQUEST_MANAGER",
+                "referencedTable": "CODBEX_EMPLOYEE",
+                "referencedColumns": "EMPLOYEE_ID"
+            },
+            {
                 "name": "LeaveRequest_LeaveType",
                 "type": "foreignKey",
                 "table": "CODBEX_LEAVEREQUEST",
@@ -235,15 +234,6 @@
                 "columns": "LEAVEREQUEST_STATUS",
                 "referencedTable": "CODBEX_LEAVESTATUS",
                 "referencedColumns": "LEAVESTATUS_ID"
-            },
-            {
-                "name": "LeaveRequest_Employee",
-                "type": "foreignKey",
-                "table": "CODBEX_LEAVEREQUEST",
-                "constraintName": "LeaveRequest_Employee",
-                "columns": "LEAVEREQUEST_MANAGER",
-                "referencedTable": "CODBEX_EMPLOYEE",
-                "referencedColumns": "EMPLOYEE_ID"
             }
         ]
     },

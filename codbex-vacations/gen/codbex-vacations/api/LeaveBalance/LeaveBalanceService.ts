@@ -1,22 +1,20 @@
 import { Controller, Get, Post, Put, Delete, response } from "sdk/http"
 import { Extensions } from "sdk/extensions"
-import { LeaveRequestRepository, LeaveRequestEntityOptions } from "../../dao/LeaveRequests/LeaveRequestRepository";
+import { LeaveBalanceRepository, LeaveBalanceEntityOptions } from "../../dao/LeaveBalance/LeaveBalanceRepository";
 import { ValidationError } from "../utils/ValidationError";
 import { HttpUtils } from "../utils/HttpUtils";
-// custom imports
-import { NumberGeneratorService } from "/codbex-number-generator/service/generator";
 
-const validationModules = await Extensions.loadExtensionModules("codbex-vacations-LeaveRequests-LeaveRequest", ["validate"]);
+const validationModules = await Extensions.loadExtensionModules("codbex-vacations-LeaveBalance-LeaveBalance", ["validate"]);
 
 @Controller
-class LeaveRequestService {
+class LeaveBalanceService {
 
-    private readonly repository = new LeaveRequestRepository();
+    private readonly repository = new LeaveBalanceRepository();
 
     @Get("/")
     public getAll(_: any, ctx: any) {
         try {
-            const options: LeaveRequestEntityOptions = {
+            const options: LeaveBalanceEntityOptions = {
                 $limit: ctx.queryParameters["$limit"] ? parseInt(ctx.queryParameters["$limit"]) : undefined,
                 $offset: ctx.queryParameters["$offset"] ? parseInt(ctx.queryParameters["$offset"]) : undefined
             };
@@ -32,7 +30,7 @@ class LeaveRequestService {
         try {
             this.validateEntity(entity);
             entity.Id = this.repository.create(entity);
-            response.setHeader("Content-Location", "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/" + entity.Id);
+            response.setHeader("Content-Location", "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveBalanceService.ts/" + entity.Id);
             response.setStatus(response.CREATED);
             return entity;
         } catch (error: any) {
@@ -75,7 +73,7 @@ class LeaveRequestService {
             if (entity) {
                 return entity;
             } else {
-                HttpUtils.sendResponseNotFound("LeaveRequest not found");
+                HttpUtils.sendResponseNotFound("LeaveBalance not found");
             }
         } catch (error: any) {
             this.handleError(error);
@@ -103,7 +101,7 @@ class LeaveRequestService {
                 this.repository.deleteById(id);
                 HttpUtils.sendResponseNoContent();
             } else {
-                HttpUtils.sendResponseNotFound("LeaveRequest not found");
+                HttpUtils.sendResponseNotFound("LeaveBalance not found");
             }
         } catch (error: any) {
             this.handleError(error);
@@ -121,26 +119,14 @@ class LeaveRequestService {
     }
 
     private validateEntity(entity: any): void {
-        if (entity.Number?.length > 20) {
-            throw new ValidationError(`The 'Number' exceeds the maximum length of [20] characters`);
+        if (entity.Employee === null || entity.Employee === undefined) {
+            throw new ValidationError(`The 'Employee' property is required, provide a valid value`);
         }
-        if (entity.Manager === null || entity.Manager === undefined) {
-            throw new ValidationError(`The 'Manager' property is required, provide a valid value`);
+        if (entity.Year === null || entity.Year === undefined) {
+            throw new ValidationError(`The 'Year' property is required, provide a valid value`);
         }
-        if (entity.StartDate === null || entity.StartDate === undefined) {
-            throw new ValidationError(`The 'StartDate' property is required, provide a valid value`);
-        }
-        if (entity.EndDate === null || entity.EndDate === undefined) {
-            throw new ValidationError(`The 'EndDate' property is required, provide a valid value`);
-        }
-        if (entity.Days === null || entity.Days === undefined) {
-            throw new ValidationError(`The 'Days' property is required, provide a valid value`);
-        }
-        if (entity.Type === null || entity.Type === undefined) {
-            throw new ValidationError(`The 'Type' property is required, provide a valid value`);
-        }
-        if (entity.Reason?.length > 50) {
-            throw new ValidationError(`The 'Reason' exceeds the maximum length of [50] characters`);
+        if (entity.Used === null || entity.Used === undefined) {
+            throw new ValidationError(`The 'Used' property is required, provide a valid value`);
         }
         for (const next of validationModules) {
             next.validate(entity);
