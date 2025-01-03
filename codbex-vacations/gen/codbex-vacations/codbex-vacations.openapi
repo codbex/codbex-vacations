@@ -9,13 +9,13 @@ externalDocs:
 servers:
   - url: /services/ts
 tags:
+  - name: LeaveBalance
   - name: entities
   - name: entities
-  - name: entities
-  - name: entities
+  - name: LeaveBalance
   - name: LeaveRequests
 paths:
-  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveBalanceService.ts:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveBalanceService.ts:
     get:
       summary: List LeaveBalance
       parameters:
@@ -36,7 +36,7 @@ paths:
             type: integer
             allowEmptyValue: true
       tags:
-        - entities
+        - LeaveBalance
       responses:
         200:
           description: Successful Request
@@ -67,7 +67,7 @@ paths:
     post:
       summary: Create LeaveBalance
       tags:
-        - entities
+        - LeaveBalance
       requestBody:
         content:
           application/json:
@@ -99,7 +99,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveBalanceService.ts/{id}:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveBalanceService.ts/{id}:
     get:
       summary: Get LeaveBalance by Id
       parameters:
@@ -110,7 +110,7 @@ paths:
           schema:
             type: string
       tags:
-        - entities
+        - LeaveBalance
       responses:
         200:
           description: Successful Request
@@ -148,7 +148,7 @@ paths:
           schema:
             type: string
       tags:
-        - entities
+        - LeaveBalance
       requestBody:
         content:
           application/json:
@@ -196,7 +196,7 @@ paths:
           schema:
             type: string
       tags:
-        - entities
+        - LeaveBalance
       responses:
         204:
           description: Successful Request
@@ -218,11 +218,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveBalanceService.ts/count:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveBalanceService.ts/count:
     get:
       summary: Count the number of LeaveBalance
       tags:
-        - entities
+        - LeaveBalance
       responses:
         200:
           description: Successful Request
@@ -246,7 +246,7 @@ paths:
     post:
       summary: Count the number of LeaveBalance by LeaveBalanceFilterOptions
       tags:
-        - entities
+        - LeaveBalance
       requestBody:
         content:
           application/json:
@@ -259,8 +259,6 @@ paths:
                   $filter:
                     notEquals:
                       Id: 33
-                    contains:
-                      Year: "abcd"
                     greaterThan:
                       Id: 0
                     lessThanOrEqual:
@@ -277,12 +275,6 @@ paths:
                   $filter:
                     notEquals:
                       Id: 0
-              countWithContains:
-                summary: Count with Contains
-                value:
-                  $filter:
-                    contains:
-                      Year: "abcd"
               countWithGreaterThan:
                 summary: Count with Greater Than
                 value:
@@ -328,11 +320,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveBalanceService.ts/search:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveBalanceService.ts/search:
     post:
       summary: Search LeaveBalance by LeaveBalanceFilterOptions
       tags:
-        - entities
+        - LeaveBalance
       requestBody:
         content:
           application/json:
@@ -345,8 +337,6 @@ paths:
                   $filter:
                     notEquals:
                       Id: 33
-                    contains:
-                      Year: "abcd"
                     greaterThan:
                       Id: 0
                     lessThanOrEqual:
@@ -363,12 +353,6 @@ paths:
                   $filter:
                     notEquals:
                       Id: 0
-              searchWithContains:
-                summary: Search with Contains
-                value:
-                  $filter:
-                    contains:
-                      Year: "abcd"
               searchWithGreaterThan:
                 summary: Search with Greater Than
                 value:
@@ -1215,7 +1199,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveDeductionService.ts:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveDeductionService.ts:
     get:
       summary: List LeaveDeduction
       parameters:
@@ -1236,7 +1220,7 @@ paths:
             type: integer
             allowEmptyValue: true
       tags:
-        - entities
+        - LeaveBalance
       responses:
         200:
           description: Successful Request
@@ -1267,7 +1251,7 @@ paths:
     post:
       summary: Create LeaveDeduction
       tags:
-        - entities
+        - LeaveBalance
       requestBody:
         content:
           application/json:
@@ -1299,7 +1283,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveDeductionService.ts/{id}:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveDeductionService.ts/{id}:
     get:
       summary: Get LeaveDeduction by Id
       parameters:
@@ -1310,7 +1294,7 @@ paths:
           schema:
             type: string
       tags:
-        - entities
+        - LeaveBalance
       responses:
         200:
           description: Successful Request
@@ -1348,7 +1332,7 @@ paths:
           schema:
             type: string
       tags:
-        - entities
+        - LeaveBalance
       requestBody:
         content:
           application/json:
@@ -1396,7 +1380,7 @@ paths:
           schema:
             type: string
       tags:
-        - entities
+        - LeaveBalance
       responses:
         204:
           description: Successful Request
@@ -1418,11 +1402,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveDeductionService.ts/count:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveDeductionService.ts/count:
     get:
       summary: Count the number of LeaveDeduction
       tags:
-        - entities
+        - LeaveBalance
       responses:
         200:
           description: Successful Request
@@ -1446,7 +1430,7 @@ paths:
     post:
       summary: Count the number of LeaveDeduction by LeaveDeductionFilterOptions
       tags:
-        - entities
+        - LeaveBalance
       requestBody:
         content:
           application/json:
@@ -1520,11 +1504,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /codbex-vacations/gen/codbex-vacations/api/entities/LeaveDeductionService.ts/search:
+  /codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveDeductionService.ts/search:
     post:
       summary: Search LeaveDeduction by LeaveDeductionFilterOptions
       tags:
-        - entities
+        - LeaveBalance
       requestBody:
         content:
           application/json:
@@ -2010,6 +1994,7 @@ components:
       required:
         - Employee
         - Year
+        - Used
       properties:
         Id:
           type: integer
@@ -2018,10 +2003,6 @@ components:
           type: integer
           format: int32
         Year:
-          type: string
-          minLength: 0
-          maxLength: 4
-        Type:
           type: integer
           format: int32
         Granted:
@@ -2060,17 +2041,6 @@ components:
                         type: integer
                         format: int32
                 Year:
-                  oneOf:
-                    - type: string
-                      minLength: 0
-                      maxLength: 4
-                    - type: array
-                      items:
-                        type: string
-                        format: double
-                        minLength: 0
-                        maxLength: 4
-                Type:
                   oneOf:
                     - type: integer
                       format: int32
@@ -2123,17 +2093,6 @@ components:
                         format: int32
                 Year:
                   oneOf:
-                    - type: string
-                      minLength: 0
-                      maxLength: 4
-                    - type: array
-                      items:
-                        type: string
-                        format: double
-                        minLength: 0
-                        maxLength: 4
-                Type:
-                  oneOf:
                     - type: integer
                       format: int32
                     - type: array
@@ -2170,10 +2129,6 @@ components:
                 Id:
                 Employee:
                 Year:
-                  type: string
-                  minLength: 0
-                  maxLength: 4
-                Type:
                 Granted:
                 Used:
                 Balance:
@@ -2187,10 +2142,6 @@ components:
                   type: integer
                   format: int32
                 Year:
-                  type: string
-                  minLength: 0
-                  maxLength: 4
-                Type:
                   type: integer
                   format: int32
                 Granted:
@@ -2212,10 +2163,6 @@ components:
                   type: integer
                   format: int32
                 Year:
-                  type: string
-                  minLength: 0
-                  maxLength: 4
-                Type:
                   type: integer
                   format: int32
                 Granted:
@@ -2237,10 +2184,6 @@ components:
                   type: integer
                   format: int32
                 Year:
-                  type: string
-                  minLength: 0
-                  maxLength: 4
-                Type:
                   type: integer
                   format: int32
                 Granted:
@@ -2262,10 +2205,6 @@ components:
                   type: integer
                   format: int32
                 Year:
-                  type: string
-                  minLength: 0
-                  maxLength: 4
-                Type:
                   type: integer
                   format: int32
                 Granted:
@@ -2279,12 +2218,12 @@ components:
                   format: int32
         $select:
           type: array
-          example: ["Id", "Employee", "Year", "Type", "Granted", "Used", "Balance"]
+          example: ["Id", "Employee", "Year", "Granted", "Used", "Balance"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Employee,Year,Type,Granted,Used,Balance"
+            example: "Id,Employee,Year,Granted,Used,Balance"
         $order:
           type: string
           enum: ["asc", "desc"]
@@ -2564,6 +2503,10 @@ components:
         Request:
           type: integer
           format: int32
+        Days:
+          type: integer
+          format: int32
+          readOnly: true
     LeaveDeductionFilterOptions:
       type: object
       properties:
@@ -2590,6 +2533,14 @@ components:
                         type: integer
                         format: int32
                 Request:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
+                Days:
                   oneOf:
                     - type: integer
                       format: int32
@@ -2624,12 +2575,21 @@ components:
                       items:
                         type: integer
                         format: int32
+                Days:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
             contains:
               type: object
               properties:
                 Id:
                 Balance:
                 Request:
+                Days:
             greaterThan:
               type: object
               properties:
@@ -2640,6 +2600,9 @@ components:
                   type: integer
                   format: int32
                 Request:
+                  type: integer
+                  format: int32
+                Days:
                   type: integer
                   format: int32
             greaterThanOrEqual:
@@ -2654,6 +2617,9 @@ components:
                 Request:
                   type: integer
                   format: int32
+                Days:
+                  type: integer
+                  format: int32
             lessThan:
               type: object
               properties:
@@ -2664,6 +2630,9 @@ components:
                   type: integer
                   format: int32
                 Request:
+                  type: integer
+                  format: int32
+                Days:
                   type: integer
                   format: int32
             lessThanOrEqual:
@@ -2678,14 +2647,17 @@ components:
                 Request:
                   type: integer
                   format: int32
+                Days:
+                  type: integer
+                  format: int32
         $select:
           type: array
-          example: ["Id", "Balance", "Request"]
+          example: ["Id", "Balance", "Request", "Days"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Balance,Request"
+            example: "Id,Balance,Request,Days"
         $order:
           type: string
           enum: ["asc", "desc"]
@@ -2699,9 +2671,12 @@ components:
     LeaveRequest:
       type: object
       required:
+        - Employee
+        - Manager
         - StartDate
         - EndDate
         - Days
+        - Type
       properties:
         Id:
           type: integer
@@ -2712,6 +2687,9 @@ components:
           maxLength: 20
           readOnly: true
         Employee:
+          type: integer
+          format: int32
+        Manager:
           type: integer
           format: int32
         StartDate:
@@ -2730,9 +2708,6 @@ components:
           minLength: 0
           maxLength: 50
         ApprovalDate:
-        Manager:
-          type: integer
-          format: int32
     LeaveRequestFilterOptions:
       type: object
       properties:
@@ -2769,6 +2744,14 @@ components:
                       items:
                         type: integer
                         format: int32
+                Manager:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
                 StartDate:
                   oneOf:
                 EndDate:
@@ -2810,14 +2793,6 @@ components:
                         maxLength: 50
                 ApprovalDate:
                   oneOf:
-                Manager:
-                  oneOf:
-                    - type: integer
-                      format: int32
-                    - type: array
-                      items:
-                        type: integer
-                        format: int32
             notEquals:
               type: object
               properties:
@@ -2848,6 +2823,14 @@ components:
                       items:
                         type: integer
                         format: int32
+                Manager:
+                  oneOf:
+                    - type: integer
+                      format: int32
+                    - type: array
+                      items:
+                        type: integer
+                        format: int32
                 StartDate:
                   oneOf:
                 EndDate:
@@ -2889,14 +2872,6 @@ components:
                         maxLength: 50
                 ApprovalDate:
                   oneOf:
-                Manager:
-                  oneOf:
-                    - type: integer
-                      format: int32
-                    - type: array
-                      items:
-                        type: integer
-                        format: int32
             contains:
               type: object
               properties:
@@ -2906,6 +2881,7 @@ components:
                   minLength: 0
                   maxLength: 20
                 Employee:
+                Manager:
                 StartDate:
                 EndDate:
                 Days:
@@ -2916,7 +2892,6 @@ components:
                   minLength: 0
                   maxLength: 50
                 ApprovalDate:
-                Manager:
             greaterThan:
               type: object
               properties:
@@ -2930,6 +2905,9 @@ components:
                 Employee:
                   type: integer
                   format: int32
+                Manager:
+                  type: integer
+                  format: int32
                 StartDate:
                 EndDate:
                 Days:
@@ -2946,9 +2924,6 @@ components:
                   minLength: 0
                   maxLength: 50
                 ApprovalDate:
-                Manager:
-                  type: integer
-                  format: int32
             greaterThanOrEqual:
               type: object
               properties:
@@ -2962,6 +2937,9 @@ components:
                 Employee:
                   type: integer
                   format: int32
+                Manager:
+                  type: integer
+                  format: int32
                 StartDate:
                 EndDate:
                 Days:
@@ -2978,9 +2956,6 @@ components:
                   minLength: 0
                   maxLength: 50
                 ApprovalDate:
-                Manager:
-                  type: integer
-                  format: int32
             lessThan:
               type: object
               properties:
@@ -2994,6 +2969,9 @@ components:
                 Employee:
                   type: integer
                   format: int32
+                Manager:
+                  type: integer
+                  format: int32
                 StartDate:
                 EndDate:
                 Days:
@@ -3010,9 +2988,6 @@ components:
                   minLength: 0
                   maxLength: 50
                 ApprovalDate:
-                Manager:
-                  type: integer
-                  format: int32
             lessThanOrEqual:
               type: object
               properties:
@@ -3026,6 +3001,9 @@ components:
                 Employee:
                   type: integer
                   format: int32
+                Manager:
+                  type: integer
+                  format: int32
                 StartDate:
                 EndDate:
                 Days:
@@ -3042,17 +3020,14 @@ components:
                   minLength: 0
                   maxLength: 50
                 ApprovalDate:
-                Manager:
-                  type: integer
-                  format: int32
         $select:
           type: array
-          example: ["Id", "Number", "Employee", "StartDate", "EndDate", "Days", "Type", "Status", "Reason", "ApprovalDate", "Manager"]
+          example: ["Id", "Number", "Employee", "Manager", "StartDate", "EndDate", "Days", "Type", "Status", "Reason", "ApprovalDate"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Number,Employee,StartDate,EndDate,Days,Type,Status,Reason,ApprovalDate,Manager"
+            example: "Id,Number,Employee,Manager,StartDate,EndDate,Days,Type,Status,Reason,ApprovalDate"
         $order:
           type: string
           enum: ["asc", "desc"]

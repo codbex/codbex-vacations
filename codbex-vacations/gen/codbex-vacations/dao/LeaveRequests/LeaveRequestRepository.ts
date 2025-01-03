@@ -3,11 +3,14 @@ import { producer } from "sdk/messaging";
 import { extensions } from "sdk/extensions";
 import { dao as daoApi } from "sdk/db";
 import { EntityUtils } from "../utils/EntityUtils";
+// custom imports
+import { NumberGeneratorService } from "/codbex-number-generator/service/generator";
 
 export interface LeaveRequestEntity {
     readonly Id: number;
     Number?: string;
     Employee?: number;
+    Manager?: number;
     StartDate?: Date;
     EndDate?: Date;
     Days?: number;
@@ -15,11 +18,11 @@ export interface LeaveRequestEntity {
     Status?: number;
     Reason?: string;
     ApprovalDate?: Date;
-    Manager?: number;
 }
 
 export interface LeaveRequestCreateEntity {
     readonly Employee?: number;
+    readonly Manager?: number;
     readonly StartDate?: Date;
     readonly EndDate?: Date;
     readonly Days?: number;
@@ -27,7 +30,6 @@ export interface LeaveRequestCreateEntity {
     readonly Status?: number;
     readonly Reason?: string;
     readonly ApprovalDate?: Date;
-    readonly Manager?: number;
 }
 
 export interface LeaveRequestUpdateEntity extends LeaveRequestCreateEntity {
@@ -40,6 +42,7 @@ export interface LeaveRequestEntityOptions {
             Id?: number | number[];
             Number?: string | string[];
             Employee?: number | number[];
+            Manager?: number | number[];
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
             Days?: number | number[];
@@ -47,12 +50,12 @@ export interface LeaveRequestEntityOptions {
             Status?: number | number[];
             Reason?: string | string[];
             ApprovalDate?: Date | Date[];
-            Manager?: number | number[];
         };
         notEquals?: {
             Id?: number | number[];
             Number?: string | string[];
             Employee?: number | number[];
+            Manager?: number | number[];
             StartDate?: Date | Date[];
             EndDate?: Date | Date[];
             Days?: number | number[];
@@ -60,12 +63,12 @@ export interface LeaveRequestEntityOptions {
             Status?: number | number[];
             Reason?: string | string[];
             ApprovalDate?: Date | Date[];
-            Manager?: number | number[];
         };
         contains?: {
             Id?: number;
             Number?: string;
             Employee?: number;
+            Manager?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
@@ -73,12 +76,12 @@ export interface LeaveRequestEntityOptions {
             Status?: number;
             Reason?: string;
             ApprovalDate?: Date;
-            Manager?: number;
         };
         greaterThan?: {
             Id?: number;
             Number?: string;
             Employee?: number;
+            Manager?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
@@ -86,12 +89,12 @@ export interface LeaveRequestEntityOptions {
             Status?: number;
             Reason?: string;
             ApprovalDate?: Date;
-            Manager?: number;
         };
         greaterThanOrEqual?: {
             Id?: number;
             Number?: string;
             Employee?: number;
+            Manager?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
@@ -99,12 +102,12 @@ export interface LeaveRequestEntityOptions {
             Status?: number;
             Reason?: string;
             ApprovalDate?: Date;
-            Manager?: number;
         };
         lessThan?: {
             Id?: number;
             Number?: string;
             Employee?: number;
+            Manager?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
@@ -112,12 +115,12 @@ export interface LeaveRequestEntityOptions {
             Status?: number;
             Reason?: string;
             ApprovalDate?: Date;
-            Manager?: number;
         };
         lessThanOrEqual?: {
             Id?: number;
             Number?: string;
             Employee?: number;
+            Manager?: number;
             StartDate?: Date;
             EndDate?: Date;
             Days?: number;
@@ -125,7 +128,6 @@ export interface LeaveRequestEntityOptions {
             Status?: number;
             Reason?: string;
             ApprovalDate?: Date;
-            Manager?: number;
         };
     },
     $select?: (keyof LeaveRequestEntity)[],
@@ -173,6 +175,11 @@ export class LeaveRequestRepository {
                 type: "INTEGER",
             },
             {
+                name: "Manager",
+                column: "LEAVEREQUEST_MANAGER",
+                type: "INTEGER",
+            },
+            {
                 name: "StartDate",
                 column: "LEAVEREQUEST_STARTDATE",
                 type: "DATE",
@@ -206,11 +213,6 @@ export class LeaveRequestRepository {
                 name: "ApprovalDate",
                 column: "LEAVEREQUEST_APPROVALDATE",
                 type: "DATE",
-            },
-            {
-                name: "Manager",
-                column: "LEAVEREQUEST_MANAGER",
-                type: "INTEGER",
             }
         ]
     };
