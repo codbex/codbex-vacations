@@ -1,4 +1,4 @@
-import { AnnualLeaveBlanceService } from './AnnualLeaveBlanceService';
+import { AnnualLeaveBalanceService } from './AnnualLeaveBalanceService';
 
 import { EmployeeRepository } from "codbex-employees/gen/codbex-employees/dao/Employees/EmployeeRepository";
 import { LeaveBalanceRepository } from "codbex-vacations/gen/codbex-vacations/dao/LeaveBalance/LeaveBalanceRepository";
@@ -29,8 +29,9 @@ employees.forEach((employee) => {
         "employee": employee.Id,
         "year": new Date().getFullYear(),
         "granted": employeeContract[0].AnnualPaidLeave,
-        "used": 0
+        "used": 0,
+        "balance": employeeContract[0].AnnualPaidLeave
     }
 
-    AnnualLeaveBlanceService.insertLeaveBalance(leaveBalance);
+    AnnualLeaveBalanceService.insertLeaveBalance(leaveBalance);
 });
