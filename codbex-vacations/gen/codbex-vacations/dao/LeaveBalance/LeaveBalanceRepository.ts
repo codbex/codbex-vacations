@@ -160,8 +160,6 @@ export class LeaveBalanceRepository {
     }
 
     public create(entity: LeaveBalanceCreateEntity): number {
-        // @ts-ignore
-        (entity as LeaveBalanceEntity).Balance = entity['Granted'] - entity['Used'];
         if (entity.Granted === undefined || entity.Granted === null) {
             (entity as LeaveBalanceEntity).Granted = 0;
         }
@@ -183,6 +181,8 @@ export class LeaveBalanceRepository {
     }
 
     public update(entity: LeaveBalanceUpdateEntity): void {
+        // @ts-ignore
+        (entity as LeaveBalanceEntity).Balance = entity['Granted'] - entity['Used'];
         const previousEntity = this.findById(entity.Id);
         this.dao.update(entity);
         this.triggerEvent({

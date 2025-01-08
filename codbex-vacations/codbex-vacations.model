@@ -77,7 +77,8 @@
                         "widgetType": "NUMBER"
                     },
                     {
-                        "calculatedPropertyExpressionCreate": "entity['Granted'] - entity['Used']",
+                        "calculatedPropertyExpressionCreate": "",
+                        "calculatedPropertyExpressionUpdate": "entity['Granted'] - entity['Used']",
                         "dataName": "LEAVEBALANCE_BALANCE",
                         "dataNullable": "true",
                         "dataType": "INTEGER",
