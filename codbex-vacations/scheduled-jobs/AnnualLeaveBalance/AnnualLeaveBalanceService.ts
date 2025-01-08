@@ -12,7 +12,7 @@ export interface LeaveBalance {
 export class AnnualLeaveBalanceService {
 
     public static insertLeaveBalance(leaveBalanceData: LeaveBalance) {
-        const sql = `INSERT INTO "CODBEX_LEAVEBALANCE" ("LEAVEBALANCE_ID","LEAVEBALANCE_EMPLOYEE", "LEAVEBALANCE_YEAR","LEAVEBALANCE_GRANTED","LEAVEBALANCE_USED,"LEAVEBALANCE_BALANCE") values (?,?, ?, ?, ?, ?)`;
+        const sql = `INSERT INTO "CODBEX_LEAVEBALANCE" ("LEAVEBALANCE_ID","LEAVEBALANCE_EMPLOYEE", "LEAVEBALANCE_YEAR","LEAVEBALANCE_GRANTED","LEAVEBALANCE_USED","LEAVEBALANCE_BALANCE") values (?,?, ?, ?, ?, ?)`;
         const queryParameters = [leaveBalanceData.id, leaveBalanceData.employee, leaveBalanceData.year, leaveBalanceData.granted, leaveBalanceData.used, leaveBalanceData.balance];
         insert.execute(sql, queryParameters);
     }

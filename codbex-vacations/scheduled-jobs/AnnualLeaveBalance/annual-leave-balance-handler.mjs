@@ -4,7 +4,6 @@ import { EmployeeRepository } from "codbex-employees/gen/codbex-employees/dao/Em
 import { LeaveBalanceRepository } from "codbex-vacations/gen/codbex-vacations/dao/LeaveBalance/LeaveBalanceRepository";
 import { EmployeeContractRepository } from "codbex-contracts/gen/codbex-contracts/dao/EmployeeContracts/EmployeeContractRepository";
 
-
 const EmployeeContractDao = new EmployeeContractRepository();
 const LeaveBalanceDao = new LeaveBalanceRepository();
 const EmployeeDao = new EmployeeRepository();
