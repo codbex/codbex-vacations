@@ -1,7 +1,7 @@
 {
     "parameters": [],
     "group": "defined",
-    "expression": "0 0 1 1 * ?",
+    "expression": "0/10 * * * * ?",
     "handler": "codbex-vacations/scheduled-jobs/AnnualLeaveBalance/annual-leave-balance-handler.mjs",
     "description": "Scheduled task to allocate annual leave to employees on a yearly basis"
 }
