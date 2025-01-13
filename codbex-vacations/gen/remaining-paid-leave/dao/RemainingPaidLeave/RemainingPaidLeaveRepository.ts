@@ -37,7 +37,7 @@ export class RemainingPaidLeaveRepository {
         parameters.push({
             name: `Year`,
             type: `INTEGER`,
-            value: filter['Year'] !== undefined ?  filter['Year'] : `2024`
+            value: filter['Year'] !== undefined ?  filter['Year'] : `2025`
         });
 
         return Query.executeNamed(sql, parameters, this.datasourceName);
@@ -57,7 +57,7 @@ export class RemainingPaidLeaveRepository {
         parameters.push({
             name: `Year`,
             type: `INTEGER`,
-            value: filter.Year !== undefined ?  filter.Year : `2024`
+            value: filter.Year !== undefined ?  filter.Year : `2025`
         });
 
         return Query.executeNamed(sql, parameters, this.datasourceName)[0].REPORT_COUNT;

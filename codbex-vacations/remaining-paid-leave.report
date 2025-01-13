@@ -44,7 +44,7 @@
         {
             "name": "Year",
             "type": "INTEGER",
-            "initial": "2024"
+            "initial": "2025"
         }
     ],
     "conditions": [
