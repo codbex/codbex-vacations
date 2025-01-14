@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" ng-app="templateApp" ng-controller="templateController">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" sizes="any" href="data:;base64,iVBORw0KGgo=">
+        <title dg-view-title></title>
+        <script type="text/javascript" src="leave-deduction-generate.js"></script>
+        <script type="text/javascript" src="/services/js/resources-core/services/loader.js?id=ide-view-js"></script>
+        <link type="text/css" rel="stylesheet" href="/services/js/resources-core/services/loader.js?id=ide-view-css" />
+        <theme></theme>
+        <link rel="stylesheet" type="text/css"
+            href="/services/web/codbex-vacations/ext/generate/LeaveDeduction/leave-deduction-generate.css">
+        <script src="/services/web/codbex-vacations/ext/generate/LeaveDeduction/leave-deduction-generate-controller.js">
+        </script>
+    </head>
+
+    <body>
+        <div class="dialog" id="dialog" ng-show="showDialog">
+            <div class="dialog-content">
+                <div class="title">Approve Leave Request</div>
+                <div ng-if="HasEnoughDays">
+                    <div class="line">
+                        Do you confirm approval of <b>{{Employee}}</b>'s leave request for <b>{{Days}}</b> days, from
+                        <b>{{StartDate}}</b>, to <b>{{EndDate}}</b>? <b>{{Employee}}</b> has <b>{{RemainingLeave}}</b>
+                        days remaining paid leave.
+                    </div>
+
+                    <div class="dialog-buttons" ng-if="HasEnoughDays">
+                        <button ng-click="generateLeaveDeduction()" class="button green-button">Yes</button>
+                        <button ng-click="closeDialog()" class="button red-button">No</button>
+                    </div>
+                </div>
+                <div ng-if="!HasEnoughDays">
+                    <div class="line">You cannot approve <b>{{Employee}}</b>'s leave request for <b>{{Days}}</b> days,
+                        from <b>{{StartDate}}</b>, to <b>{{EndDate}}</b>, due to insufficient remaining paid leave.
+                    </div>
+                </div>
+
+                <div class="dialog-buttons" ng-if="!HasEnoughDays">
+                    <button ng-click="closeDialog()" class="button red-button">Close</button>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
