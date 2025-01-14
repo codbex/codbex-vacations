@@ -9,7 +9,6 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
     $http.get(leaveRequestUrl)
         .then(function (response) {
             $scope.HasEnoughDays = response.data.RemainingLeave > response.data.Days;
-            // $scope.HasEnoughDays = false;
             $scope.Employee = response.data.Employee;
             $scope.Days = response.data.Days;
             $scope.StartDate = response.data.StartDate;
@@ -18,7 +17,6 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
         });
 
     $scope.generateLeaveDeduction = function () {
-
 
     }
 

@@ -31,7 +31,7 @@ class GenerateLeaveDeductionService {
             }
         });
 
-        const leaveBalance = this.leaveBalanceDao.findAll({
+        const leaveBalances = this.leaveBalanceDao.findAll({
             $filter: {
                 equals: {
                     Employee: leaveRequest.Employee
@@ -39,7 +39,7 @@ class GenerateLeaveDeductionService {
             }
         });
 
-        const remainingLeave = leaveBalance.reduce((sum, lb) => sum + lb.Balance, 0);
+        const remainingLeave = leaveBalances.reduce((sum, lb) => sum + lb.Balance, 0);
         const startDate = new Date(leaveRequest.StartDate);
         const endDate = new Date(leaveRequest.EndDate);
 
