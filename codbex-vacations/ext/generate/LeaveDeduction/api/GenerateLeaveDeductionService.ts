@@ -1,6 +1,7 @@
 import { Controller, Get } from "sdk/http";
 
 import { LeaveBalanceRepository as LeaveBalanceDao } from "codbex-vacations/gen/codbex-vacations/dao/LeaveBalance/LeaveBalanceRepository";
+import { LeaveDeductionRepository as LeaveDeductionDao } from "codbex-vacations/gen/codbex-vacations/dao/LeaveBalance/LeaveDeductionRepository";
 import { LeaveRequestRepository as LeaveRequestDao } from "codbex-vacations/gen/codbex-vacations/dao/LeaveRequests/LeaveRequestRepository";
 import { EmployeeRepository as EmployeeDao } from "codbex-employees/gen/codbex-employees/dao/Employees/EmployeeRepository";
 
@@ -8,6 +9,7 @@ import { EmployeeRepository as EmployeeDao } from "codbex-employees/gen/codbex-e
 class GenerateLeaveDeductionService {
 
     private readonly leaveRequestDao;
+    private readonly leaveDeductionDao;
     private readonly leaveBalanceDao;
     private readonly employeeDao;
 
@@ -15,6 +17,7 @@ class GenerateLeaveDeductionService {
         this.leaveRequestDao = new LeaveRequestDao();
         this.employeeDao = new EmployeeDao();
         this.leaveBalanceDao = new LeaveBalanceDao();
+        this.leaveDeductionDao = new LeaveDeductionDao();
     }
 
     @Get("/leaveRequestData/:leaveRequestId")
@@ -31,13 +34,19 @@ class GenerateLeaveDeductionService {
             }
         });
 
+        const currentYear = new Date().getFullYear();
+
         const leaveBalances = this.leaveBalanceDao.findAll({
             $filter: {
                 equals: {
                     Employee: leaveRequest.Employee
-                }
+                },
+                greaterThanOrEqual: { Year: currentYear - 1 },
+                greaterThan: { Balance: 0 },
             }
         });
+
+        const deductionsCount = this.leaveDeductionDao.count();
 
         const remainingLeave = leaveBalances.reduce((sum, lb) => sum + lb.Balance, 0);
         const startDate = new Date(leaveRequest.StartDate);
@@ -49,7 +58,9 @@ class GenerateLeaveDeductionService {
             "Days": leaveRequest.Days,
             "StartDate": startDate.toLocaleDateString(),
             "EndDate": endDate.toLocaleDateString(),
-            "RemainingLeave": remainingLeave
+            "RemainingLeave": remainingLeave,
+            "LeaveBalances": leaveBalances,
+            "DeductionsCount": deductionsCount
         };
 
     }
