@@ -5,7 +5,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
     $scope.showDialog = true;
 
     const leaveRequestUrl = "/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/leaveRequestData/" + params.id;
-    const leaveDeductionUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveBalance/GenerateLeaveDeductionService.ts/";
+    const leaveDeductionUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveDeductionService.ts/";
     const leaveRequestUpdateUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/";
 
     $http.get(leaveRequestUrl)
@@ -21,22 +21,6 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
             $scope.DeductionsCount = response.data.DeductionsCount;
         });
 
-    $scope.rejectLeaveRequest = function () {
-
-        $scope.LeaveRequest.Status = 3;
-        $scope.LeaveRequest.ApprovalDate = new Date().toLocaleDateString('en-CA');
-
-        $http.put(leaveRequestUpdateUrl + $scope.LeaveRequest.Id, $scope.LeaveRequest)
-            .then(function (response) {
-                console.log(response.data);
-                $scope.closeDialog();
-            })
-            .catch(function (error) {
-                console.error("Error updating Leave Request", error);
-            });
-
-    }
-
     $scope.generateLeaveDeduction = function () {
 
         if ($scope.LeaveBalances[0].Balance >= $scope.Days) {
@@ -49,11 +33,9 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
                 "Days": $scope.Days
             }
 
-            console.log(leaveDeduction);
-
             $http.post(leaveDeductionUrl, leaveDeduction)
                 .then(function (response) {
-                    console.log(response);
+                    console.log(response.data);
                     //call service to update leave balance
                 })
                 .catch(function (error) {
@@ -101,6 +83,21 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
                     console.error("Error creating Leave deduction", error);
                 });
         }
+    }
+
+    $scope.rejectLeaveRequest = function () {
+
+        $scope.LeaveRequest.Status = 3;
+        $scope.LeaveRequest.ApprovalDate = new Date().toLocaleDateString('en-CA');
+
+        $http.put(leaveRequestUpdateUrl + $scope.LeaveRequest.Id, $scope.LeaveRequest)
+            .then(function (response) {
+                console.log(response.data);
+                $scope.closeDialog();
+            })
+            .catch(function (error) {
+                console.error("Error updating Leave Request", error);
+            });
     }
 
     $scope.closeDialog = function () {
