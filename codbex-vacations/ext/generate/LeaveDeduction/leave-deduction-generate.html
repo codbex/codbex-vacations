@@ -28,8 +28,8 @@
                     </div>
 
                     <div class="dialog-buttons" ng-if="HasEnoughDays">
-                        <button ng-click="generateLeaveDeduction()" class="button green-button">Yes</button>
-                        <button ng-click="closeDialog()" class="button red-button">No</button>
+                        <button ng-click="generateLeaveDeduction()" class="button green-button">Approve</button>
+                        <button ng-click="rejectLeaveRequest()" class="button red-button">Reject</button>
                     </div>
                 </div>
                 <div ng-if="!HasEnoughDays">

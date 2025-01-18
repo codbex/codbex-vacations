@@ -53,9 +53,8 @@ class GenerateLeaveDeductionService {
         const endDate = new Date(leaveRequest.EndDate);
 
         return {
-            "Id": leaveRequest.Id,
+            "LeaveRequest": leaveRequest,
             "Employee": employee[0].Name,
-            "Days": leaveRequest.Days,
             "StartDate": startDate.toLocaleDateString(),
             "EndDate": endDate.toLocaleDateString(),
             "RemainingLeave": remainingLeave,

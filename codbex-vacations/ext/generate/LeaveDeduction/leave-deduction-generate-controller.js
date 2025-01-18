@@ -6,21 +6,36 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
 
     const leaveRequestUrl = "/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/leaveRequestData/" + params.id;
     const leaveDeductionUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveBalance/GenerateLeaveDeductionService.ts/";
-
+    const leaveRequestUpdateUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/";
 
     $http.get(leaveRequestUrl)
         .then(function (response) {
-            $scope.HasEnoughDays = response.data.RemainingLeave > response.data.Days;
+            $scope.HasEnoughDays = response.data.RemainingLeave > response.data.LeaveRequest.Days;
             $scope.Employee = response.data.Employee;
-            $scope.Days = response.data.Days;
+            $scope.Days = response.data.LeaveRequest.Days;
             $scope.StartDate = response.data.StartDate;
             $scope.EndDate = response.data.EndDate;
             $scope.RemainingLeave = response.data.RemainingLeave;
             $scope.LeaveBalances = response.data.LeaveBalances;
-            $scope.LeaveRequestId = response.data.Id;
+            $scope.LeaveRequest = response.data.LeaveRequest;
             $scope.DeductionsCount = response.data.DeductionsCount;
-            console.log($scope.LeaveBalances);
         });
+
+    $scope.rejectLeaveRequest = function () {
+
+        $scope.LeaveRequest.Status = 3;
+        $scope.LeaveRequest.ApprovalDate = new Date().toLocaleDateString('en-CA');
+
+        $http.put(leaveRequestUpdateUrl + $scope.LeaveRequest.Id, $scope.LeaveRequest)
+            .then(function (response) {
+                console.log(response.data);
+                $scope.closeDialog();
+            })
+            .catch(function (error) {
+                console.error("Error updating Leave Request", error);
+            });
+
+    }
 
     $scope.generateLeaveDeduction = function () {
 
@@ -30,7 +45,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
             {
                 "Id": $scope.DeductionsCount + 1,
                 "Balance": $scope.LeaveBalances[0].Id,
-                "Request": $scope.LeaveRequestId,
+                "Request": $scope.LeaveRequest.Id,
                 "Days": $scope.Days
             }
 
@@ -53,7 +68,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
             {
                 "Id": $scope.DeductionsCount + 1,
                 "Balance": $scope.LeaveBalances[0].Id,
-                "Request": $scope.LeaveRequestId,
+                "Request": $scope.LeaveRequest.Id,
                 "Days": days
             }
 
@@ -61,7 +76,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
             {
                 "Id": $scope.DeductionsCount + 2,
                 "Balance": $scope.LeaveBalances[1].Id,
-                "Request": $scope.LeaveRequestId,
+                "Request": $scope.LeaveRequest.Id,
                 "Days": $scope.Days - days
             }
 
