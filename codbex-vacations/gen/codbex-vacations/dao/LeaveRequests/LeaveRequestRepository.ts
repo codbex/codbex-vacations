@@ -246,6 +246,9 @@ export class LeaveRequestRepository {
         EntityUtils.setLocalDate(entity, "ApprovalDate");
         // @ts-ignore
         (entity as LeaveRequestEntity).Number = new NumberGeneratorService().generate(30);
+        if (entity.Status === undefined || entity.Status === null) {
+            (entity as LeaveRequestEntity).Status = 1;
+        }
         const id = this.dao.insert(entity);
         this.triggerEvent({
             operation: "create",
