@@ -11,6 +11,11 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
 
     $http.get(leaveRequestUrl)
         .then(function (response) {
+            $scope.LeaveRequest = response.data.LeaveRequest;
+            $scope.Vacation = $scope.LeaveRequest.Type == 2;
+            $scope.Sick = $scope.LeaveRequest.Type == 1;
+            $scope.Casual = $scope.LeaveRequest.Type == 3;
+            $scope.Unpaid = $scope.LeaveRequest.Type == 4;
             $scope.HasEnoughDays = response.data.RemainingLeave >= response.data.LeaveRequest.Days;
             $scope.Employee = response.data.Employee;
             $scope.RequestedDays = response.data.LeaveRequest.Days;
@@ -18,9 +23,28 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
             $scope.EndDate = response.data.EndDate;
             $scope.RemainingLeave = response.data.RemainingLeave;
             $scope.LeaveBalances = response.data.LeaveBalances;
-            $scope.LeaveRequest = response.data.LeaveRequest;
+
             $scope.DeductionsCount = response.data.DeductionsCount;
         });
+
+    $scope.approveLeaveRequest = function () {
+        $scope.LeaveRequest.Status = 2;
+        $scope.LeaveRequest.ApprovalDate = new Date().toLocaleDateString('en-CA');
+
+        $http.put(leaveRequestUpdateUrl + $scope.LeaveRequest.Id, $scope.LeaveRequest)
+            .then(function (response) {
+                console.log(response.data);
+                $scope.closeDialog();
+            })
+            .catch(function (error) {
+                console.error("Error updating Leave Request", error);
+            });
+
+        if ($scope.Vacation) {
+            $scope.generateLeaveDeduction();
+        }
+
+    }
 
     $scope.generateLeaveDeduction = function () {
 

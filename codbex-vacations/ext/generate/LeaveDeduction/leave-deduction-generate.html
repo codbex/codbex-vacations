@@ -20,7 +20,37 @@
         <div class="dialog" id="dialog" ng-show="showDialog">
             <div class="dialog-content">
                 <div class="title">Approve Leave Request</div>
-                <div ng-if="HasEnoughDays">
+                <div ng-if="Sick">
+                    <div class="line">
+                        Do you confirm the approval of <b>{{Employee}}</b>'s leave request for <b>{{RequestedDays}}</b>
+                        days, from <b>{{StartDate}}</b> to <b>{{EndDate}}</b>, due to health reasons?
+                    </div>
+                    <div class="dialog-buttons" ng-if="HasEnoughDays">
+                        <button ng-click="approveLeaveRequest()" class="button green-button">Approve</button>
+                        <button ng-click="rejectLeaveRequest()" class="button red-button">Reject</button>
+                    </div>
+                </div>
+                <div ng-if="Casual">
+                    <div class="line">
+                        Do you confirm the approval of <b>{{Employee}}</b>'s leave request for <b>{{RequestedDays}}</b>
+                        days, from <b>{{StartDate}}</b> to <b>{{EndDate}}</b>, due to casual reasons?
+                    </div>
+                    <div class="dialog-buttons" ng-if="HasEnoughDays">
+                        <button ng-click="approveLeaveRequest()" class="button green-button">Approve</button>
+                        <button ng-click="rejectLeaveRequest()" class="button red-button">Reject</button>
+                    </div>
+                </div>
+                <div ng-if="Unpaid">
+                    <div class="line">
+                        Do you confirm the approval of <b>{{Employee}}</b>'s request for unpaid leave of
+                        <b>{{RequestedDays}}</b> days, from <b>{{StartDate}}</b> to <b>{{EndDate}}</b>?
+                    </div>
+                    <div class="dialog-buttons" ng-if="HasEnoughDays">
+                        <button ng-click="approveLeaveRequest()" class="button green-button">Approve</button>
+                        <button ng-click="rejectLeaveRequest()" class="button red-button">Reject</button>
+                    </div>
+                </div>
+                <div ng-if="HasEnoughDays && Vacation">
                     <div class="line">
                         Do you confirm approval of <b>{{Employee}}</b>'s leave request for <b>{{RequestedDays}}</b>
                         days, from
@@ -29,11 +59,11 @@
                     </div>
 
                     <div class="dialog-buttons" ng-if="HasEnoughDays">
-                        <button ng-click="generateLeaveDeduction()" class="button green-button">Approve</button>
+                        <button ng-click="approveLeaveRequest()" class="button green-button">Approve</button>
                         <button ng-click="rejectLeaveRequest()" class="button red-button">Reject</button>
                     </div>
                 </div>
-                <div ng-if="!HasEnoughDays">
+                <div ng-if="!HasEnoughDays && Vacation">
                     <div class="line">You cannot approve <b>{{Employee}}</b>'s leave request for <b>{{Days}}</b> days,
                         from <b>{{StartDate}}</b>, to <b>{{EndDate}}</b>, due to insufficient remaining paid leave.
                     </div>
