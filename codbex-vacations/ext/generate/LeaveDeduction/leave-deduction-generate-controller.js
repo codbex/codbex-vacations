@@ -10,9 +10,9 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
 
     $http.get(leaveRequestUrl)
         .then(function (response) {
-            $scope.HasEnoughDays = response.data.RemainingLeave > response.data.LeaveRequest.Days;
+            $scope.HasEnoughDays = response.data.RemainingLeave >= response.data.LeaveRequest.Days;
             $scope.Employee = response.data.Employee;
-            $scope.Days = response.data.LeaveRequest.Days;
+            $scope.RequestedDays = response.data.LeaveRequest.Days;
             $scope.StartDate = response.data.StartDate;
             $scope.EndDate = response.data.EndDate;
             $scope.RemainingLeave = response.data.RemainingLeave;
@@ -23,14 +23,14 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
 
     $scope.generateLeaveDeduction = function () {
 
-        if ($scope.LeaveBalances[0].Balance >= $scope.Days) {
+        if ($scope.LeaveBalances[0].Balance >= $scope.RequestedDays) {
 
             const leaveDeduction =
             {
                 "Id": $scope.DeductionsCount + 1,
                 "Balance": $scope.LeaveBalances[0].Id,
                 "Request": $scope.LeaveRequest.Id,
-                "Days": $scope.Days
+                "Days": $scope.RequestedDays
             }
 
             $http.post(leaveDeductionUrl, leaveDeduction)
@@ -44,22 +44,25 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
 
         } else {
 
-            const days = $scope.LeaveBalances[0].Balance - $scope.Days;
+            const oldLeaveBalance = $scope.LeaveBalances[0];
+            const newLeaveBalance = $scope.LeaveBalances[1];
+
+            const daysOver = $scope.RequestedDays - oldLeaveBalance.Balance;
 
             const firstLeaveDeduction =
             {
                 "Id": $scope.DeductionsCount + 1,
-                "Balance": $scope.LeaveBalances[0].Id,
+                "Balance": oldLeaveBalance.Id,
                 "Request": $scope.LeaveRequest.Id,
-                "Days": days
+                "Days": oldLeaveBalance.Balance
             }
 
             const secondLeaveDeduction =
             {
                 "Id": $scope.DeductionsCount + 2,
-                "Balance": $scope.LeaveBalances[1].Id,
+                "Balance": newLeaveBalance.Id,
                 "Request": $scope.LeaveRequest.Id,
-                "Days": $scope.Days - days
+                "Days": daysOver
             }
 
 
@@ -83,6 +86,8 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
                     console.error("Error creating Leave deduction", error);
                 });
         }
+
+        $scope.closeDialog();
     }
 
     $scope.rejectLeaveRequest = function () {

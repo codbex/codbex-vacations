@@ -41,7 +41,7 @@ class GenerateLeaveDeductionService {
                 equals: {
                     Employee: leaveRequest.Employee
                 },
-                greaterThanOrEqual: { Year: currentYear - 1 },
+                greaterThanOrEqual: { Year: currentYear - 2 },
                 greaterThan: { Balance: 0 },
             }
         });
