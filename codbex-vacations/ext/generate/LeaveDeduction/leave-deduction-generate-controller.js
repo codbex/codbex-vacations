@@ -7,7 +7,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
     const leaveRequestUrl = "/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/leaveRequestData/" + params.id;
     const leaveDeductionUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveDeductionService.ts/";
     const leaveRequestUpdateUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/";
-    const leaveBalanceUpdateUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveBalanceService.ts/";
+    // const leaveBalanceUpdateUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveBalanceService.ts/";
 
     $http.get(leaveRequestUrl)
         .then(function (response) {
@@ -62,10 +62,11 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
                 .then(function (response) {
                     console.log(response.data);
 
-                    $scope.IsReadyForUpdate = true;
-                    $scope.DaysForUpdate = $scope.RequestedDays;
-                    $scope.LeaveBalanceForUpdate = $scope.LeaveBalances[0];
-                    $scope.updateLeaveBalance();
+                    // $scope.IsReadyForUpdate = true;
+                    // $scope.DaysForUpdate = $scope.RequestedDays;
+                    // $scope.LeaveBalanceForUpdate = $scope.LeaveBalances[0];
+                    // $scope.updateLeaveBalance();
+                    $scope.closeDialog();
                 })
                 .catch(function (error) {
                     console.error("Error creating Leave deduction", error);
@@ -99,10 +100,11 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
                 .then(function (response) {
                     console.log(response);
 
-                    $scope.DaysForUpdate = oldLeaveBalance.Balance;
-                    $scope.IsReadyForUpdate = true;
-                    $scope.LeaveBalanceForUpdate = oldLeaveBalance;
-                    $scope.updateLeaveBalance();
+                    // $scope.DaysForUpdate = oldLeaveBalance.Balance;
+                    // $scope.IsReadyForUpdate = true;
+                    // $scope.LeaveBalanceForUpdate = oldLeaveBalance;
+                    // $scope.updateLeaveBalance();
+                    $scope.closeDialog();
                 })
                 .catch(function (error) {
                     console.error("Error creating Leave deduction", error);
@@ -113,10 +115,11 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
                 .then(function (response) {
                     console.log(response);
 
-                    $scope.DaysForUpdate = daysOver;
-                    $scope.LeaveBalanceForUpdate = newLeaveBalance;
-                    $scope.IsReadyForUpdate = true;
-                    $scope.updateLeaveBalance();
+                    // $scope.DaysForUpdate = daysOver;
+                    // $scope.LeaveBalanceForUpdate = newLeaveBalance;
+                    // $scope.IsReadyForUpdate = true;
+                    // $scope.updateLeaveBalance();
+                    $scope.closeDialog();
                 })
                 .catch(function (error) {
                     console.error("Error creating Leave deduction", error);
@@ -124,27 +127,27 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
         }
     }
 
-    $scope.updateLeaveBalance = function () {
+    // $scope.updateLeaveBalance = function () {
 
-        if ($scope.IsReadyForUpdate) {
+    //     if ($scope.IsReadyForUpdate) {
 
-            $scope.LeaveBalanceForUpdate.Used = $scope.LeaveBalanceForUpdate.Used + $scope.DaysForUpdate;
-            $scope.LeaveBalanceForUpdate.Balance = $scope.LeaveBalanceForUpdate.Balance - $scope.DaysForUpdate;
+    //         $scope.LeaveBalanceForUpdate.Used = $scope.LeaveBalanceForUpdate.Used + $scope.DaysForUpdate;
+    //         $scope.LeaveBalanceForUpdate.Balance = $scope.LeaveBalanceForUpdate.Balance - $scope.DaysForUpdate;
 
-            console.log($scope.LeaveBalanceForUpdate);
+    //         console.log($scope.LeaveBalanceForUpdate);
 
-            $http.put(leaveBalanceUpdateUrl + $scope.LeaveBalanceForUpdate.Id, $scope.LeaveBalanceForUpdate)
-                .then(function (response) {
-                    console.log(response.data);
+    //         $http.put(leaveBalanceUpdateUrl + $scope.LeaveBalanceForUpdate.Id, $scope.LeaveBalanceForUpdate)
+    //             .then(function (response) {
+    //                 console.log(response.data);
 
-                    $scope.IsReadyForUpdate = false;
-                    $scope.closeDialog();
-                })
-                .catch(function (error) {
-                    console.error("Error updating Leave Request", error);
-                });
-        }
-    };
+    //                 $scope.IsReadyForUpdate = false;
+    //                 $scope.closeDialog();
+    //             })
+    //             .catch(function (error) {
+    //                 console.error("Error updating Leave Request", error);
+    //             });
+    //     }
+    // };
 
     $scope.rejectLeaveRequest = function () {
 
