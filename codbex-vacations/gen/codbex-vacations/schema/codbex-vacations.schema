@@ -156,6 +156,7 @@
                     },
                     {
                         "type": "INTEGER",
+                        "defaultValue": "1",
                         "nullable": true,
                         "name": "LEAVEREQUEST_STATUS"
                     },

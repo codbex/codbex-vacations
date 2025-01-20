@@ -638,6 +638,7 @@
                         "relationshipEntityPerspectiveLabel": "Entities"
                     },
                     {
+                        "dataDefaultValue": "1",
                         "dataName": "LEAVEREQUEST_STATUS",
                         "dataNullable": "true",
                         "dataType": "INTEGER",

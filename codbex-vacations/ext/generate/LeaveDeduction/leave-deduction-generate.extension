@@ -1,0 +1,5 @@
+{
+    "extensionPoint": "codbex-vacations-custom-action",
+    "module": "codbex-vacations/ext/generate/LeaveDeduction/leave-deduction-generate.js",
+    "description": "Generate Leave Deduction After Approving Leave Request"
+}
