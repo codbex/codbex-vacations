@@ -16,6 +16,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
             $scope.Sick = $scope.LeaveRequest.Type == 1;
             $scope.Casual = $scope.LeaveRequest.Type == 3;
             $scope.Unpaid = $scope.LeaveRequest.Type == 4;
+            $scope.IsApproved = $scope.LeaveRequest.Status == 2;
             $scope.HasEnoughDays = response.data.RemainingLeave >= response.data.LeaveRequest.Days;
             $scope.Employee = response.data.Employee;
             $scope.RequestedDays = response.data.LeaveRequest.Days;
@@ -23,7 +24,6 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
             $scope.EndDate = response.data.EndDate;
             $scope.RemainingLeave = response.data.RemainingLeave;
             $scope.LeaveBalances = response.data.LeaveBalances;
-
             $scope.DeductionsCount = response.data.DeductionsCount;
         });
 
