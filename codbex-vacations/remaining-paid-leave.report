@@ -1,0 +1,57 @@
+{
+    "name": "RemainingPaidLeave",
+    "alias": "LeaveBalance",
+    "table": "CODBEX_LEAVEBALANCE",
+    "columns": [
+        {
+            "table": "Employee",
+            "alias": "Employee",
+            "name": "EMPLOYEE_NAME",
+            "type": "VARCHAR",
+            "aggregate": "NONE",
+            "select": true,
+            "grouping": false
+        },
+        {
+            "table": "LeaveBalance",
+            "alias": "Year",
+            "name": "LEAVEBALANCE_YEAR",
+            "type": "INTEGER",
+            "aggregate": "NONE",
+            "select": true,
+            "grouping": false
+        },
+        {
+            "table": "LeaveBalance",
+            "alias": "Balance",
+            "name": "LEAVEBALANCE_BALANCE",
+            "type": "INTEGER",
+            "aggregate": "NONE",
+            "select": true,
+            "grouping": false
+        }
+    ],
+    "query": "SELECT Employee.EMPLOYEE_NAME as \"Employee\", LeaveBalance.LEAVEBALANCE_YEAR as \"Year\", LeaveBalance.LEAVEBALANCE_BALANCE as \"Balance\"\nFROM CODBEX_LEAVEBALANCE as LeaveBalance\n  INNER JOIN CODBEX_EMPLOYEE Employee ON LeaveBalance.LEAVEBALANCE_EMPLOYEE=Employee.EMPLOYEE_ID\nWHERE LeaveBalance.LEAVEBALANCE_YEAR = :Year",
+    "joins": [
+        {
+            "alias": "Employee",
+            "name": "CODBEX_EMPLOYEE",
+            "type": "INNER",
+            "condition": "LeaveBalance.LEAVEBALANCE_EMPLOYEE=Employee.EMPLOYEE_ID"
+        }
+    ],
+    "parameters": [
+        {
+            "name": "Year",
+            "type": "INTEGER",
+            "initial": "2025"
+        }
+    ],
+    "conditions": [
+        {
+            "left": "LeaveBalance.LEAVEBALANCE_YEAR",
+            "operation": "=",
+            "right": ":Year"
+        }
+    ]
+}

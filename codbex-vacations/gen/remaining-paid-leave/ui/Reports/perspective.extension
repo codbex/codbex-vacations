@@ -1,0 +1,5 @@
+{
+    "module": "codbex-vacations/gen/remaining-paid-leave/ui/Reports/perspective.js",
+    "extensionPoint": "codbex-vacations",
+    "description": "codbex-vacations - Perspective - Reports"
+}

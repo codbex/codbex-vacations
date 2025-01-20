@@ -1,0 +1,15 @@
+{
+  "brand": "codbex",
+  "brandUrl": "https://www.codbex.com",
+  "title": "Remaining Paid Annual Leave",
+  "navigationOrder": "1700",
+  "fileName": "remaining-paid-leave",
+  "genFolderName": "remaining-paid-leave",
+  "extensionPoint": "codbex-vacations",
+  "name": "RemainingPaidLeave",
+  "perspectiveName": "RemainingPaidLeave",
+  "projectName": "codbex-vacations",
+  "workspaceName": "workspace",
+  "filePath": "remaining-paid-leave.report",
+  "templateId": "template-application-ui-angular/template/template-report-file.js"
+}

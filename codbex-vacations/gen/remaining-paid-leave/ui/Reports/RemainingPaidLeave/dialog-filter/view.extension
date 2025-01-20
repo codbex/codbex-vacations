@@ -1,0 +1,5 @@
+{
+    "module": "codbex-vacations/gen/remaining-paid-leave/ui/Reports/RemainingPaidLeave/dialog-filter/view.js",
+    "extensionPoint": "codbex-vacations-dialog-window",
+    "description": "codbex-vacations - Application Dialog Window"
+}
