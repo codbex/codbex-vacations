@@ -169,7 +169,7 @@
                     {
                         "type": "DATE",
                         "nullable": true,
-                        "name": "LEAVEREQUEST_APPROVALDATE"
+                        "name": "LEAVEREQUEST_RESOLVEDAT"
                     }
                 ]
             },

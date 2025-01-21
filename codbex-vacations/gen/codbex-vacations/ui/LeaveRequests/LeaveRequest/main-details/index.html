@@ -190,15 +190,15 @@
                     </fd-form-item>
                     <fd-form-item class="fd-row">
                     	<div class="fd-col fd-col-md--2">
-                        	<fd-form-label for="idApprovalDate" dg-required="false" dg-colon="true">ApprovalDate</fd-form-label>
+                        	<fd-form-label for="idResolvedAt" dg-required="false" dg-colon="true">ResolvedAt</fd-form-label>
                         </div>
                         <div class="fd-col  fd-col-md--2 ">
-	                        <fd-form-input-message-group dg-inactive="{{ forms.details['ApprovalDate'].$valid }}">
-	                            <fd-input id="idApprovalDate"
-	                                name="ApprovalDate"
-	                                state="{{ forms.details['ApprovalDate'].$valid ? '' : 'error' }}"
+	                        <fd-form-input-message-group dg-inactive="{{ forms.details['ResolvedAt'].$valid }}">
+	                            <fd-input id="idResolvedAt"
+	                                name="ResolvedAt"
+	                                state="{{ forms.details['ResolvedAt'].$valid ? '' : 'error' }}"
 									ng-required="false"
-	                                ng-model="entity.ApprovalDate"
+	                                ng-model="entity.ResolvedAt"
 	                                ng-readonly="action === 'select'"
 	                                type="date">
 	                            </fd-input>

@@ -17,7 +17,7 @@ export interface LeaveRequestEntity {
     Type?: number;
     Status?: number;
     Reason?: string;
-    ApprovalDate?: Date;
+    ResolvedAt?: Date;
 }
 
 export interface LeaveRequestCreateEntity {
@@ -29,7 +29,7 @@ export interface LeaveRequestCreateEntity {
     readonly Type?: number;
     readonly Status?: number;
     readonly Reason?: string;
-    readonly ApprovalDate?: Date;
+    readonly ResolvedAt?: Date;
 }
 
 export interface LeaveRequestUpdateEntity extends LeaveRequestCreateEntity {
@@ -49,7 +49,7 @@ export interface LeaveRequestEntityOptions {
             Type?: number | number[];
             Status?: number | number[];
             Reason?: string | string[];
-            ApprovalDate?: Date | Date[];
+            ResolvedAt?: Date | Date[];
         };
         notEquals?: {
             Id?: number | number[];
@@ -62,7 +62,7 @@ export interface LeaveRequestEntityOptions {
             Type?: number | number[];
             Status?: number | number[];
             Reason?: string | string[];
-            ApprovalDate?: Date | Date[];
+            ResolvedAt?: Date | Date[];
         };
         contains?: {
             Id?: number;
@@ -75,7 +75,7 @@ export interface LeaveRequestEntityOptions {
             Type?: number;
             Status?: number;
             Reason?: string;
-            ApprovalDate?: Date;
+            ResolvedAt?: Date;
         };
         greaterThan?: {
             Id?: number;
@@ -88,7 +88,7 @@ export interface LeaveRequestEntityOptions {
             Type?: number;
             Status?: number;
             Reason?: string;
-            ApprovalDate?: Date;
+            ResolvedAt?: Date;
         };
         greaterThanOrEqual?: {
             Id?: number;
@@ -101,7 +101,7 @@ export interface LeaveRequestEntityOptions {
             Type?: number;
             Status?: number;
             Reason?: string;
-            ApprovalDate?: Date;
+            ResolvedAt?: Date;
         };
         lessThan?: {
             Id?: number;
@@ -114,7 +114,7 @@ export interface LeaveRequestEntityOptions {
             Type?: number;
             Status?: number;
             Reason?: string;
-            ApprovalDate?: Date;
+            ResolvedAt?: Date;
         };
         lessThanOrEqual?: {
             Id?: number;
@@ -127,7 +127,7 @@ export interface LeaveRequestEntityOptions {
             Type?: number;
             Status?: number;
             Reason?: string;
-            ApprovalDate?: Date;
+            ResolvedAt?: Date;
         };
     },
     $select?: (keyof LeaveRequestEntity)[],
@@ -210,8 +210,8 @@ export class LeaveRequestRepository {
                 type: "VARCHAR",
             },
             {
-                name: "ApprovalDate",
-                column: "LEAVEREQUEST_APPROVALDATE",
+                name: "ResolvedAt",
+                column: "LEAVEREQUEST_RESOLVEDAT",
                 type: "DATE",
             }
         ]
@@ -227,7 +227,7 @@ export class LeaveRequestRepository {
         return this.dao.list(options).map((e: LeaveRequestEntity) => {
             EntityUtils.setDate(e, "StartDate");
             EntityUtils.setDate(e, "EndDate");
-            EntityUtils.setDate(e, "ApprovalDate");
+            EntityUtils.setDate(e, "ResolvedAt");
             return e;
         });
     }
@@ -236,14 +236,14 @@ export class LeaveRequestRepository {
         const entity = this.dao.find(id);
         EntityUtils.setDate(entity, "StartDate");
         EntityUtils.setDate(entity, "EndDate");
-        EntityUtils.setDate(entity, "ApprovalDate");
+        EntityUtils.setDate(entity, "ResolvedAt");
         return entity ?? undefined;
     }
 
     public create(entity: LeaveRequestCreateEntity): number {
         EntityUtils.setLocalDate(entity, "StartDate");
         EntityUtils.setLocalDate(entity, "EndDate");
-        EntityUtils.setLocalDate(entity, "ApprovalDate");
+        EntityUtils.setLocalDate(entity, "ResolvedAt");
         // @ts-ignore
         (entity as LeaveRequestEntity).Number = new NumberGeneratorService().generate(30);
         if (entity.Status === undefined || entity.Status === null) {
@@ -266,7 +266,7 @@ export class LeaveRequestRepository {
     public update(entity: LeaveRequestUpdateEntity): void {
         // EntityUtils.setLocalDate(entity, "StartDate");
         // EntityUtils.setLocalDate(entity, "EndDate");
-        // EntityUtils.setLocalDate(entity, "ApprovalDate");
+        // EntityUtils.setLocalDate(entity, "ResolvedAt");
         const previousEntity = this.findById(entity.Id);
         this.dao.update(entity);
         this.triggerEvent({

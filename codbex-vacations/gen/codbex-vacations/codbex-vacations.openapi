@@ -2707,7 +2707,7 @@ components:
           type: string
           minLength: 0
           maxLength: 50
-        ApprovalDate:
+        ResolvedAt:
     LeaveRequestFilterOptions:
       type: object
       properties:
@@ -2791,7 +2791,7 @@ components:
                         format: double
                         minLength: 0
                         maxLength: 50
-                ApprovalDate:
+                ResolvedAt:
                   oneOf:
             notEquals:
               type: object
@@ -2870,7 +2870,7 @@ components:
                         format: double
                         minLength: 0
                         maxLength: 50
-                ApprovalDate:
+                ResolvedAt:
                   oneOf:
             contains:
               type: object
@@ -2891,7 +2891,7 @@ components:
                   type: string
                   minLength: 0
                   maxLength: 50
-                ApprovalDate:
+                ResolvedAt:
             greaterThan:
               type: object
               properties:
@@ -2923,7 +2923,7 @@ components:
                   type: string
                   minLength: 0
                   maxLength: 50
-                ApprovalDate:
+                ResolvedAt:
             greaterThanOrEqual:
               type: object
               properties:
@@ -2955,7 +2955,7 @@ components:
                   type: string
                   minLength: 0
                   maxLength: 50
-                ApprovalDate:
+                ResolvedAt:
             lessThan:
               type: object
               properties:
@@ -2987,7 +2987,7 @@ components:
                   type: string
                   minLength: 0
                   maxLength: 50
-                ApprovalDate:
+                ResolvedAt:
             lessThanOrEqual:
               type: object
               properties:
@@ -3019,15 +3019,15 @@ components:
                   type: string
                   minLength: 0
                   maxLength: 50
-                ApprovalDate:
+                ResolvedAt:
         $select:
           type: array
-          example: ["Id", "Number", "Employee", "Manager", "StartDate", "EndDate", "Days", "Type", "Status", "Reason", "ApprovalDate"]
+          example: ["Id", "Number", "Employee", "Manager", "StartDate", "EndDate", "Days", "Type", "Status", "Reason", "ResolvedAt"]
           items:
             type: string
         $sort:
           - type: string
-            example: "Id,Number,Employee,Manager,StartDate,EndDate,Days,Type,Status,Reason,ApprovalDate"
+            example: "Id,Number,Employee,Manager,StartDate,EndDate,Days,Type,Status,Reason,ResolvedAt"
         $order:
           type: string
           enum: ["asc", "desc"]
