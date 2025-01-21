@@ -14,20 +14,22 @@ angular.module('my-leave-balance', ['ideUI', 'ideView'])
 
         $scope.currentYear = new Date().getFullYear();
 
-        // const salariesServiceUrl = "/services/ts/codbex-salaries/widgets/api/SalariesService.ts/SalariesSum";
+        const salariesServiceUrl = "/services/ts/codbex-vacations/widgets/api/VacationsService.ts/User";
 
-        // $http.get(salariesServiceUrl)
-        //     .then(function (response) {
-        //         console.log(response.data);
-        //         $scope.salariesSum = response.data.salariesSum;
-        //         $scope.currency = response.data.currency;
-        //     })
-        //     .catch(function (error) {
-        //         $scope.state.error = true;
-        //         $scope.state.isBusy = false;
-        //         console.error('Error fetching data:', error);
-        //     })
-        //     .finally(function () {
-        //         $scope.state.isBusy = false;
-        //     });
+        $http.get(salariesServiceUrl)
+            .then(function (response) {
+                console.log(response.data);
+                $scope.RemainingLeave = response.data.RemainingLeave;
+            })
+            .catch(function (error) {
+                $scope.state.error = true;
+                $scope.state.isBusy = false;
+                console.error('Error fetching data:', error);
+            })
+            .finally(function () {
+                $scope.state.isBusy = false;
+            });
+
+
+
     }]);
