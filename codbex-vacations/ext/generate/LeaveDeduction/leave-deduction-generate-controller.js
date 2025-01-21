@@ -28,7 +28,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
 
     $scope.approveLeaveRequest = function () {
         $scope.LeaveRequest.Status = 2;
-        $scope.LeaveRequest.ApprovalDate = new Date().toLocaleDateString('en-CA');
+        $scope.LeaveRequest.ResolvedAt = new Date().toLocaleDateString('en-CA');
 
         $http.put(leaveRequestUpdateUrl + $scope.LeaveRequest.Id, $scope.LeaveRequest)
             .then(function (response) {
@@ -117,7 +117,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
     $scope.rejectLeaveRequest = function () {
 
         $scope.LeaveRequest.Status = 3;
-        $scope.LeaveRequest.ApprovalDate = new Date().toLocaleDateString('en-CA');
+        $scope.LeaveRequest.ResolvedAt = new Date().toLocaleDateString('en-CA');
 
         $http.put(leaveRequestUpdateUrl + $scope.LeaveRequest.Id, $scope.LeaveRequest)
             .then(function (response) {

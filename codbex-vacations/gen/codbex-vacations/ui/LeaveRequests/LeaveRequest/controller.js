@@ -108,8 +108,8 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 						if (e.EndDate) {
 							e.EndDate = new Date(e.EndDate);
 						}
-						if (e.ApprovalDate) {
-							e.ApprovalDate = new Date(e.ApprovalDate);
+						if (e.ResolvedAt) {
+							e.ResolvedAt = new Date(e.ResolvedAt);
 						}
 					});
 

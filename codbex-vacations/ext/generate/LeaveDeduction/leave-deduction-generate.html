@@ -81,6 +81,7 @@
                             from <b>{{StartDate}}</b>, to <b>{{EndDate}}</b>, due to insufficient remaining paid leave.
                         </div>
                         <div class="dialog-buttons" ng-if="!HasEnoughDays">
+                            <button ng-click="rejectLeaveRequest()" class="button red-button">Reject</button>
                             <button ng-click="closeDialog()" class="button red-button">Close</button>
                         </div>
                     </div>

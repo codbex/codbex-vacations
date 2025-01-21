@@ -23,11 +23,11 @@ angular.module('page', ["ideUI", "ideView"])
 			if (params?.entity?.EndDateTo) {
 				params.entity.EndDateTo = new Date(params.entity.EndDateTo);
 			}
-			if (params?.entity?.ApprovalDateFrom) {
-				params.entity.ApprovalDateFrom = new Date(params.entity.ApprovalDateFrom);
+			if (params?.entity?.ResolvedAtFrom) {
+				params.entity.ResolvedAtFrom = new Date(params.entity.ResolvedAtFrom);
 			}
-			if (params?.entity?.ApprovalDateTo) {
-				params.entity.ApprovalDateTo = new Date(params.entity.ApprovalDateTo);
+			if (params?.entity?.ResolvedAtTo) {
+				params.entity.ResolvedAtTo = new Date(params.entity.ResolvedAtTo);
 			}
 			$scope.entity = params.entity ?? {};
 			$scope.selectedMainEntityKey = params.selectedMainEntityKey;
@@ -94,11 +94,11 @@ angular.module('page', ["ideUI", "ideView"])
 			if (entity.Reason) {
 				filter.$filter.contains.Reason = entity.Reason;
 			}
-			if (entity.ApprovalDateFrom) {
-				filter.$filter.greaterThanOrEqual.ApprovalDate = entity.ApprovalDateFrom;
+			if (entity.ResolvedAtFrom) {
+				filter.$filter.greaterThanOrEqual.ResolvedAt = entity.ResolvedAtFrom;
 			}
-			if (entity.ApprovalDateTo) {
-				filter.$filter.lessThanOrEqual.ApprovalDate = entity.ApprovalDateTo;
+			if (entity.ResolvedAtTo) {
+				filter.$filter.lessThanOrEqual.ResolvedAt = entity.ResolvedAtTo;
 			}
 			messageHub.postMessage("entitySearch", {
 				entity: entity,

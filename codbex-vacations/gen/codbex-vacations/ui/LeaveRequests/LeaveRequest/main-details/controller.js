@@ -56,8 +56,8 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				if (msg.data.entity.EndDate) {
 					msg.data.entity.EndDate = new Date(msg.data.entity.EndDate);
 				}
-				if (msg.data.entity.ApprovalDate) {
-					msg.data.entity.ApprovalDate = new Date(msg.data.entity.ApprovalDate);
+				if (msg.data.entity.ResolvedAt) {
+					msg.data.entity.ResolvedAt = new Date(msg.data.entity.ResolvedAt);
 				}
 				$scope.entity = msg.data.entity;
 				$scope.optionsEmployee = msg.data.optionsEmployee;
@@ -87,8 +87,8 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				if (msg.data.entity.EndDate) {
 					msg.data.entity.EndDate = new Date(msg.data.entity.EndDate);
 				}
-				if (msg.data.entity.ApprovalDate) {
-					msg.data.entity.ApprovalDate = new Date(msg.data.entity.ApprovalDate);
+				if (msg.data.entity.ResolvedAt) {
+					msg.data.entity.ResolvedAt = new Date(msg.data.entity.ResolvedAt);
 				}
 				$scope.entity = msg.data.entity;
 				$scope.optionsEmployee = msg.data.optionsEmployee;

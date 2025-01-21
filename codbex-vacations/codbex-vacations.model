@@ -670,11 +670,11 @@
                         "widgetType": "TEXTBOX"
                     },
                     {
-                        "dataName": "LEAVEREQUEST_APPROVALDATE",
+                        "dataName": "LEAVEREQUEST_RESOLVEDAT",
                         "dataNullable": "true",
                         "dataType": "DATE",
                         "description": "",
-                        "name": "ApprovalDate",
+                        "name": "ResolvedAt",
                         "tooltip": "",
                         "widgetIsMajor": "true",
                         "widgetLength": "20",
