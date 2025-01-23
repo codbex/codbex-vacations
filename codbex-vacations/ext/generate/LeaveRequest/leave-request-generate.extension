@@ -1,0 +1,5 @@
+{
+    "extensionPoint": "codbex-vacations-custom-action",
+    "module": "codbex-vacations/ext/generate/LeaveRequest/leave-request-generate.js",
+    "description": "Generate Leave Request"
+}
