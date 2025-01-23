@@ -70,7 +70,8 @@
                                     state="{{ forms.details['Days'].$valid ? '' : 'error' }}" dg-required="true"
                                     ng-model="entity.Days" is-readonly="action === 'select'" placeholder="Enter Days">
                                 </fd-step-input>
-                                <i class="sap-icon--information" role="presentation" onclick="javascript:alert('')"></i>
+                                <i class=" sap-icon--information" role="presentation" onclick="javascript:alert('')">
+                                </i>
                             </div>
                         </fd-form-item>
 
@@ -82,7 +83,7 @@
                                 <fd-combobox-input id="idType" name="Type"
                                     state="{{ forms.details['Type'].$valid ? '' : 'error' }}" ng-required="true"
                                     ng-model="entity.Type" dg-disabled="action === 'select'"
-                                    dropdown-items="optionsType" dg-placeholder="Search Type ...">
+                                    dropdown-items="OptionsLeaveType" dg-placeholder="Search Type ...">
                                 </fd-combobox-input>
                                 <i class="sap-icon--information" role="presentation" onclick="javascript:alert('')"></i>
                             </div>
@@ -113,7 +114,8 @@
                             <fd-bar-right>
                                 <fd-bar-element>
                                     <fd-button class="button" dg-label="Generate" dg-type="emphasized"
-                                        ng-disabled="!forms.details.$valid" ng-click="generateLeaveRequest()">
+                                        ng-click="generateLeaveRequest()"
+                                        state="{{ forms.details.$valid ? '' : 'disabled' }}">
                                     </fd-button>
                                 </fd-bar-element>
                             </fd-bar-right>
