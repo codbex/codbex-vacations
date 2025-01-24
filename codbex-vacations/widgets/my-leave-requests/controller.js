@@ -6,12 +6,6 @@ angular.module('my-leave-requests', ['ideUI', 'ideView'])
             busyText: "Loading...",
         };
 
-        $scope.today = new Date().toDateString();
 
-        const date = new Date();
-        date.setMonth(date.getMonth());
-        $scope.currentMonth = date.toLocaleString('default', { month: 'long' });
-
-        $scope.currentYear = new Date().getFullYear();
 
     }]);

@@ -38,12 +38,41 @@
                 overflow: hidden;
             }
 
+            .fd-numeric-content__kpi-container {
+                display: flex;
+                flex-direction: row;
+                gap: 2em;
+            }
+
+            .fd-numeric-content__kpi-container button {
+                border: 2px solid #39495D;
+                width: 100px;
+                height: 25px;
+                border-radius: 6px;
+                background-color: white;
+                color: #39495D;
+                font-size: 16px;
+                font-weight: 300;
+                padding: 5px 10px;
+                cursor: pointer;
+                outline: none;
+                transition: all 0.3s ease;
+            }
+
+            .fd-numeric-content__kpi-container button:hover {
+                background-color: #1e4a92;
+                color: white;
+            }
+
+            .fd-numeric-content__kpi-container button:focus {
+                box-shadow: 0 0 5px rgba(30, 74, 146, 0.5);
+            }
+
         </style>
     </head>
 
     <body class="overflow-h">
-        <div role="button" tabindex="0" class="fd-tile fd-tile--feed tile-auto-layout"
-            ng-click="openPerspective('leave-request-generate')">
+        <div role="button" tabindex="0" class="fd-tile fd-tile--feed tile-auto-layout" ng-click="openPersp()">
             <div class="fd-tile__header tile-auto-layout">
                 <div class="fd-tile__title">My Leave Requests</div>
             </div>
@@ -52,14 +81,14 @@
                     <div class="fd-numeric-content">
                         <div class="fd-numeric-content__kpi-container">
                             <div class="fd-numeric-content__kpi">
-                                10 requests
+                                <button>View</button>
+                            </div>
+                            <div class="fd-numeric-content__kpi">
+                                <button>Add</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="fd-tile__footer tile-auto-layout">
-                <span class="fd-tile__footer-text">{{today}}</span>
             </div>
         </div>
     </body>
