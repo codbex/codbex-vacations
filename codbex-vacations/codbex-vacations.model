@@ -657,7 +657,7 @@
                         "relationshipEntityPerspectiveLabel": "Entities"
                     },
                     {
-                        "dataLength": "50",
+                        "dataLength": "500",
                         "dataName": "LEAVEREQUEST_REASON",
                         "dataNullable": "true",
                         "dataType": "VARCHAR",
@@ -665,9 +665,9 @@
                         "name": "Reason",
                         "tooltip": "",
                         "widgetIsMajor": "true",
-                        "widgetLength": "50",
+                        "widgetLength": "500",
                         "widgetSize": "",
-                        "widgetType": "TEXTBOX"
+                        "widgetType": "TEXTAREA"
                     },
                     {
                         "dataName": "LEAVEREQUEST_RESOLVEDAT",

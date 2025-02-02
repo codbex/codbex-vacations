@@ -162,7 +162,7 @@
                     },
                     {
                         "type": "VARCHAR",
-                        "length": 50,
+                        "length": 500,
                         "nullable": true,
                         "name": "LEAVEREQUEST_REASON"
                     },

@@ -2706,7 +2706,7 @@ components:
         Reason:
           type: string
           minLength: 0
-          maxLength: 50
+          maxLength: 500
         ResolvedAt:
     LeaveRequestFilterOptions:
       type: object
@@ -2784,13 +2784,13 @@ components:
                   oneOf:
                     - type: string
                       minLength: 0
-                      maxLength: 50
+                      maxLength: 500
                     - type: array
                       items:
                         type: string
                         format: double
                         minLength: 0
-                        maxLength: 50
+                        maxLength: 500
                 ResolvedAt:
                   oneOf:
             notEquals:
@@ -2863,13 +2863,13 @@ components:
                   oneOf:
                     - type: string
                       minLength: 0
-                      maxLength: 50
+                      maxLength: 500
                     - type: array
                       items:
                         type: string
                         format: double
                         minLength: 0
-                        maxLength: 50
+                        maxLength: 500
                 ResolvedAt:
                   oneOf:
             contains:
@@ -2890,7 +2890,7 @@ components:
                 Reason:
                   type: string
                   minLength: 0
-                  maxLength: 50
+                  maxLength: 500
                 ResolvedAt:
             greaterThan:
               type: object
@@ -2922,7 +2922,7 @@ components:
                 Reason:
                   type: string
                   minLength: 0
-                  maxLength: 50
+                  maxLength: 500
                 ResolvedAt:
             greaterThanOrEqual:
               type: object
@@ -2954,7 +2954,7 @@ components:
                 Reason:
                   type: string
                   minLength: 0
-                  maxLength: 50
+                  maxLength: 500
                 ResolvedAt:
             lessThan:
               type: object
@@ -2986,7 +2986,7 @@ components:
                 Reason:
                   type: string
                   minLength: 0
-                  maxLength: 50
+                  maxLength: 500
                 ResolvedAt:
             lessThanOrEqual:
               type: object
@@ -3018,7 +3018,7 @@ components:
                 Reason:
                   type: string
                   minLength: 0
-                  maxLength: 50
+                  maxLength: 500
                 ResolvedAt:
         $select:
           type: array
