@@ -42,8 +42,8 @@ class ViewLeaveRequestsService {
         });
 
         leaveRequests.forEach((lr) => {
-            lr.StartDate = new Date(lr.StartDate).toLocaleDateString("en-US");
-            lr.EndDate = new Date(lr.EndDate).toLocaleDateString("en-US");
+            lr.StartDate = new Date(lr.StartDate).toLocaleDateString("en-CA");
+            lr.EndDate = new Date(lr.EndDate).toLocaleDateString("en-CA");
             lr.Status = this.leaveStatusDao.findById(lr.Status).Name;
             lr.Type = this.leaveTypeDao.findById(lr.Type).Name;
             if (lr.ResolvedAt) {
