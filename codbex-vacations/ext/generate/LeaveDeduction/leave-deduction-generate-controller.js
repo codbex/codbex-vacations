@@ -15,7 +15,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
             $scope.Sick = $scope.LeaveRequest.Type == 1;
             $scope.Casual = $scope.LeaveRequest.Type == 3;
             $scope.Unpaid = $scope.LeaveRequest.Type == 4;
-            $scope.IsApproved = $scope.LeaveRequest.Status == 2;
+            $scope.IsApproved = $scope.LeaveRequest.Status == 2 || $scope.LeaveRequest.Status == 3;
             $scope.HasEnoughDays = response.data.RemainingLeave >= response.data.LeaveRequest.Days;
             $scope.Employee = response.data.Employee;
             $scope.RequestedDays = response.data.LeaveRequest.Days;
@@ -61,6 +61,8 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
                 .then(function (response) {
                     console.log(response.data);
 
+                    $scope.IsApproved = true;
+
                     $scope.closeDialog();
                 })
                 .catch(function (error) {
@@ -94,7 +96,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
             $http.post(leaveDeductionUrl, firstLeaveDeduction)
                 .then(function (response) {
                     console.log(response);
-
+                    $scope.IsApproved = true;
                     $scope.closeDialog();
                 })
                 .catch(function (error) {
@@ -105,7 +107,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
             $http.post(leaveDeductionUrl, secondLeaveDeduction)
                 .then(function (response) {
                     console.log(response);
-
+                    $scope.IsApproved = true;
                     $scope.closeDialog();
                 })
                 .catch(function (error) {
@@ -127,6 +129,8 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
             .catch(function (error) {
                 console.error("Error updating Leave Request", error);
             });
+
+        $scope.IsApproved = true;
     }
 
     $scope.closeDialog = function () {

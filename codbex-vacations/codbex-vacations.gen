@@ -1278,7 +1278,7 @@
           "inputRule": ""
         },
         {
-          "dataLength": "50",
+          "dataLength": "500",
           "dataName": "LEAVEREQUEST_REASON",
           "dataNullable": true,
           "dataType": "VARCHAR",
@@ -1286,9 +1286,9 @@
           "name": "Reason",
           "tooltip": "",
           "widgetIsMajor": true,
-          "widgetLength": "50",
+          "widgetLength": "500",
           "widgetSize": "",
-          "widgetType": "TEXTBOX",
+          "widgetType": "TEXTAREA",
           "dataNotNull": false,
           "dataAutoIncrement": false,
           "dataPrimaryKey": false,
@@ -1300,7 +1300,7 @@
           "dataTypeJava": "string",
           "dataTypeTypescript": "string",
           "minLength": 0,
-          "maxLength": 50,
+          "maxLength": 500,
           "inputRule": ""
         },
         {
@@ -1585,7 +1585,7 @@
             "inputRule": ""
           },
           {
-            "dataLength": "50",
+            "dataLength": "500",
             "dataName": "LEAVEREQUEST_REASON",
             "dataNullable": true,
             "dataType": "VARCHAR",
@@ -1593,9 +1593,9 @@
             "name": "Reason",
             "tooltip": "",
             "widgetIsMajor": true,
-            "widgetLength": "50",
+            "widgetLength": "500",
             "widgetSize": "",
-            "widgetType": "TEXTBOX",
+            "widgetType": "TEXTAREA",
             "dataNotNull": false,
             "dataAutoIncrement": false,
             "dataPrimaryKey": false,
@@ -1607,7 +1607,7 @@
             "dataTypeJava": "string",
             "dataTypeTypescript": "string",
             "minLength": 0,
-            "maxLength": 50,
+            "maxLength": 500,
             "inputRule": ""
           },
           {

@@ -142,8 +142,8 @@ class LeaveRequestService {
         if (entity.Type === null || entity.Type === undefined) {
             throw new ValidationError(`The 'Type' property is required, provide a valid value`);
         }
-        if (entity.Reason?.length > 50) {
-            throw new ValidationError(`The 'Reason' exceeds the maximum length of [50] characters`);
+        if (entity.Reason?.length > 500) {
+            throw new ValidationError(`The 'Reason' exceeds the maximum length of [500] characters`);
         }
         for (const next of validationModules) {
             next.validate(entity);
