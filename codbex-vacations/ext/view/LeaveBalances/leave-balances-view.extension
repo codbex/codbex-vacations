@@ -1,0 +1,5 @@
+{
+    "extensionPoint": "codbex-vacations-custom-action",
+    "module": "codbex-vacations/ext/view/LeaveBalances/leave-balances-view.js",
+    "description": "View employee's leave balances"
+}
