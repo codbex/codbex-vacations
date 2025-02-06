@@ -14,11 +14,10 @@ angular.module('my-leave-balance', ['ideUI', 'ideView'])
 
         $scope.currentYear = new Date().getFullYear();
 
-        const salariesServiceUrl = "/services/ts/codbex-vacations/widgets/api/VacationsService.ts/User";
+        const vacationsServiceUrl = "/services/ts/codbex-vacations/widgets/api/VacationsService.ts/User";
 
-        $http.get(salariesServiceUrl)
+        $http.get(vacationsServiceUrl)
             .then(function (response) {
-                console.log(response.data);
                 $scope.RemainingLeave = response.data.RemainingLeave;
             })
             .catch(function (error) {
