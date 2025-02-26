@@ -1,10 +1,16 @@
 const app = angular.module('templateApp', ['ideUI', 'ideView']);
 
 app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'messageHub', function ($scope, $http, ViewParameters, messageHub) {
-    const params = ViewParameters.get();
+    let params = ViewParameters.get();
+    let leaveRequestId = params.id || new URLSearchParams(window.location.search).get('id'); // Fallback to URL param
+
+    if (!leaveRequestId) {
+        console.error("Leave Request ID is missing!");
+    }
+
     $scope.showDialog = true;
 
-    const leaveRequestUrl = "/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/leaveRequestData/" + params.id;
+    const leaveRequestUrl = "/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/leaveRequestData/" + leaveRequestId;
     const leaveDeductionUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveDeductionService.ts/";
     const leaveRequestUpdateUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/";
 
