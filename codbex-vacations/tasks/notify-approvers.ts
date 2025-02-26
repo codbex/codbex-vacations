@@ -20,4 +20,4 @@ const content = `<h4>A new leave request for [${requester}] has been created</h4
 
 console.log("Here notify approvers");
 
-sendMail(approver, subject, content);
+sendMail(requester, approver, subject, content);
