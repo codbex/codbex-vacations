@@ -15,15 +15,12 @@ function isMailConfigured() {
         );
 }
 
-export function sendMail(fromSender: string, to: string, subject: string, content: string) {
-    const fromEmail = configurations.get("LEAVE_REQUEST_APP_FROM_EMAIL", fromSender);
-
-    configurations.set("DIRIGIBLE_MAIL_USERNAME", fromSender);
-    // configurations.set("DIRIGIBLE_MAIL_PASSWORD", password);
+export function sendMail(to: string, subject: string, content: string) {
+    const from = configurations.get("LEAVE_REQUEST_APP_FROM_EMAIL", "georgievanikol36@gmail.com");
 
     if (isMailConfigured()) {
         logger.info("Sending mail to [{}] with subject [{}] and content: [{}]...", to, subject, content);
-        mailClient.send(fromEmail, to, subject, content, 'html');
+        mailClient.send(from, to, subject, content, 'html');
     } else {
         logger.info("Mail to [{}] with subject [{}] and content [{}] will NOT be send because the mail client is not configured.", to, subject, content);
     }
