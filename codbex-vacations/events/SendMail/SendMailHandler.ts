@@ -8,20 +8,18 @@ export const trigger = (event) => {
     if (event.operation === "create") {
         const leaveRequest = event.entity;
 
-        console.log("Here event");
-
-        const fromEmployee = EmployeeDao.findById(leaveRequest.Employee);
-        const toManager = EmployeeDao.findById(leaveRequest.Manager);
+        const employee = EmployeeDao.findById(leaveRequest.Employee);
+        const manager = EmployeeDao.findById(leaveRequest.Manager);
         const requestId = leaveRequest.Id;
 
         const processInstanceId = process.start("approve-request", {
             RequestId: requestId,
-            From: fromEmployee.Email,
-            To: toManager.Email
+            From: employee.Email,
+            To: manager.Email
         });
 
         if (processInstanceId == null) {
-            console.log("Failed to create opportunity action process!");
+            console.log("Failed to send mail to manager action process!");
             return;
         }
     }
