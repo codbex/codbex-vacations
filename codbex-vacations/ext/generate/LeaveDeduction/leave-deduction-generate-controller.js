@@ -33,6 +33,22 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
         });
 
     $scope.approveLeaveRequest = function () {
+
+        const taskId = $scope.LeaveRequest.Id;
+
+        const url = `codbex-vacations/api/ProcessService.ts/requests/${taskId}/approve`;
+
+        $http.put(url).then(function (response) {
+            if (response.status !== 200) {
+                alert(`Unable to approve request: '${response.message}'`);
+                return;
+            }
+
+            $scope.entity = {};
+            alert("Request Approved");
+        });
+
+
         $scope.LeaveRequest.Status = 2;
         $scope.LeaveRequest.ResolvedAt = new Date().toLocaleDateString('en-CA');
 
@@ -123,6 +139,20 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
     }
 
     $scope.rejectLeaveRequest = function () {
+
+        const taskId = $scope.LeaveRequest.Id;
+
+        const url = `/services/ts/leave-request/api/ProcessService.ts/requests/${taskId}/decline`;
+
+        $http.put(url).then(function (response) {
+            if (response.status !== 200) {
+                alert(`Unable to decline request: '${response.message}'`);
+                return;
+            }
+
+            $scope.entity = {};
+            alert("Request Declined");
+        });
 
         $scope.LeaveRequest.Status = 3;
         $scope.LeaveRequest.ResolvedAt = new Date().toLocaleDateString('en-CA');

@@ -11,7 +11,7 @@ const managersEmail = config.get("LEAVE_REQUEST_MANAGERS_EMAIL", "managers-dl@ex
 
 const subject = "New leave request";
 
-const approvalLink = "http://localohost:8080/services/web/codbex-vacations/ext/generate/LeaveDeduction/leave-deduction-generate.html?id=" + requestId;
+const approvalLink = "http://localhost:8080/services/web/codbex-vacations/ext/generate/LeaveDeduction/leave-deduction-generate.html?id=" + requestId;
 
 const content = `<h4>A new leave request for [${requester}] has been created</h4>Open the inbox <a href="${approvalLink}" target="_blank">here</a> to process the request.`;
 

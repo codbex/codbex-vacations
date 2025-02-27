@@ -4,6 +4,8 @@ import { sendMail } from "./mail-util"
 const execution = process.getExecutionContext();
 const executionId = execution.getId();
 
+console.log("Here approve");
+
 const processVariables = process.getVariables(executionId);
 
 const fromDate = processVariables.fromDate;
