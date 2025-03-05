@@ -9,14 +9,14 @@ function isMailConfigured() {
         configurations.get("DIRIGIBLE_MAIL_PASSWORD") &&
         configurations.get("DIRIGIBLE_MAIL_TRANSPORT_PROTOCOL") &&
         (
-            (configurations.get("DIRIGIBLE_MAIL_SMTPS_HOST") && configurations.get("DIRIGIBLE_MAIL_SMTPS_PORT"))
+            (configurations.get("DIRIGIBLE_MAIL_SMTPS_HOST") && configurations.get("DIRIGIBLE_MAIL_SMTPS_PORT") && configurations.get("DIRIGIBLE_MAIL_SMTPS_AUTH"))
             ||
-            (configurations.get("DIRIGIBLE_MAIL_SMTP_HOST") && configurations.get("DIRIGIBLE_MAIL_SMTP_PORT"))
+            (configurations.get("DIRIGIBLE_MAIL_SMTP_HOST") && configurations.get("DIRIGIBLE_MAIL_SMTP_PORT") && configurations.get("DIRIGIBLE_MAIL_SMTP_AUTH"))
         );
 }
 
 export function sendMail(reciever: string, subject: string, content: string) {
-    const sender = 'tomislav.ivanov@codbex.com';
+    const sender = configurations.get("DIRIGIBLE_MAIL_USERNAME");
 
     if (isMailConfigured()) {
         logger.info("Sending mail to [{}] with subject [{}] and content: [{}]...", reciever, subject, content);
