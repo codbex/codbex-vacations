@@ -6,13 +6,13 @@ const executionId = execution.getId();
 
 const toWho = process.getVariable(executionId, "To");
 const fromWho = process.getVariable(executionId, "From");
-const requestId = process.getVariable(executionId, "RequestId");
+const approvalLink = process.getVariable(executionId, "ApprovalLink");
 const status = process.getVariable(executionId, "Status");
 
 if (!status) {
     const subject = "New leave request";
 
-    const approvalLink = "http://localhost:8080/services/web/codbex-vacations/ext/generate/LeaveDeduction/leave-deduction-generate.html?id=" + requestId;
+    console.log("Test: ", approvalLink);
 
     const content = `<h4>A new leave request for ${toWho} has been created</h4>Open the inbox <a href="${approvalLink}" target="_blank">here</a> to process the request.`;
 
