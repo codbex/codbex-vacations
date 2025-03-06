@@ -14,17 +14,18 @@ export const trigger = (event) => {
         const manager = EmployeeDao.findById(leaveRequest.Manager);
         const requestId = leaveRequest.Id;
 
-        const protocol = request.getScheme() + "//:";
+        const protocol = request.getScheme() + "://";
         const domain = request.getHeader("Host")
-        const approvalLink = `${protocol}${domain}/services/web/codbex-vacations/ext/generate/LeaveDeduction/leave-deduction-generate.html?id=` + requestId;
+
+        const approvalLink = `${protocol}${domain}/services/web/codbex-vacations/ext/generate/LeaveDeduction/leave-deduction-generate.html?id=${requestId}&processId=`;
 
         const processInstanceId = process.start("approve-request", {
-            ApprovalLink: approvalLink,
             From: employee.Email,
-            To: manager.Email
+            To: manager.Email,
+            ApprovalLink: approvalLink
         });
 
-        process.setVariable(processInstanceId, "ProcessInstanceId", processInstanceId);
+
 
         if (processInstanceId == null) {
             console.log("Failed to send mail to manager action process!");

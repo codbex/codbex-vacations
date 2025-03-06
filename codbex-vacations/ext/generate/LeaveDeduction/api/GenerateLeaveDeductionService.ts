@@ -1,4 +1,6 @@
-import { Controller, Get } from "sdk/http";
+import { Controller, Get, Put, response } from "sdk/http";
+import { tasks } from "sdk/bpm";
+import { user } from "sdk/security";
 
 import { LeaveBalanceRepository as LeaveBalanceDao } from "codbex-vacations/gen/codbex-vacations/dao/LeaveBalance/LeaveBalanceRepository";
 import { LeaveDeductionRepository as LeaveDeductionDao } from "codbex-vacations/gen/codbex-vacations/dao/LeaveBalance/LeaveDeductionRepository";
@@ -64,6 +66,33 @@ class GenerateLeaveDeductionService {
 
     }
 
+    @Put("/requests/:id/approve")
+    public approveRequest(_: any, ctx: any) {
+        const processId = ctx.pathParameters.id;
+        this.completeTask(processId, true);
 
+        response.setStatus(response.OK);
+        return { message: "Request Approved" };
+    }
 
+    @Put("/requests/:id/deny")
+    public declineRequest(_: any, ctx: any) {
+        const processId = ctx.pathParameters.id;
+        this.completeTask(processId, false);
+
+        response.setStatus(response.OK);
+        return { message: "Request Denied" };
+    }
+
+    private completeTask(processId: string, approved: boolean) {
+
+        const task = tasks.list().filter(task => task.data.processInstanceId === processId);
+
+        const variables = {
+            Approver: user.getName(),
+            RequestApproved: approved
+        };
+
+        tasks.complete(task[0].data.id.toString(), variables);
+    }
 }

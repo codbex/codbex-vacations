@@ -8,11 +8,15 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
         console.error("Leave Request ID is missing!");
     }
 
+    const processId = new URLSearchParams(window.location.search).get('processId');
+
     $scope.showDialog = true;
 
     const leaveRequestUrl = "/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/leaveRequestData/" + leaveRequestId;
     const leaveDeductionUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveDeductionService.ts/";
     const leaveRequestUpdateUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/";
+    const approvedUrl = `/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/requests/${processId}/approve`;
+    const deniedUrl = `/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/requests/${processId}/deny`;
 
     $http.get(leaveRequestUrl)
         .then(function (response) {
@@ -34,20 +38,12 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
 
     $scope.approveLeaveRequest = function () {
 
-        const taskId = $scope.LeaveRequest.Id;
-
-        const url = `codbex-vacations/api/ProcessService.ts/requests/${taskId}/approve`;
-
-        $http.put(url).then(function (response) {
+        $http.put(approvedUrl).then(function (response) {
             if (response.status !== 200) {
                 alert(`Unable to approve request: '${response.message}'`);
                 return;
             }
-
-            $scope.entity = {};
-            alert("Request Approved");
         });
-
 
         $scope.LeaveRequest.Status = 2;
         $scope.LeaveRequest.ResolvedAt = new Date().toLocaleDateString('en-CA');
@@ -140,18 +136,11 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
 
     $scope.rejectLeaveRequest = function () {
 
-        const taskId = $scope.LeaveRequest.Id;
-
-        const url = `/services/ts/leave-request/api/ProcessService.ts/requests/${taskId}/decline`;
-
-        $http.put(url).then(function (response) {
+        $http.put(deniedUrl).then(function (response) {
             if (response.status !== 200) {
-                alert(`Unable to decline request: '${response.message}'`);
+                alert(`Unable to approve request: '${response.message}'`);
                 return;
             }
-
-            $scope.entity = {};
-            alert("Request Declined");
         });
 
         $scope.LeaveRequest.Status = 3;
