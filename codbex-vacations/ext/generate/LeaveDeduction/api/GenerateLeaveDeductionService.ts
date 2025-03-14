@@ -1,4 +1,4 @@
-import { Controller, Get, Put, response } from "sdk/http";
+import { Controller, Get, Put, response, request } from "sdk/http";
 import { tasks } from "sdk/bpm";
 import { user } from "sdk/security";
 
@@ -53,6 +53,7 @@ class GenerateLeaveDeductionService {
         const remainingLeave = leaveBalances.reduce((sum, lb) => sum + lb.Balance, 0);
         const startDate = new Date(leaveRequest.StartDate);
         const endDate = new Date(leaveRequest.EndDate);
+        const domain = request.getServerName() + ":" + request.getServerPort();
 
         return {
             "LeaveRequest": leaveRequest,
@@ -61,7 +62,8 @@ class GenerateLeaveDeductionService {
             "EndDate": endDate.toLocaleDateString(),
             "RemainingLeave": remainingLeave,
             "LeaveBalances": leaveBalances,
-            "DeductionsCount": deductionsCount
+            "DeductionsCount": deductionsCount,
+            "Domain": domain
         };
 
     }

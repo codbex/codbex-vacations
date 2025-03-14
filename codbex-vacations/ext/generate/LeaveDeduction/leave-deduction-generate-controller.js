@@ -18,6 +18,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
     const approvedUrl = `/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/requests/${processId}/approve`;
     const deniedUrl = `/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/requests/${processId}/deny`;
 
+
     $http.get(leaveRequestUrl)
         .then(function (response) {
             $scope.LeaveRequest = response.data.LeaveRequest;
@@ -34,6 +35,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
             $scope.RemainingLeave = response.data.RemainingLeave;
             $scope.LeaveBalances = response.data.LeaveBalances;
             $scope.DeductionsCount = response.data.DeductionsCount;
+            $scope.Domain = response.data.Domain;
         });
 
     $scope.approveLeaveRequest = function () {
@@ -159,6 +161,11 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
     }
 
     $scope.closeDialog = function () {
+
+        const redirectUrl = "http://" + $scope.Domain + "/services/web/portal/dashboard.html?continue";
+
+        window.location.href = redirectUrl;
+
         $scope.showDialog = false;
         messageHub.closeDialogWindow("leave-deduction-generate");
     };
