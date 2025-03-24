@@ -53,7 +53,8 @@ class GenerateLeaveDeductionService {
         const remainingLeave = leaveBalances.reduce((sum, lb) => sum + lb.Balance, 0);
         const startDate = new Date(leaveRequest.StartDate);
         const endDate = new Date(leaveRequest.EndDate);
-        const domain = request.getServerName() + ":" + request.getServerPort();
+        const protocol = request.getScheme() + "://";
+        const domain = request.getHeader("Host")
 
         return {
             "LeaveRequest": leaveRequest,
@@ -63,7 +64,7 @@ class GenerateLeaveDeductionService {
             "RemainingLeave": remainingLeave,
             "LeaveBalances": leaveBalances,
             "DeductionsCount": deductionsCount,
-            "Domain": domain
+            "Domain": `${protocol}${domain}`
         };
 
     }
@@ -90,11 +91,9 @@ class GenerateLeaveDeductionService {
 
         const task = tasks.list().filter(task => task.data.processInstanceId === processId);
 
-        const variables = {
+        tasks.complete(task[0].data.id, {
             Approver: user.getName(),
             RequestApproved: approved
-        };
-
-        tasks.complete(task[0].data.id.toString(), variables);
+        });
     }
 }

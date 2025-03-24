@@ -1,18 +1,18 @@
 const app = angular.module('templateApp', ['ideUI', 'ideView']);
 
 app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'messageHub', function ($scope, $http, ViewParameters, messageHub) {
-    let params = ViewParameters.get();
+    const params = ViewParameters.get();
     let leaveRequestId = params.id || new URLSearchParams(window.location.search).get('id'); // Fallback to URL param
 
     if (!leaveRequestId) {
-        console.error("Leave Request ID is missing!");
+        throw new Error("Leave Request ID is missing!");
     }
 
     const processId = new URLSearchParams(window.location.search).get('processId');
 
     $scope.showDialog = true;
 
-    const leaveRequestUrl = "/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/leaveRequestData/" + leaveRequestId;
+    const leaveRequestUrl = `/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/leaveRequestData/${leaveRequestId}`;
     const leaveDeductionUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveDeductionService.ts/";
     const leaveRequestUpdateUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/";
     const approvedUrl = `/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/requests/${processId}/approve`;
@@ -162,7 +162,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
 
     $scope.closeDialog = function () {
 
-        const redirectUrl = "http://" + $scope.Domain + "/services/web/portal/dashboard.html?continue";
+        const redirectUrl = `${$scope.Domain}/services/web/portal/dashboard.html?continue`;
 
         window.location.href = redirectUrl;
 

@@ -1,5 +1,5 @@
 {
     "module": "codbex-vacations/events/SendMail/SendMailHandler.ts",
     "extensionPoint": "codbex-vacations-LeaveRequests-LeaveRequest",
-    "description": "My Extension"
+    "description": "Process Leave Request Event"
 }

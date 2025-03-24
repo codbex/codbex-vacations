@@ -17,19 +17,16 @@ export const trigger = (event) => {
         const protocol = request.getScheme() + "://";
         const domain = request.getHeader("Host")
 
-        const approvalLink = `${protocol}${domain}/services/web/codbex-vacations/ext/generate/LeaveDeduction/leave-deduction-generate.html?id=${requestId}&processId=`;
+        const approvalLink = `${protocol}${domain}/services/web/codbex-vacations/ext/generate/LeaveDeduction/leave-deduction-generate.html?id=${requestId}`;
 
-        const processInstanceId = process.start("approve-request", {
-            From: employee.Email,
-            To: manager.Email,
+        const processInstanceId = process.start("vacation-approval-request", {
+            Employee: employee.Email,
+            Manager: manager.Email,
             ApprovalLink: approvalLink
         });
 
-
-
         if (processInstanceId == null) {
-            console.log("Failed to send mail to manager action process!");
-            return;
+            throw new Error("Failed to send mail to manager action process!");
         }
     }
 }

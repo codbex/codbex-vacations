@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:flowable="http://flowable.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.flowable.org/processdef" exporter="Flowable Open Source Modeler" exporterVersion="6.8.1">
-  <process id="approve-request" name="Approve Requests" isExecutable="true">
+  <process id="vacation-approval-request" name="Vacation Approval Request" isExecutable="true">
     <startEvent id="start-event"/>
     <serviceTask id="notify-approvers" name="Notify Approvers" flowable:async="true" flowable:delegateExpression="${JSTask}">
       <extensionElements>
@@ -36,8 +36,8 @@
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${RequestApproved}]]></conditionExpression>
     </sequenceFlow>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_approve-request">
-    <bpmndi:BPMNPlane bpmnElement="approve-request" id="BPMNPlane_approve-request">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_vacation-approval-request">
+    <bpmndi:BPMNPlane bpmnElement="vacation-approval-request" id="BPMNPlane_vacation-approval-request">
       <bpmndi:BPMNShape bpmnElement="start-event" id="BPMNShape_start-event">
         <omgdc:Bounds height="30.0" width="30.0" x="15.0" y="78.0"/>
       </bpmndi:BPMNShape>
