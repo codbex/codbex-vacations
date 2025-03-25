@@ -140,7 +140,7 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
 
         $http.put(deniedUrl).then(function (response) {
             if (response.status !== 200) {
-                alert(`Unable to approve request: '${response.message}'`);
+                alert(`Unable to reject request: '${response.message}'`);
                 return;
             }
         });
