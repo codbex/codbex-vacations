@@ -1,5 +1,5 @@
 {
     "extensionPoint": "codbex-vacations-LeaveBalance-LeaveDeduction",
     "description": "Salaries extension",
-    "module": "codbex-vacations/events/UpdateLeaveBalance/UpdateLeaveBalanceHandler.ts"
+    "module": "codbex-vacations/events/update-leave-balance/update-leave-balance-handler.ts"
 }
