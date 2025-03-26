@@ -25,7 +25,7 @@ export const trigger = (event) => {
             ApprovalLink: approvalLink
         });
 
-        if (processInstanceId) {
+        if (!processInstanceId) {
             throw new Error("Failed to send mail to manager action process!");
         }
     }
