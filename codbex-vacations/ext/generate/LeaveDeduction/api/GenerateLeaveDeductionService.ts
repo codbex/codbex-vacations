@@ -1,4 +1,6 @@
-import { Controller, Get } from "sdk/http";
+import { Controller, Get, Put, response, request } from "sdk/http";
+import { tasks } from "sdk/bpm";
+import { user } from "sdk/security";
 
 import { LeaveBalanceRepository as LeaveBalanceDao } from "codbex-vacations/gen/codbex-vacations/dao/LeaveBalance/LeaveBalanceRepository";
 import { LeaveDeductionRepository as LeaveDeductionDao } from "codbex-vacations/gen/codbex-vacations/dao/LeaveBalance/LeaveDeductionRepository";
@@ -51,6 +53,8 @@ class GenerateLeaveDeductionService {
         const remainingLeave = leaveBalances.reduce((sum, lb) => sum + lb.Balance, 0);
         const startDate = new Date(leaveRequest.StartDate);
         const endDate = new Date(leaveRequest.EndDate);
+        const protocol = request.getScheme() + "://";
+        const domain = request.getHeader("Host")
 
         return {
             "LeaveRequest": leaveRequest,
@@ -59,11 +63,37 @@ class GenerateLeaveDeductionService {
             "EndDate": endDate.toLocaleDateString(),
             "RemainingLeave": remainingLeave,
             "LeaveBalances": leaveBalances,
-            "DeductionsCount": deductionsCount
+            "DeductionsCount": deductionsCount,
+            "Domain": `${protocol}${domain}`
         };
 
     }
 
+    @Put("/requests/:id/approve")
+    public approveRequest(_: any, ctx: any) {
+        const processId = ctx.pathParameters.id;
+        this.completeTask(processId, true);
 
+        response.setStatus(response.OK);
+        return { message: "Request Approved" };
+    }
 
+    @Put("/requests/:id/deny")
+    public declineRequest(_: any, ctx: any) {
+        const processId = ctx.pathParameters.id;
+        this.completeTask(processId, false);
+
+        response.setStatus(response.OK);
+        return { message: "Request Denied" };
+    }
+
+    private completeTask(processId: string, approved: boolean) {
+
+        const task = tasks.list().filter(task => task.data.processInstanceId === processId);
+
+        tasks.complete(task[0].data.id, {
+            Approver: user.getName(),
+            RequestApproved: approved
+        });
+    }
 }

@@ -1,0 +1,5 @@
+{
+    "module": "codbex-vacations/events/trigger-vacation-approval/trigger-vacation-approval-handler.ts",
+    "extensionPoint": "codbex-vacations-LeaveRequests-LeaveRequest",
+    "description": "Process Leave Request Event"
+}

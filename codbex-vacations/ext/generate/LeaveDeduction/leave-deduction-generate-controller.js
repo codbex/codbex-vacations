@@ -2,11 +2,22 @@ const app = angular.module('templateApp', ['ideUI', 'ideView']);
 
 app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'messageHub', function ($scope, $http, ViewParameters, messageHub) {
     const params = ViewParameters.get();
+    let leaveRequestId = params.id || new URLSearchParams(window.location.search).get('id'); // Fallback to URL param
+
+    if (!leaveRequestId) {
+        throw new Error("Leave Request ID is missing!");
+    }
+
+    const processId = new URLSearchParams(window.location.search).get('processId');
+
     $scope.showDialog = true;
 
-    const leaveRequestUrl = "/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/leaveRequestData/" + params.id;
+    const leaveRequestUrl = `/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/leaveRequestData/${leaveRequestId}`;
     const leaveDeductionUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveDeductionService.ts/";
     const leaveRequestUpdateUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts/";
+    const approvedUrl = `/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/requests/${processId}/approve`;
+    const deniedUrl = `/services/ts/codbex-vacations/ext/generate/LeaveDeduction/api/GenerateLeaveDeductionService.ts/requests/${processId}/deny`;
+
 
     $http.get(leaveRequestUrl)
         .then(function (response) {
@@ -24,9 +35,18 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
             $scope.RemainingLeave = response.data.RemainingLeave;
             $scope.LeaveBalances = response.data.LeaveBalances;
             $scope.DeductionsCount = response.data.DeductionsCount;
+            $scope.Domain = response.data.Domain;
         });
 
     $scope.approveLeaveRequest = function () {
+
+        $http.put(approvedUrl).then(function (response) {
+            if (response.status !== 200) {
+                alert(`Unable to approve request: '${response.message}'`);
+                return;
+            }
+        });
+
         $scope.LeaveRequest.Status = 2;
         $scope.LeaveRequest.ResolvedAt = new Date().toLocaleDateString('en-CA');
 
@@ -118,6 +138,13 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
 
     $scope.rejectLeaveRequest = function () {
 
+        $http.put(deniedUrl).then(function (response) {
+            if (response.status !== 200) {
+                alert(`Unable to reject request: '${response.message}'`);
+                return;
+            }
+        });
+
         $scope.LeaveRequest.Status = 3;
         $scope.LeaveRequest.ResolvedAt = new Date().toLocaleDateString('en-CA');
 
@@ -134,6 +161,11 @@ app.controller('templateController', ['$scope', '$http', 'ViewParameters', 'mess
     }
 
     $scope.closeDialog = function () {
+
+        const redirectUrl = `${$scope.Domain}/services/web/portal/dashboard.html?continue`;
+
+        window.location.href = redirectUrl;
+
         $scope.showDialog = false;
         messageHub.closeDialogWindow("leave-deduction-generate");
     };
