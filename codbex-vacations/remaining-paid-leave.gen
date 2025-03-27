@@ -11,5 +11,11 @@
   "projectName": "codbex-vacations",
   "workspaceName": "workspace",
   "filePath": "remaining-paid-leave.report",
-  "templateId": "template-application-ui-angular/template/template-report-file.js"
+  "templateId": "template-application-ui-angular/template/template-report-file.js",
+  "roles": [
+    {
+      "entityName": "RemainingPaidLeave",
+      "roleRead": "codbex-vacations.Report.RemainingPaidLeaveReadOnly"
+    }
+  ]
 }

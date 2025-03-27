@@ -1,1 +1,5 @@
-{"module":"codbex-vacations/gen/codbex-vacations/ui/LeaveRequests/perspective.js","extensionPoint":"codbex-vacations","description":"codbex-vacations - Perspective - LeaveRequests"}
+{
+    "module": "codbex-vacations/gen/codbex-vacations/ui/LeaveRequests/perspective.js",
+    "extensionPoint": "codbex-vacations",
+    "description": "codbex-vacations - Perspective - LeaveRequests"
+}

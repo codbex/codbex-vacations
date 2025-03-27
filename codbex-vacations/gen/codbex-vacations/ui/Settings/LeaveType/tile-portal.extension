@@ -1,0 +1,6 @@
+{
+    "module": "codbex-vacations/gen/codbex-vacations/ui/Settings/LeaveType/tile.js",
+    "extensionPoint": "portal-tile",
+    "description": "codbex-vacations - Application Tile",
+    "role": "codbex-vacations.Settings.LeaveTypeReadOnly,codbex-vacations.Settings.LeaveTypeFullAccess"
+}

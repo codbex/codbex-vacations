@@ -1,5 +1,6 @@
 {
     "module": "codbex-vacations/gen/remaining-paid-leave/ui/Reports/perspective-navigation.js",
     "extensionPoint": "dashboard-navigations",
-    "description": "Remaining Paid Annual Leave - Navigation"
+    "description": "Remaining Paid Annual Leave - Navigation",
+    "role": "codbex-vacations.Report.RemainingPaidLeaveReadOnly"
 }

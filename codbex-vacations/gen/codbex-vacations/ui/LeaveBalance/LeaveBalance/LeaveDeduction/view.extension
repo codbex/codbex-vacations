@@ -1,5 +1,6 @@
 {
     "module": "codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/LeaveBalance/LeaveDeduction/view.js",
     "extensionPoint": "codbex-vacations-view",
-    "description": "codbex-vacations - Application View - Details"
+    "description": "codbex-vacations - Application View - Details",
+    "role": "codbex-vacations.LeaveBalance.LeaveDeductionReadOnly,codbex-vacations.LeaveBalance.LeaveDeductionFullAccess"
 }

@@ -5,7 +5,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 	.config(["entityApiProvider", function (entityApiProvider) {
 		entityApiProvider.baseUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveBalance/LeaveBalanceService.ts";
 	}])
-	.controller('PageController', ['$scope', 'Extensions', 'messageHub', 'entityApi', function ($scope, Extensions, messageHub, entityApi) {
+	.controller('PageController', ['$scope',  '$http', 'Extensions', 'messageHub', 'entityApi', function ($scope,  $http, Extensions, messageHub, entityApi) {
 
 		$scope.entity = {};
 		$scope.forms = {
@@ -100,5 +100,35 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		$scope.cancel = function () {
 			messageHub.postMessage("clearDetails");
 		};
+		
+		//-----------------Dialogs-------------------//
+		
+		$scope.createEmployee = function () {
+			messageHub.showDialogWindow("Employee-details", {
+				action: "create",
+				entity: {},
+			}, null, false);
+		};
+
+		//-----------------Dialogs-------------------//
+
+
+
+		//----------------Dropdowns-----------------//
+
+		$scope.refreshEmployee = function () {
+			$scope.optionsEmployee = [];
+			$http.get("/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts").then(function (response) {
+				$scope.optionsEmployee = response.data.map(e => {
+					return {
+						value: e.Id,
+						text: e.Name
+					}
+				});
+			});
+		};
+
+		//----------------Dropdowns-----------------//	
+		
 
 	}]);

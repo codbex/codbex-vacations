@@ -1,5 +1,6 @@
 {
     "extensionPoint": "dashboard-navigations",
     "module": "codbex-vacations/navigations/leave-balance/service.js",
-    "description": "Employees Navigation"
+    "description": "Employees Navigation",
+    "role": "codbex-vacations.LeaveBalance.LeaveBalanceReadOnly,codbex-vacations.LeaveBalance.LeaveBalanceFullAccess"
 }

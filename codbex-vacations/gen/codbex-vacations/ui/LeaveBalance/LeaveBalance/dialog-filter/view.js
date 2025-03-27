@@ -7,7 +7,7 @@ const viewData = {
     id: "LeaveBalance-filter",
     label: "LeaveBalance Filter",
     link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/LeaveBalance/dialog-filter/index.html",
-    perspectiveName: "LeaveBalance",
+    perspectiveName: "LeaveBalance"
 };
 
 if (typeof exports !== 'undefined') {

@@ -1,5 +1,6 @@
 {
     "extensionPoint": "codbex-vacations-custom-action",
     "module": "codbex-vacations/gen/remaining-paid-leave/ui/Reports/RemainingPaidLeave/dialog-print/print.js",
-    "description": "Print RemainingPaidLeave Report"
+    "description": "Print RemainingPaidLeave Report",
+    "role": "codbex-vacations.Report.RemainingPaidLeaveReadOnly"
 }

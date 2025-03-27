@@ -9,7 +9,7 @@ const viewData = {
     factory: "frame",
     region: "left",
     link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/LeaveBalance/index.html",
-    perspectiveName: "LeaveBalance",
+    perspectiveName: "LeaveBalance"
 };
 
 if (typeof exports !== 'undefined') {

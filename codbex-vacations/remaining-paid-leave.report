@@ -53,5 +53,9 @@
             "operation": "=",
             "right": ":Year"
         }
-    ]
+    ],
+    "security": {
+        "generateDefaultRoles": "true",
+        "roleRead": "codbex-vacations.Report.RemainingPaidLeaveReadOnly"
+    }
 }

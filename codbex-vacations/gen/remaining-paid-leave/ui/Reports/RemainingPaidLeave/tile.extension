@@ -1,5 +1,6 @@
 {
     "module": "codbex-vacations/gen/remaining-paid-leave/ui/Reports/RemainingPaidLeave/tile.js",
     "extensionPoint": "codbex-vacations-tile",
-    "description": "codbex-vacations - Application Tile"
+    "description": "codbex-vacations - Application Tile",
+    "role": "codbex-vacations.Report.RemainingPaidLeaveReadOnly"
 }

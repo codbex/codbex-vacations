@@ -7,8 +7,8 @@ const perspectiveData = {
 	id: 'LeaveRequests',
 	name: 'LeaveRequests',
 	link: '/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveRequests/index.html',
-	order: 13,
-	icon: '/services/web/resources/unicons/file-question.svg',
+	order: '13',
+	icon: '/services/web/resources/unicons/file-question.svg'
 };
 
 if (typeof exports !== 'undefined') {

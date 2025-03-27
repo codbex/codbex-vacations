@@ -1,5 +1,6 @@
 {
     "extensionPoint": "dashboard-widgets",
     "module": "codbex-vacations/widgets/my-leave-balance/service.js",
-    "description": "My Leave Balance Widget"
+    "description": "My Leave Balance Widget",
+    "role": "codbex-vacations.LeaveBalance.LeaveBalanceReadOnly,codbex-vacations.LeaveBalance.LeaveBalanceFullAccess"
 }

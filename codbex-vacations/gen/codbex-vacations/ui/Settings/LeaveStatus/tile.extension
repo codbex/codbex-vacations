@@ -1,0 +1,6 @@
+{
+    "module": "codbex-vacations/gen/codbex-vacations/ui/Settings/LeaveStatus/tile.js",
+    "extensionPoint": "codbex-vacations-tile",
+    "description": "codbex-vacations - Application Tile",
+    "role": "codbex-vacations.Settings.LeaveStatusReadOnly,codbex-vacations.Settings.LeaveStatusFullAccess"
+}

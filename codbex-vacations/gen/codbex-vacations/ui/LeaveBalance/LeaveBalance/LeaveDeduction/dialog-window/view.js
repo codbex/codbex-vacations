@@ -7,7 +7,7 @@ const viewData = {
     id: "LeaveDeduction-details",
     label: "LeaveDeduction",
     link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/LeaveBalance/LeaveDeduction/dialog-window/index.html",
-    perspectiveName: "LeaveBalance",
+    perspectiveName: "LeaveBalance"
 };
 
 if (typeof exports !== 'undefined') {

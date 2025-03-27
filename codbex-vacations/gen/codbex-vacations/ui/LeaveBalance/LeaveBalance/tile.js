@@ -14,6 +14,6 @@ exports.getTile = function () {
         icon: "/services/web/resources/unicons/file.svg",
         location: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/index.html",
         order: "100",
-        groupOrder: "121",
+        groupOrder: "121"
     };
-};
+}

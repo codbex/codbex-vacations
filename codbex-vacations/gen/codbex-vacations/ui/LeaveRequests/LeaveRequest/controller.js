@@ -221,7 +221,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			});
 		});
 
-		$http.get("/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveTypeService.ts").then(function (response) {
+		$http.get("/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveTypeService.ts").then(function (response) {
 			$scope.optionsType = response.data.map(e => {
 				return {
 					value: e.Id,
@@ -230,7 +230,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 			});
 		});
 
-		$http.get("/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveStatusService.ts").then(function (response) {
+		$http.get("/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveStatusService.ts").then(function (response) {
 			$scope.optionsStatus = response.data.map(e => {
 				return {
 					value: e.Id,
