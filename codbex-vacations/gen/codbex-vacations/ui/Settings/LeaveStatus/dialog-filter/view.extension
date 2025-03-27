@@ -1,0 +1,6 @@
+{
+    "module": "codbex-vacations/gen/codbex-vacations/ui/Settings/LeaveStatus/dialog-filter/view.js",
+    "extensionPoint": "dialog-window",
+    "description": "codbex-vacations - Application Dialog Window",
+    "role": "codbex-vacations.Settings.LeaveStatusReadOnly,codbex-vacations.Settings.LeaveStatusFullAccess"
+}

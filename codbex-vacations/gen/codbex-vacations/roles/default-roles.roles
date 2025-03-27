@@ -1,0 +1,42 @@
+[
+    {
+        "name": "codbex-vacations.LeaveBalance.LeaveBalanceReadOnly",
+        "description": "A role that grants read only permission for LeaveBalance."
+    },
+    {
+        "name": "codbex-vacations.LeaveBalance.LeaveBalanceFullAccess",
+        "description": "A role that grants full access for LeaveBalance."
+    },
+    {
+        "name": "codbex-vacations.Settings.LeaveTypeReadOnly",
+        "description": "A role that grants read only permission for LeaveType."
+    },
+    {
+        "name": "codbex-vacations.Settings.LeaveTypeFullAccess",
+        "description": "A role that grants full access for LeaveType."
+    },
+    {
+        "name": "codbex-vacations.Settings.LeaveStatusReadOnly",
+        "description": "A role that grants read only permission for LeaveStatus."
+    },
+    {
+        "name": "codbex-vacations.Settings.LeaveStatusFullAccess",
+        "description": "A role that grants full access for LeaveStatus."
+    },
+    {
+        "name": "codbex-vacations.LeaveBalance.LeaveDeductionReadOnly",
+        "description": "A role that grants read only permission for LeaveDeduction."
+    },
+    {
+        "name": "codbex-vacations.LeaveBalance.LeaveDeductionFullAccess",
+        "description": "A role that grants full access for LeaveDeduction."
+    },
+    {
+        "name": "codbex-vacations.LeaveRequests.LeaveRequestReadOnly",
+        "description": "A role that grants read only permission for LeaveRequest."
+    },
+    {
+        "name": "codbex-vacations.LeaveRequests.LeaveRequestFullAccess",
+        "description": "A role that grants full access for LeaveRequest."
+    }
+]

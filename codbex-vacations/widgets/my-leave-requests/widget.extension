@@ -1,5 +1,6 @@
 {
     "extensionPoint": "dashboard-widgets",
     "module": "codbex-vacations/widgets/my-leave-requests/service.js",
-    "description": "My Leave Requests Widget"
+    "description": "My Leave Requests Widget",
+    "role": "codbex-vacations.LeaveRequests.LeaveRequestReadOnly,codbex-vacations.LeaveRequests.LeaveRequestFullAccess"
 }

@@ -8,7 +8,7 @@ const navigationData = {
 	label: 'Remaining Paid Annual Leave',
 	group: 'reports',
 	link: '/services/web/codbex-vacations/gen/remaining-paid-leave/ui/Reports/RemainingPaidLeave/index.html',
-	order: 1700,
+	order: 1700
 };
 
 function getNavigation() {

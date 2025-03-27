@@ -1,0 +1,6 @@
+{
+    "module": "codbex-vacations/gen/codbex-vacations/ui/Settings/LeaveType/dialog-window/view.js",
+    "extensionPoint": "dialog-window",
+    "description": "codbex-vacations - Application Dialog Window",
+    "role": "codbex-vacations.Settings.LeaveTypeReadOnly,codbex-vacations.Settings.LeaveTypeFullAccess"
+}

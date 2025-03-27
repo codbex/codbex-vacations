@@ -7,7 +7,7 @@ const viewData = {
     id: "RemainingPaidLeave-Report-filter",
     label: "RemainingPaidLeave Rerport Filter",
     link: "/services/web/codbex-vacations/gen/remaining-paid-leave/ui/Reports/RemainingPaidLeave/dialog-filter/index.html",
-    perspectiveName: "Reports",
+    perspectiveName: "Reports"
 };
 
 if (typeof exports !== 'undefined') {

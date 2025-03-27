@@ -7,8 +7,8 @@ const perspectiveData = {
 	id: 'LeaveBalance',
 	name: 'LeaveBalance',
 	link: '/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/index.html',
-	order: 121,
-	icon: '/services/web/resources/unicons/balance-scale.svg',
+	order: '121',
+	icon: '/services/web/resources/unicons/balance-scale.svg'
 };
 
 if (typeof exports !== 'undefined') {

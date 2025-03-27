@@ -1,0 +1,6 @@
+{
+    "module": "codbex-vacations/gen/codbex-vacations/ui/Settings/LeaveType/view.js",
+    "extensionPoint": "codbex-vacations-view",
+    "description": "codbex-vacations - Application View",
+    "role": "codbex-vacations.Settings.LeaveTypeReadOnly,codbex-vacations.Settings.LeaveTypeFullAccess"
+}

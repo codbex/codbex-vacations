@@ -5,7 +5,7 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 	.config(["entityApiProvider", function (entityApiProvider) {
 		entityApiProvider.baseUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts";
 	}])
-	.controller('PageController', ['$scope', 'Extensions', 'messageHub', 'entityApi', function ($scope, Extensions, messageHub, entityApi) {
+	.controller('PageController', ['$scope',  '$http', 'Extensions', 'messageHub', 'entityApi', function ($scope,  $http, Extensions, messageHub, entityApi) {
 
 		$scope.entity = {};
 		$scope.forms = {
@@ -101,8 +101,8 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 
 		$scope.serviceEmployee = "/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts";
 		$scope.serviceManager = "/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts";
-		$scope.serviceType = "/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveTypeService.ts";
-		$scope.serviceStatus = "/services/ts/codbex-vacations/gen/codbex-vacations/api/entities/LeaveStatusService.ts";
+		$scope.serviceType = "/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveTypeService.ts";
+		$scope.serviceStatus = "/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveStatusService.ts";
 
 		//-----------------Events-------------------//
 
@@ -133,5 +133,86 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 		$scope.cancel = function () {
 			messageHub.postMessage("clearDetails");
 		};
+		
+		//-----------------Dialogs-------------------//
+		
+		$scope.createEmployee = function () {
+			messageHub.showDialogWindow("Employee-details", {
+				action: "create",
+				entity: {},
+			}, null, false);
+		};
+		$scope.createManager = function () {
+			messageHub.showDialogWindow("Employee-details", {
+				action: "create",
+				entity: {},
+			}, null, false);
+		};
+		$scope.createType = function () {
+			messageHub.showDialogWindow("LeaveType-details", {
+				action: "create",
+				entity: {},
+			}, null, false);
+		};
+		$scope.createStatus = function () {
+			messageHub.showDialogWindow("LeaveStatus-details", {
+				action: "create",
+				entity: {},
+			}, null, false);
+		};
+
+		//-----------------Dialogs-------------------//
+
+
+
+		//----------------Dropdowns-----------------//
+
+		$scope.refreshEmployee = function () {
+			$scope.optionsEmployee = [];
+			$http.get("/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts").then(function (response) {
+				$scope.optionsEmployee = response.data.map(e => {
+					return {
+						value: e.Id,
+						text: e.Name
+					}
+				});
+			});
+		};
+		$scope.refreshManager = function () {
+			$scope.optionsManager = [];
+			$http.get("/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts").then(function (response) {
+				$scope.optionsManager = response.data.map(e => {
+					return {
+						value: e.Id,
+						text: e.Name
+					}
+				});
+			});
+		};
+		$scope.refreshType = function () {
+			$scope.optionsType = [];
+			$http.get("/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveTypeService.ts").then(function (response) {
+				$scope.optionsType = response.data.map(e => {
+					return {
+						value: e.Id,
+						text: e.Name
+					}
+				});
+			});
+		};
+		$scope.refreshStatus = function () {
+			$scope.optionsStatus = [];
+			$http.get("/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveStatusService.ts").then(function (response) {
+				$scope.optionsStatus = response.data.map(e => {
+					return {
+						value: e.Id,
+						text: e.Name
+					}
+				});
+			});
+		};
+
+		//----------------Dropdowns-----------------//	
+		
 
 	}]);
