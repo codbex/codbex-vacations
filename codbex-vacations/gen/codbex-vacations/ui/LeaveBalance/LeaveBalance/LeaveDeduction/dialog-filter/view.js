@@ -4,14 +4,17 @@
  * Do not modify the content as it may be re-generated again.
  */
 const viewData = {
-    id: "LeaveDeduction-filter",
-    label: "LeaveDeduction Filter",
-    link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/LeaveBalance/LeaveDeduction/dialog-filter/index.html",
-    perspectiveName: "LeaveBalance"
+    id: 'LeaveDeduction-filter',
+    label: 'LeaveDeduction Filter',
+    translation: {
+        key: 'codbex-vacations:codbex-vacations-model.extName',
+        options: {
+            content: '$t(codbex-vacations:codbex-vacations-model.t.LEAVEDEDUCTION) $t(codbex-vacations:codbex-vacations-model.defaults.filter)',
+        }
+    },
+    path: '/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/LeaveBalance/LeaveDeduction/dialog-filter/index.html',
+    perspectiveName: 'LeaveBalance'
 };
-
 if (typeof exports !== 'undefined') {
-    exports.getDialogWindow = function () {
-        return viewData;
-    }
+    exports.getView = () => viewData;
 }

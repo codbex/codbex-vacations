@@ -4,14 +4,14 @@
  * Do not modify the content as it may be re-generated again.
  */
 const viewData = {
-    id: "LeaveType-details",
-    label: "LeaveType",
-    link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/Settings/LeaveType/dialog-window/index.html",
-    perspectiveName: "Settings"
+    id: 'LeaveType-details',
+    label: 'LeaveType',
+    translation: {
+        key: 'codbex-vacations:codbex-vacations-model.t.LEAVETYPE',
+    },
+    path: '/services/web/codbex-vacations/gen/codbex-vacations/ui/Settings/LeaveType/dialog-window/index.html',
+    perspectiveName: 'Settings'
 };
-
 if (typeof exports !== 'undefined') {
-    exports.getDialogWindow = function () {
-        return viewData;
-    }
+    exports.getView = () => viewData;
 }

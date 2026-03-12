@@ -4,16 +4,17 @@
  * Do not modify the content as it may be re-generated again.
  */
 const viewData = {
-    id: "LeaveDeduction",
-    label: "LeaveDeduction",
-    factory: "frame",
-    region: "bottom",
-    link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/LeaveBalance/LeaveDeduction/index.html",
-    perspectiveName: "LeaveBalance"
+    id: 'LeaveDeduction',
+    label: 'LeaveDeduction',
+    translation: {
+        key: 'codbex-vacations:codbex-vacations-model.t.LEAVEDEDUCTION',
+    },
+    region: 'bottom',
+    lazyLoad: false,
+	autoFocusTab: true,
+    path: '/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/LeaveBalance/LeaveDeduction/index.html',
+    perspectiveName: 'LeaveBalance'
 };
-
 if (typeof exports !== 'undefined') {
-    exports.getView = function () {
-        return viewData;
-    }
+	exports.getView = () => viewData;
 }

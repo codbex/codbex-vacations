@@ -1,5 +1,6 @@
 {
     "module": "codbex-vacations/gen/codbex-vacations/ui/Settings/perspective.js",
-    "extensionPoint": "codbex-vacations",
-    "description": "codbex-vacations - Perspective - Settings"
+    "extensionPoint": "application-perspectives",
+    "description": "codbex-vacations - Perspective - Settings",
+    "role": "codbex-vacations.Settings.LeaveStatusReadOnly,codbex-vacations.Settings.LeaveStatusFullAccess"
 }

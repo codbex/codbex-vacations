@@ -6,15 +6,15 @@
 const viewData = {
     id: "LeaveBalance-details",
     label: "LeaveBalance",
-    link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/LeaveBalance/dialog-window/index.html",
+    translation: {
+        key: 'codbex-vacations:codbex-vacations-model.t.LEAVEBALANCE',
+    },
+    path: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/LeaveBalance/dialog-window/index.html",
     perspectiveName: "LeaveBalance",
     roles: [
         "codbex-vacations.LeaveBalance.LeaveBalanceReadOnly",
     ]
 };
-
 if (typeof exports !== 'undefined') {
-    exports.getDialogWindow = function () {
-        return viewData;
-    }
+    exports.getView = () => viewData;
 }

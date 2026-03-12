@@ -5,14 +5,14 @@
  */
 const perspectiveData = {
 	id: 'LeaveBalance',
-	name: 'LeaveBalance',
-	link: '/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/index.html',
-	order: '121',
+	label: 'LeaveBalance',
+	translation: {
+        key: 'codbex-vacations:codbex-vacations-model.t.LEAVEBALANCE',
+    },
+	path: '/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/index.html',
+	order: 121,
 	icon: '/services/web/resources/unicons/balance-scale.svg'
 };
-
 if (typeof exports !== 'undefined') {
-	exports.getPerspective = function () {
-		return perspectiveData;
-	}
+	exports.getPerspective = () => perspectiveData;
 }

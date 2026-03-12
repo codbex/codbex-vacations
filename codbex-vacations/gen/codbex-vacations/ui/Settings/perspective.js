@@ -5,14 +5,14 @@
  */
 const perspectiveData = {
 	id: 'Settings',
-	name: 'Settings',
-	link: '/services/web/codbex-vacations/gen/codbex-vacations/ui/Settings/index.html',
-	order: '900',
+	label: 'Settings',
+	translation: {
+        key: 'codbex-vacations:codbex-vacations-model.t.LEAVESTATUS',
+    },
+	path: '/services/web/codbex-vacations/gen/codbex-vacations/ui/Settings/index.html',
+	order: 900,
 	icon: '/services/web/resources/unicons/wrench.svg'
 };
-
 if (typeof exports !== 'undefined') {
-	exports.getPerspective = function () {
-		return perspectiveData;
-	}
+	exports.getPerspective = () => perspectiveData;
 }

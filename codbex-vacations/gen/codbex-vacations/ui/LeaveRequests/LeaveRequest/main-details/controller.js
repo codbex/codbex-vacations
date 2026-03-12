@@ -1,44 +1,54 @@
-angular.module('page', ["ideUI", "ideView", "entityApi"])
-	.config(["messageHubProvider", function (messageHubProvider) {
-		messageHubProvider.eventIdPrefix = 'codbex-vacations.LeaveRequests.LeaveRequest';
+angular.module('page', ['blimpKit', 'platformView', 'platformLocale', 'EntityService'])
+	.config(["EntityServiceProvider", (EntityServiceProvider) => {
+		EntityServiceProvider.baseUrl = '/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts';
 	}])
-	.config(["entityApiProvider", function (entityApiProvider) {
-		entityApiProvider.baseUrl = "/services/ts/codbex-vacations/gen/codbex-vacations/api/LeaveRequests/LeaveRequestService.ts";
-	}])
-	.controller('PageController', ['$scope',  '$http', 'Extensions', 'messageHub', 'entityApi', function ($scope,  $http, Extensions, messageHub, entityApi) {
-
+	.controller('PageController', ($scope, $http, Extensions, LocaleService, EntityService) => {
+		const Dialogs = new DialogHub();
+		const Notifications = new NotificationHub();
+		let description = 'Description';
+		let propertySuccessfullyCreated = 'LeaveRequest successfully created';
+		let propertySuccessfullyUpdated = 'LeaveRequest successfully updated';
 		$scope.entity = {};
 		$scope.forms = {
 			details: {},
 		};
 		$scope.formHeaders = {
-			select: "LeaveRequest Details",
-			create: "Create LeaveRequest",
-			update: "Update LeaveRequest"
+			select: 'LeaveRequest Details',
+			create: 'Create LeaveRequest',
+			update: 'Update LeaveRequest'
 		};
 		$scope.action = 'select';
 
-		//-----------------Custom Actions-------------------//
-		Extensions.get('dialogWindow', 'codbex-vacations-custom-action').then(function (response) {
-			$scope.entityActions = response.filter(e => e.perspective === "LeaveRequests" && e.view === "LeaveRequest" && e.type === "entity");
+		LocaleService.onInit(() => {
+			description = LocaleService.t('codbex-vacations:codbex-vacations-model.defaults.description');
+			$scope.formHeaders.select = LocaleService.t('codbex-vacations:codbex-vacations-model.defaults.formHeadSelect', { name: '$t(codbex-vacations:codbex-vacations-model.t.LEAVEREQUEST)' });
+			$scope.formHeaders.create = LocaleService.t('codbex-vacations:codbex-vacations-model.defaults.formHeadCreate', { name: '$t(codbex-vacations:codbex-vacations-model.t.LEAVEREQUEST)' });
+			$scope.formHeaders.update = LocaleService.t('codbex-vacations:codbex-vacations-model.defaults.formHeadUpdate', { name: '$t(codbex-vacations:codbex-vacations-model.t.LEAVEREQUEST)' });
+			propertySuccessfullyCreated = LocaleService.t('codbex-vacations:codbex-vacations-model.messages.propertySuccessfullyCreated', { name: '$t(codbex-vacations:codbex-vacations-model.t.LEAVEREQUEST)' });
+			propertySuccessfullyUpdated = LocaleService.t('codbex-vacations:codbex-vacations-model.messages.propertySuccessfullyUpdated', { name: '$t(codbex-vacations:codbex-vacations-model.t.LEAVEREQUEST)' });
 		});
 
-		$scope.triggerEntityAction = function (action) {
-			messageHub.showDialogWindow(
-				action.id,
-				{
+		//-----------------Custom Actions-------------------//
+		Extensions.getWindows(['codbex-vacations-custom-action']).then((response) => {
+			$scope.entityActions = response.data.filter(e => e.perspective === 'LeaveRequests' && e.view === 'LeaveRequest' && e.type === 'entity');
+		});
+
+		$scope.triggerEntityAction = (action) => {
+			Dialogs.showWindow({
+				hasHeader: true,
+        		title: LocaleService.t(action.translation.key, action.translation.options, action.label),
+				path: action.path,
+				params: {
 					id: $scope.entity.Id
 				},
-				null,
-				true,
-				action
-			);
+				closeButton: true
+			});
 		};
 		//-----------------Custom Actions-------------------//
 
 		//-----------------Events-------------------//
-		messageHub.onDidReceiveMessage("clearDetails", function (msg) {
-			$scope.$apply(function () {
+		Dialogs.addMessageListener({ topic: 'codbex-vacations.LeaveRequests.LeaveRequest.clearDetails', handler: () => {
+			$scope.$evalAsync(() => {
 				$scope.entity = {};
 				$scope.optionsEmployee = [];
 				$scope.optionsManager = [];
@@ -46,119 +56,156 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 				$scope.optionsStatus = [];
 				$scope.action = 'select';
 			});
-		});
-
-		messageHub.onDidReceiveMessage("entitySelected", function (msg) {
-			$scope.$apply(function () {
-				if (msg.data.entity.StartDate) {
-					msg.data.entity.StartDate = new Date(msg.data.entity.StartDate);
+		}});
+		Dialogs.addMessageListener({ topic: 'codbex-vacations.LeaveRequests.LeaveRequest.entitySelected', handler: (data) => {
+			$scope.$evalAsync(() => {
+				if (data.entity.StartDate) {
+					data.entity.StartDate = new Date(data.entity.StartDate);
 				}
-				if (msg.data.entity.EndDate) {
-					msg.data.entity.EndDate = new Date(msg.data.entity.EndDate);
+				if (data.entity.EndDate) {
+					data.entity.EndDate = new Date(data.entity.EndDate);
 				}
-				if (msg.data.entity.ResolvedAt) {
-					msg.data.entity.ResolvedAt = new Date(msg.data.entity.ResolvedAt);
+				if (data.entity.ResolvedAt) {
+					data.entity.ResolvedAt = new Date(data.entity.ResolvedAt);
 				}
-				$scope.entity = msg.data.entity;
-				$scope.optionsEmployee = msg.data.optionsEmployee;
-				$scope.optionsManager = msg.data.optionsManager;
-				$scope.optionsType = msg.data.optionsType;
-				$scope.optionsStatus = msg.data.optionsStatus;
+				$scope.entity = data.entity;
+				$scope.optionsEmployee = data.optionsEmployee;
+				$scope.optionsManager = data.optionsManager;
+				$scope.optionsType = data.optionsType;
+				$scope.optionsStatus = data.optionsStatus;
 				$scope.action = 'select';
 			});
-		});
-
-		messageHub.onDidReceiveMessage("createEntity", function (msg) {
-			$scope.$apply(function () {
+		}});
+		Dialogs.addMessageListener({ topic: 'codbex-vacations.LeaveRequests.LeaveRequest.createEntity', handler: (data) => {
+			$scope.$evalAsync(() => {
 				$scope.entity = {};
-				$scope.optionsEmployee = msg.data.optionsEmployee;
-				$scope.optionsManager = msg.data.optionsManager;
-				$scope.optionsType = msg.data.optionsType;
-				$scope.optionsStatus = msg.data.optionsStatus;
+				$scope.optionsEmployee = data.optionsEmployee;
+				$scope.optionsManager = data.optionsManager;
+				$scope.optionsType = data.optionsType;
+				$scope.optionsStatus = data.optionsStatus;
 				$scope.action = 'create';
 			});
-		});
-
-		messageHub.onDidReceiveMessage("updateEntity", function (msg) {
-			$scope.$apply(function () {
-				if (msg.data.entity.StartDate) {
-					msg.data.entity.StartDate = new Date(msg.data.entity.StartDate);
+		}});
+		Dialogs.addMessageListener({ topic: 'codbex-vacations.LeaveRequests.LeaveRequest.updateEntity', handler: (data) => {
+			$scope.$evalAsync(() => {
+				if (data.entity.StartDate) {
+					data.entity.StartDate = new Date(data.entity.StartDate);
 				}
-				if (msg.data.entity.EndDate) {
-					msg.data.entity.EndDate = new Date(msg.data.entity.EndDate);
+				if (data.entity.EndDate) {
+					data.entity.EndDate = new Date(data.entity.EndDate);
 				}
-				if (msg.data.entity.ResolvedAt) {
-					msg.data.entity.ResolvedAt = new Date(msg.data.entity.ResolvedAt);
+				if (data.entity.ResolvedAt) {
+					data.entity.ResolvedAt = new Date(data.entity.ResolvedAt);
 				}
-				$scope.entity = msg.data.entity;
-				$scope.optionsEmployee = msg.data.optionsEmployee;
-				$scope.optionsManager = msg.data.optionsManager;
-				$scope.optionsType = msg.data.optionsType;
-				$scope.optionsStatus = msg.data.optionsStatus;
+				$scope.entity = data.entity;
+				$scope.optionsEmployee = data.optionsEmployee;
+				$scope.optionsManager = data.optionsManager;
+				$scope.optionsType = data.optionsType;
+				$scope.optionsStatus = data.optionsStatus;
 				$scope.action = 'update';
 			});
-		});
+		}});
 
-		$scope.serviceEmployee = "/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts";
-		$scope.serviceManager = "/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts";
-		$scope.serviceType = "/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveTypeService.ts";
-		$scope.serviceStatus = "/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveStatusService.ts";
+		$scope.serviceEmployee = '/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts';
+		$scope.serviceManager = '/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts';
+		$scope.serviceType = '/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveTypeService.ts';
+		$scope.serviceStatus = '/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveStatusService.ts';
 
 		//-----------------Events-------------------//
 
-		$scope.create = function () {
-			entityApi.create($scope.entity).then(function (response) {
-				if (response.status != 201) {
-					messageHub.showAlertError("LeaveRequest", `Unable to create LeaveRequest: '${response.message}'`);
-					return;
-				}
-				messageHub.postMessage("entityCreated", response.data);
-				messageHub.postMessage("clearDetails", response.data);
-				messageHub.showAlertSuccess("LeaveRequest", "LeaveRequest successfully created");
+		$scope.create = () => {
+			EntityService.create($scope.entity).then((response) => {
+				Dialogs.postMessage({ topic: 'codbex-vacations.LeaveRequests.LeaveRequest.entityCreated', data: response.data });
+				Dialogs.postMessage({ topic: 'codbex-vacations.LeaveRequests.LeaveRequest.clearDetails' , data: response.data });
+				Notifications.show({
+					title: LocaleService.t('codbex-vacations:codbex-vacations-model.t.LEAVEREQUEST'),
+					description: propertySuccessfullyCreated,
+					type: 'positive'
+				});
+			}, (error) => {
+				const message = error.data ? error.data.message : '';
+				Dialogs.showAlert({
+					title: LocaleService.t('codbex-vacations:codbex-vacations-model.t.LEAVEREQUEST'),
+					message: LocaleService.t('codbex-vacations:codbex-vacations-model.messages.error.unableToCreate', { name: '$t(codbex-vacations:codbex-vacations-model.t.LEAVEREQUEST)', message: message }),
+					type: AlertTypes.Error
+				});
+				console.error('EntityService:', error);
 			});
 		};
 
-		$scope.update = function () {
-			entityApi.update($scope.entity.Id, $scope.entity).then(function (response) {
-				if (response.status != 200) {
-					messageHub.showAlertError("LeaveRequest", `Unable to update LeaveRequest: '${response.message}'`);
-					return;
-				}
-				messageHub.postMessage("entityUpdated", response.data);
-				messageHub.postMessage("clearDetails", response.data);
-				messageHub.showAlertSuccess("LeaveRequest", "LeaveRequest successfully updated");
+		$scope.update = () => {
+			EntityService.update($scope.entity.Id, $scope.entity).then((response) => {
+				Dialogs.postMessage({ topic: 'codbex-vacations.LeaveRequests.LeaveRequest.entityUpdated', data: response.data });
+				Dialogs.postMessage({ topic: 'codbex-vacations.LeaveRequests.LeaveRequest.clearDetails', data: response.data });
+				Notifications.show({
+					title: LocaleService.t('codbex-vacations:codbex-vacations-model.t.LEAVEREQUEST'),
+					description: propertySuccessfullyUpdated,
+					type: 'positive'
+				});
+			}, (error) => {
+				const message = error.data ? error.data.message : '';
+				Dialogs.showAlert({
+					title: LocaleService.t('codbex-vacations:codbex-vacations-model.t.LEAVEREQUEST'),
+					message: LocaleService.t('codbex-vacations:codbex-vacations-model.messages.error.unableToCreate', { name: '$t(codbex-vacations:codbex-vacations-model.t.LEAVEREQUEST)', message: message }),
+					type: AlertTypes.Error
+				});
+				console.error('EntityService:', error);
 			});
 		};
 
-		$scope.cancel = function () {
-			messageHub.postMessage("clearDetails");
+		$scope.cancel = () => {
+			Dialogs.triggerEvent('codbex-vacations.LeaveRequests.LeaveRequest.clearDetails');
 		};
 		
 		//-----------------Dialogs-------------------//
+		$scope.alert = (message) => {
+			if (message) Dialogs.showAlert({
+				title: description,
+				message: message,
+				type: AlertTypes.Information,
+				preformatted: true,
+			});
+		};
 		
-		$scope.createEmployee = function () {
-			messageHub.showDialogWindow("Employee-details", {
-				action: "create",
-				entity: {},
-			}, null, false);
+		$scope.createEmployee = () => {
+			Dialogs.showWindow({
+				id: 'Employee-details',
+				params: {
+					action: 'create',
+					entity: {},
+				},
+				closeButton: false
+			});
 		};
-		$scope.createManager = function () {
-			messageHub.showDialogWindow("Employee-details", {
-				action: "create",
-				entity: {},
-			}, null, false);
+		$scope.createManager = () => {
+			Dialogs.showWindow({
+				id: 'Employee-details',
+				params: {
+					action: 'create',
+					entity: {},
+				},
+				closeButton: false
+			});
 		};
-		$scope.createType = function () {
-			messageHub.showDialogWindow("LeaveType-details", {
-				action: "create",
-				entity: {},
-			}, null, false);
+		$scope.createType = () => {
+			Dialogs.showWindow({
+				id: 'LeaveType-details',
+				params: {
+					action: 'create',
+					entity: {},
+				},
+				closeButton: false
+			});
 		};
-		$scope.createStatus = function () {
-			messageHub.showDialogWindow("LeaveStatus-details", {
-				action: "create",
-				entity: {},
-			}, null, false);
+		$scope.createStatus = () => {
+			Dialogs.showWindow({
+				id: 'LeaveStatus-details',
+				params: {
+					action: 'create',
+					entity: {},
+				},
+				closeButton: false
+			});
 		};
 
 		//-----------------Dialogs-------------------//
@@ -167,52 +214,74 @@ angular.module('page', ["ideUI", "ideView", "entityApi"])
 
 		//----------------Dropdowns-----------------//
 
-		$scope.refreshEmployee = function () {
+		$scope.refreshEmployee = () => {
 			$scope.optionsEmployee = [];
-			$http.get("/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts").then(function (response) {
-				$scope.optionsEmployee = response.data.map(e => {
-					return {
-						value: e.Id,
-						text: e.Name
-					}
+			$http.get('/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts').then((response) => {
+				$scope.optionsEmployee = response.data.map(e => ({
+					value: e.Id,
+					text: e.Name
+				}));
+			}, (error) => {
+				console.error(error);
+				const message = error.data ? error.data.message : '';
+				Dialogs.showAlert({
+					title: 'Employee',
+					message: LocaleService.t('codbex-vacations:codbex-vacations-model.messages.error.unableToLoad', { message: message }),
+					type: AlertTypes.Error
 				});
 			});
 		};
-		$scope.refreshManager = function () {
+		$scope.refreshManager = () => {
 			$scope.optionsManager = [];
-			$http.get("/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts").then(function (response) {
-				$scope.optionsManager = response.data.map(e => {
-					return {
-						value: e.Id,
-						text: e.Name
-					}
+			$http.get('/services/ts/codbex-employees/gen/codbex-employees/api/Employees/EmployeeService.ts').then((response) => {
+				$scope.optionsManager = response.data.map(e => ({
+					value: e.Id,
+					text: e.Name
+				}));
+			}, (error) => {
+				console.error(error);
+				const message = error.data ? error.data.message : '';
+				Dialogs.showAlert({
+					title: 'Manager',
+					message: LocaleService.t('codbex-vacations:codbex-vacations-model.messages.error.unableToLoad', { message: message }),
+					type: AlertTypes.Error
 				});
 			});
 		};
-		$scope.refreshType = function () {
+		$scope.refreshType = () => {
 			$scope.optionsType = [];
-			$http.get("/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveTypeService.ts").then(function (response) {
-				$scope.optionsType = response.data.map(e => {
-					return {
-						value: e.Id,
-						text: e.Name
-					}
+			$http.get('/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveTypeService.ts').then((response) => {
+				$scope.optionsType = response.data.map(e => ({
+					value: e.Id,
+					text: e.Name
+				}));
+			}, (error) => {
+				console.error(error);
+				const message = error.data ? error.data.message : '';
+				Dialogs.showAlert({
+					title: 'Type',
+					message: LocaleService.t('codbex-vacations:codbex-vacations-model.messages.error.unableToLoad', { message: message }),
+					type: AlertTypes.Error
 				});
 			});
 		};
-		$scope.refreshStatus = function () {
+		$scope.refreshStatus = () => {
 			$scope.optionsStatus = [];
-			$http.get("/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveStatusService.ts").then(function (response) {
-				$scope.optionsStatus = response.data.map(e => {
-					return {
-						value: e.Id,
-						text: e.Name
-					}
+			$http.get('/services/ts/codbex-vacations/gen/codbex-vacations/api/Settings/LeaveStatusService.ts').then((response) => {
+				$scope.optionsStatus = response.data.map(e => ({
+					value: e.Id,
+					text: e.Name
+				}));
+			}, (error) => {
+				console.error(error);
+				const message = error.data ? error.data.message : '';
+				Dialogs.showAlert({
+					title: 'Status',
+					message: LocaleService.t('codbex-vacations:codbex-vacations-model.messages.error.unableToLoad', { message: message }),
+					type: AlertTypes.Error
 				});
 			});
 		};
 
 		//----------------Dropdowns-----------------//	
-		
-
-	}]);
+	});
