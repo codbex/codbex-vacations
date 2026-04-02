@@ -1,7 +1,7 @@
-import { query } from "sdk/db";
-import { producer } from "sdk/messaging";
-import { extensions } from "sdk/extensions";
-import { dao as daoApi } from "sdk/db";
+import { sql, query } from "@aerokit/sdk/db";
+import { producer } from "@aerokit/sdk/messaging";
+import { extensions } from "@aerokit/sdk/extensions";
+import { dao as daoApi } from "@aerokit/sdk/db";
 
 export interface LeaveStatusEntity {
     readonly Id: number;
@@ -49,12 +49,13 @@ export interface LeaveStatusEntityOptions {
     },
     $select?: (keyof LeaveStatusEntity)[],
     $sort?: string | (keyof LeaveStatusEntity)[],
-    $order?: 'asc' | 'desc',
+    $order?: 'ASC' | 'DESC',
     $offset?: number,
     $limit?: number,
+    $language?: string
 }
 
-interface LeaveStatusEntityEvent {
+export interface LeaveStatusEntityEvent {
     readonly operation: 'create' | 'update' | 'delete';
     readonly table: string;
     readonly entity: Partial<LeaveStatusEntity>;
@@ -65,7 +66,7 @@ interface LeaveStatusEntityEvent {
     }
 }
 
-interface LeaveStatusUpdateEntityEvent extends LeaveStatusEntityEvent {
+export interface LeaveStatusUpdateEntityEvent extends LeaveStatusEntityEvent {
     readonly previousEntity: LeaveStatusEntity;
 }
 
@@ -92,14 +93,15 @@ export class LeaveStatusRepository {
     private readonly dao;
 
     constructor(dataSource = "DefaultDB") {
-        this.dao = daoApi.create(LeaveStatusRepository.DEFINITION, null, dataSource);
+        this.dao = daoApi.create(LeaveStatusRepository.DEFINITION, undefined, dataSource);
     }
 
-    public findAll(options?: LeaveStatusEntityOptions): LeaveStatusEntity[] {
-        return this.dao.list(options);
+    public findAll(options: LeaveStatusEntityOptions = {}): LeaveStatusEntity[] {
+        let list = this.dao.list(options);
+        return list;
     }
 
-    public findById(id: number): LeaveStatusEntity | undefined {
+    public findById(id: number, options: LeaveStatusEntityOptions = {}): LeaveStatusEntity | undefined {
         const entity = this.dao.find(id);
         return entity ?? undefined;
     }

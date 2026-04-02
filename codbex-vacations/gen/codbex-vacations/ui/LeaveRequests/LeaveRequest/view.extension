@@ -1,6 +1,6 @@
 {
     "module": "codbex-vacations/gen/codbex-vacations/ui/LeaveRequests/LeaveRequest/view.js",
-    "extensionPoint": "codbex-vacations-view",
+    "extensionPoint": "application-views",
     "description": "codbex-vacations - Application View",
     "role": "codbex-vacations.LeaveRequests.LeaveRequestReadOnly,codbex-vacations.LeaveRequests.LeaveRequestFullAccess"
 }

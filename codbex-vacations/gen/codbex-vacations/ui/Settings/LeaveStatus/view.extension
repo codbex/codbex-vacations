@@ -1,6 +1,6 @@
 {
     "module": "codbex-vacations/gen/codbex-vacations/ui/Settings/LeaveStatus/view.js",
-    "extensionPoint": "codbex-vacations-view",
+    "extensionPoint": "application-views",
     "description": "codbex-vacations - Application View",
     "role": "codbex-vacations.Settings.LeaveStatusReadOnly,codbex-vacations.Settings.LeaveStatusFullAccess"
 }

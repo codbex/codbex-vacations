@@ -4,16 +4,17 @@
  * Do not modify the content as it may be re-generated again.
  */
 const viewData = {
-    id: "LeaveBalance",
-    label: "LeaveBalance",
-    factory: "frame",
-    region: "left",
-    link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/LeaveBalance/index.html",
-    perspectiveName: "LeaveBalance"
+    id: 'LeaveBalance',
+    label: 'LeaveBalance',
+    translation: {
+        key: 'codbex-vacations:codbex-vacations-model.t.LEAVEBALANCE',
+    },
+    region: 'left',
+    lazyLoad: false,
+	autoFocusTab: false,
+    path: '/services/web/codbex-vacations/gen/codbex-vacations/ui/LeaveBalance/LeaveBalance/index.html',
+    perspectiveName: 'LeaveBalance'
 };
-
 if (typeof exports !== 'undefined') {
-    exports.getView = function () {
-        return viewData;
-    }
+	exports.getView = () => viewData;
 }

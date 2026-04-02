@@ -1,7 +1,7 @@
-import { query } from "sdk/db";
-import { producer } from "sdk/messaging";
-import { extensions } from "sdk/extensions";
-import { dao as daoApi } from "sdk/db";
+import { sql, query } from "@aerokit/sdk/db";
+import { producer } from "@aerokit/sdk/messaging";
+import { extensions } from "@aerokit/sdk/extensions";
+import { dao as daoApi } from "@aerokit/sdk/db";
 import { EntityUtils } from "../utils/EntityUtils";
 // custom imports
 import { NumberGeneratorService } from "/codbex-number-generator/service/generator";
@@ -132,12 +132,13 @@ export interface LeaveRequestEntityOptions {
     },
     $select?: (keyof LeaveRequestEntity)[],
     $sort?: string | (keyof LeaveRequestEntity)[],
-    $order?: 'asc' | 'desc',
+    $order?: 'ASC' | 'DESC',
     $offset?: number,
     $limit?: number,
+    $language?: string
 }
 
-interface LeaveRequestEntityEvent {
+export interface LeaveRequestEntityEvent {
     readonly operation: 'create' | 'update' | 'delete';
     readonly table: string;
     readonly entity: Partial<LeaveRequestEntity>;
@@ -148,7 +149,7 @@ interface LeaveRequestEntityEvent {
     }
 }
 
-interface LeaveRequestUpdateEntityEvent extends LeaveRequestEntityEvent {
+export interface LeaveRequestUpdateEntityEvent extends LeaveRequestEntityEvent {
     readonly previousEntity: LeaveRequestEntity;
 }
 
@@ -220,19 +221,20 @@ export class LeaveRequestRepository {
     private readonly dao;
 
     constructor(dataSource = "DefaultDB") {
-        this.dao = daoApi.create(LeaveRequestRepository.DEFINITION, null, dataSource);
+        this.dao = daoApi.create(LeaveRequestRepository.DEFINITION, undefined, dataSource);
     }
 
-    public findAll(options?: LeaveRequestEntityOptions): LeaveRequestEntity[] {
-        return this.dao.list(options).map((e: LeaveRequestEntity) => {
+    public findAll(options: LeaveRequestEntityOptions = {}): LeaveRequestEntity[] {
+        let list = this.dao.list(options).map((e: LeaveRequestEntity) => {
             EntityUtils.setDate(e, "StartDate");
             EntityUtils.setDate(e, "EndDate");
             EntityUtils.setDate(e, "ResolvedAt");
             return e;
         });
+        return list;
     }
 
-    public findById(id: number): LeaveRequestEntity | undefined {
+    public findById(id: number, options: LeaveRequestEntityOptions = {}): LeaveRequestEntity | undefined {
         const entity = this.dao.find(id);
         EntityUtils.setDate(entity, "StartDate");
         EntityUtils.setDate(entity, "EndDate");
@@ -245,7 +247,7 @@ export class LeaveRequestRepository {
         EntityUtils.setLocalDate(entity, "EndDate");
         EntityUtils.setLocalDate(entity, "ResolvedAt");
         // @ts-ignore
-        (entity as LeaveRequestEntity).Number = new NumberGeneratorService().generate(30);
+        (entity as LeaveRequestEntity).Number = new NumberGeneratorService().generateByType('Leave Request');
         if (entity.Status === undefined || entity.Status === null) {
             (entity as LeaveRequestEntity).Status = 1;
         }

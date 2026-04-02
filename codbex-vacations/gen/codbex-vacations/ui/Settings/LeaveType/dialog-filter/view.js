@@ -4,14 +4,17 @@
  * Do not modify the content as it may be re-generated again.
  */
 const viewData = {
-    id: "LeaveType-filter",
-    label: "LeaveType Filter",
-    link: "/services/web/codbex-vacations/gen/codbex-vacations/ui/Settings/LeaveType/dialog-filter/index.html",
-    perspectiveName: "Settings"
+    id: 'LeaveType-filter',
+    label: 'LeaveType Filter',
+    translation: {
+        key: 'codbex-vacations:codbex-vacations-model.extName',
+        options: {
+            content: '$t(codbex-vacations:codbex-vacations-model.t.LEAVETYPE) $t(codbex-vacations:codbex-vacations-model.defaults.filter)',
+        }
+    },
+    path: '/services/web/codbex-vacations/gen/codbex-vacations/ui/Settings/LeaveType/dialog-filter/index.html',
+    perspectiveName: 'Settings'
 };
-
 if (typeof exports !== 'undefined') {
-    exports.getDialogWindow = function () {
-        return viewData;
-    }
+    exports.getView = () => viewData;
 }

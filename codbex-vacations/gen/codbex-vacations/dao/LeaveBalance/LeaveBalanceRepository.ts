@@ -1,7 +1,7 @@
-import { query } from "sdk/db";
-import { producer } from "sdk/messaging";
-import { extensions } from "sdk/extensions";
-import { dao as daoApi } from "sdk/db";
+import { sql, query } from "@aerokit/sdk/db";
+import { producer } from "@aerokit/sdk/messaging";
+import { extensions } from "@aerokit/sdk/extensions";
+import { dao as daoApi } from "@aerokit/sdk/db";
 
 export interface LeaveBalanceEntity {
     readonly Id: number;
@@ -84,12 +84,13 @@ export interface LeaveBalanceEntityOptions {
     },
     $select?: (keyof LeaveBalanceEntity)[],
     $sort?: string | (keyof LeaveBalanceEntity)[],
-    $order?: 'asc' | 'desc',
+    $order?: 'ASC' | 'DESC',
     $offset?: number,
     $limit?: number,
+    $language?: string
 }
 
-interface LeaveBalanceEntityEvent {
+export interface LeaveBalanceEntityEvent {
     readonly operation: 'create' | 'update' | 'delete';
     readonly table: string;
     readonly entity: Partial<LeaveBalanceEntity>;
@@ -100,7 +101,7 @@ interface LeaveBalanceEntityEvent {
     }
 }
 
-interface LeaveBalanceUpdateEntityEvent extends LeaveBalanceEntityEvent {
+export interface LeaveBalanceUpdateEntityEvent extends LeaveBalanceEntityEvent {
     readonly previousEntity: LeaveBalanceEntity;
 }
 
@@ -147,14 +148,15 @@ export class LeaveBalanceRepository {
     private readonly dao;
 
     constructor(dataSource = "DefaultDB") {
-        this.dao = daoApi.create(LeaveBalanceRepository.DEFINITION, null, dataSource);
+        this.dao = daoApi.create(LeaveBalanceRepository.DEFINITION, undefined, dataSource);
     }
 
-    public findAll(options?: LeaveBalanceEntityOptions): LeaveBalanceEntity[] {
-        return this.dao.list(options);
+    public findAll(options: LeaveBalanceEntityOptions = {}): LeaveBalanceEntity[] {
+        let list = this.dao.list(options);
+        return list;
     }
 
-    public findById(id: number): LeaveBalanceEntity | undefined {
+    public findById(id: number, options: LeaveBalanceEntityOptions = {}): LeaveBalanceEntity | undefined {
         const entity = this.dao.find(id);
         return entity ?? undefined;
     }

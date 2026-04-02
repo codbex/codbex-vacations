@@ -1,7 +1,7 @@
-import { query } from "sdk/db";
-import { producer } from "sdk/messaging";
-import { extensions } from "sdk/extensions";
-import { dao as daoApi } from "sdk/db";
+import { sql, query } from "@aerokit/sdk/db";
+import { producer } from "@aerokit/sdk/messaging";
+import { extensions } from "@aerokit/sdk/extensions";
+import { dao as daoApi } from "@aerokit/sdk/db";
 
 export interface LeaveDeductionEntity {
     readonly Id: number;
@@ -66,12 +66,13 @@ export interface LeaveDeductionEntityOptions {
     },
     $select?: (keyof LeaveDeductionEntity)[],
     $sort?: string | (keyof LeaveDeductionEntity)[],
-    $order?: 'asc' | 'desc',
+    $order?: 'ASC' | 'DESC',
     $offset?: number,
     $limit?: number,
+    $language?: string
 }
 
-interface LeaveDeductionEntityEvent {
+export interface LeaveDeductionEntityEvent {
     readonly operation: 'create' | 'update' | 'delete';
     readonly table: string;
     readonly entity: Partial<LeaveDeductionEntity>;
@@ -82,7 +83,7 @@ interface LeaveDeductionEntityEvent {
     }
 }
 
-interface LeaveDeductionUpdateEntityEvent extends LeaveDeductionEntityEvent {
+export interface LeaveDeductionUpdateEntityEvent extends LeaveDeductionEntityEvent {
     readonly previousEntity: LeaveDeductionEntity;
 }
 
@@ -119,14 +120,15 @@ export class LeaveDeductionRepository {
     private readonly dao;
 
     constructor(dataSource = "DefaultDB") {
-        this.dao = daoApi.create(LeaveDeductionRepository.DEFINITION, null, dataSource);
+        this.dao = daoApi.create(LeaveDeductionRepository.DEFINITION, undefined, dataSource);
     }
 
-    public findAll(options?: LeaveDeductionEntityOptions): LeaveDeductionEntity[] {
-        return this.dao.list(options);
+    public findAll(options: LeaveDeductionEntityOptions = {}): LeaveDeductionEntity[] {
+        let list = this.dao.list(options);
+        return list;
     }
 
-    public findById(id: number): LeaveDeductionEntity | undefined {
+    public findById(id: number, options: LeaveDeductionEntityOptions = {}): LeaveDeductionEntity | undefined {
         const entity = this.dao.find(id);
         return entity ?? undefined;
     }
